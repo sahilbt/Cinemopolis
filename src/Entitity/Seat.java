@@ -9,8 +9,20 @@ public class Seat {
     this.seatNum = seatNum;
    }
 
-   public void setSeatNum(){
-    
+   public void setSeatNum(String seatNum){
+    this.seatNum = seatNum;
+   }
+
+   public String getSeatNum(){
+    return seatNum;
+   }
+
+   public void setVacant(boolean v){
+    this.vacant = v;
+   }
+
+   public boolean getVacant(){
+    return vacant;
    }
 
 
