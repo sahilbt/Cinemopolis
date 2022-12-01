@@ -1,5 +1,5 @@
 package BoundaryDB;
 
-public class MovieDB {
+public class MovieDB implements Database {
     
 }
