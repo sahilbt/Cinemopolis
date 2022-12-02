@@ -31,11 +31,23 @@ public class CouponDB implements Database {
     }
 
     public void addCoupon(Ticket ticket){
+        int value = getCouponValue(ticket.getPrice(), ticket.getRU());
+
         
+
+
+
     }
 
-    public void getCouponValue(int price){
-        int discount = 
+    public int getCouponValue(int price, boolean user){
+        double percent = 1;
+        
+        if(!user){
+            percent = 0.85;
+        }
+
+        double discount = price * percent;
+        return (int)discount;
     }
 
 
