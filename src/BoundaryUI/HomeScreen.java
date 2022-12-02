@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class HomeScreen extends JFrame {
-
     private JPanel backgroundPanel;
     private JPanel barDown;
     private JPanel barUp;
@@ -42,6 +41,7 @@ public class HomeScreen extends JFrame {
         buttonFindTheater = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cinemopolis");
         setBackground(Color.black);
         setName("Frame Top"); 
         setResizable(false);
@@ -59,33 +59,18 @@ public class HomeScreen extends JFrame {
         registerButton.setForeground(Color.white);
         registerButton.setText("Register");
         registerButton.setBorderPainted(false);
-        registerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                registerButtonActionPerformed(evt);
-            }
-        });
 
         cancellationButton.setBackground(Color.black);
-        cancellationButton.setFont(new Font("Dubai Light", 0, 18)); // NOI18N
+        cancellationButton.setFont(new Font("Dubai Light", 0, 18));
         cancellationButton.setForeground(Color.white);
         cancellationButton.setText("Cancellation");
         cancellationButton.setContentAreaFilled(false);
-        cancellationButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                cancellationButtonActionPerformed(evt);
-            }
-        });
 
         loginButton.setBackground(Color.black);
-        loginButton.setFont(new Font("Dubai Light", 0, 18)); // NOI18N
+        loginButton.setFont(new Font("Dubai Light", 0, 18));
         loginButton.setForeground(Color.white);
         loginButton.setText("Login");
         loginButton.setContentAreaFilled(false);
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
 
         GroupLayout barUpLayout = new GroupLayout(barUp);
         barUp.setLayout(barUpLayout);
@@ -109,34 +94,29 @@ public class HomeScreen extends JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        textFindYou.setFont(new Font("Dubai Light", 0, 32)); // NOI18N
+        textFindYou.setFont(new Font("Dubai Light", 0, 32)); 
         textFindYou.setForeground(Color.white);
         textFindYou.setText("Find your");
 
-        textAdventure.setFont(new Font("Nirmala UI", 1, 32)); // NOI18N
+        textAdventure.setFont(new Font("Nirmala UI", 1, 32));
         textAdventure.setForeground(new Color(221, 5, 37));
         textAdventure.setText("adventure");
 
-        textBrowseOur.setFont(new Font("Dubai Light", 0, 32)); // NOI18N
+        textBrowseOur.setFont(new Font("Dubai Light", 0, 32));
         textBrowseOur.setForeground(Color.white);
         textBrowseOur.setText("Browse our");
 
-        textCatelogue.setFont(new Font("Nirmala UI", 1, 32)); // NOI18N
+        textCatelogue.setFont(new Font("Nirmala UI", 1, 32));
         textCatelogue.setForeground(Color.white);
         textCatelogue.setText("catalogue");
 
-        blackPanther.setIcon(new ImageIcon(getClass().getResource("/resources/wakanda.jpg"))); // NOI18N
+        blackPanther.setIcon(new ImageIcon(getClass().getResource("/resources/wakanda.jpg"))); 
 
         buttonFindTheater.setBackground(new Color(221, 5, 37));
-        buttonFindTheater.setFont(new Font("Nirmala UI", 1, 24)); // NOI18N
+        buttonFindTheater.setFont(new Font("Nirmala UI", 1, 24)); 
         buttonFindTheater.setForeground(new Color(255, 255, 255));
         buttonFindTheater.setText("Find a theater");
         buttonFindTheater.setBorderPainted(false);
-        buttonFindTheater.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                buttonFindTheaterActionPerformed(evt);
-            }
-        });
 
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
@@ -222,28 +202,53 @@ public class HomeScreen extends JFrame {
             .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        backgroundPanel.getAccessibleContext().setAccessibleName("background panel");
-        backgroundPanel.getAccessibleContext().setAccessibleDescription("");
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
+
+        buttonFindTheater.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                buttonFindTheaterActionPerformed(evt);
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
+
+        cancellationButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                cancellationButtonActionPerformed(evt);
+            }
+        });
 
         pack();
-    }// </editor-fold>                        
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }                     
 
     private void registerButtonActionPerformed(ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        dispose();
+        RegisterScreen rs = new RegisterScreen();
     }                                              
 
     private void cancellationButtonActionPerformed(ActionEvent evt) {                                                   
-        // TODO add your handling code here:
+        dispose();
+        CancelScreen cs = new CancelScreen();
     }                                                  
 
-    private void loginButtonActionPerformed(ActionEvent evt) {                                            
-        // TODO add your handling code here:
+    private void loginButtonActionPerformed(ActionEvent evt) {
+        dispose();                                            
+        LoginScreen ls = new LoginScreen();
     }                                           
 
     private void buttonFindTheaterActionPerformed(ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+        
     }                                                 
-
 
     public static void main(String args[]) {
         try {
@@ -253,18 +258,12 @@ public class HomeScreen extends JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomeScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeScreen().setVisible(true);
+                new HomeScreen();
             }
         });
     }       
