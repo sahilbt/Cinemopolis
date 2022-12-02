@@ -38,15 +38,18 @@ public class UsersDB implements Database {
         try {
             String query = "SELECT * FROM user";
             Statement stmt = dbConnect.createStatement();
-            ResultSet set = stmt.InteractDataBaseQuery(query);
+            ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
                 String name = set.getString("Name");
                 String address = set.getString("Address");
-                String creditNumber = set.getString("Address");
-                String username = set.getString("Username");
+                String creditNumber = set.getString("CardNum");
+                String expdate = set.getString("ExpDate");
+                String cvv = set.getString("CVV");
+                String cardname = set.getString("CardName");
+                String username = set.getString("Email");
                 String pswd = set.getString("Password");
-                String type = set.getString("Type");
-                User user = new User(name,address,credit,username,pswd,type);
+                PaymentInformation paymentinfo = new PaymentInformation(creditNumber,expdate,cvv,cardname);
+                User user = new User(name,address,paymentinfo,username,pswd,"R");
                 DBUser.add(user);
             }
             stmt.close();

@@ -1,19 +1,24 @@
 package Entitity;
 
-public class Ticket {
+import java.util.ArrayList;
+
+public class Ticket extends Data{
     private String email;
     private String movie;
-    private Showtime showtime;
-    private Seat seat;
+    private String showtime;
+    private ArrayList<Seat> seats;
+    private int price;
+    private boolean registered;
 
 
-    public Ticket(String Email,String movie,Showtime showtime,Seat seat){
-        this.email = Email;
+    public Ticket(String email, String movie, String showtime, String date, ArrayList<Seat> seats, int price, boolean registered){
+        this.email = email;
         this.movie = movie;
         this.showtime = showtime;
-        this.seat = seat;
+        this.seats = seats;
+        this.price = price;
+        this.registered = registered;
     }
-
 
 
 }

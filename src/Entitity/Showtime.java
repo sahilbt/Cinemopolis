@@ -1,7 +1,7 @@
 package Entitity;
 import java.util.ArrayList;
 
-public class Showtime {
+public class Showtime extends Data{
     private ArrayList<Seat> Seats;
     private String Time;
 
