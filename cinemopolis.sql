@@ -145,14 +145,15 @@ CREATE TABLE users(
      CVV				varchar(50) NOT NULL,
      CardName			varchar(50) NOT NULL,
      Address			varchar(50) NOT NULL,
+     UserType			varchar(50) NOT NULL,
      primary key (Email)
 );
 
-INSERT INTO users (Email, Password,  Name, CardNum, ExpDate, CVV, CardName, Address) VALUES
-("henryoh02@gmail.com", "henry123",  "Henry Oh", "1111222233334444", "12/24", "111", "Henry Oh", "123 Some Street NW"), 
-("fredgilchrist151@gmail.com", "Fred Gilchrist", "9999999999999999", "10/25", "121", "Fred Gilchrist", "69 Rowy Way SE"), 
-("lmaopoo90023@gmail.com", "LPL Po", "123456789098754", "09/35", "420", "Allen Walker", "480 Whalebananam Crescent");
-
+INSERT INTO users (Email, Password,  Name, CardNum, ExpDate, CVV, CardName, Address, UserType) VALUES
+("henryoh02@gmail.com", "henry123",  "Henry Oh", "1111222233334444", "12/24", "111", "Henry Oh", "123 Some Street NW", "R"), 
+("fredgilchrist151@gmail.com", "fred123", "Fred Gilchrist", "9999999999999999", "10/25", "121", "Fred Gilchrist", "69 Rowy Way SE", "R"), 
+("lmaopoo90023@gmail.com", "hello", "LPL Po", "123456789098754", "09/35", "420", "Allen Walker", "480 Whalebananam Crescent", "R"),
+("admin@cinemopolis.com", "admin123", "Admin", "0", "0", "0", "Admin", "Empty", "A");
 
 DROP TABLE IF EXISTS tickets;
 CREATE TABLE tickets(
