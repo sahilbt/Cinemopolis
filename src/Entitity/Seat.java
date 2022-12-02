@@ -1,6 +1,6 @@
 package Entitity;
 
-public class Seat {
+public class Seat extends Data {
    private boolean vacant;
    private String seatNum;
    private String ShowTimeID;

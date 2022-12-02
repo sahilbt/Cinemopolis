@@ -1,5 +1,5 @@
 package Entitity;
 
-public class Theatre {
+public class Theatre extends Data{
     
 }
