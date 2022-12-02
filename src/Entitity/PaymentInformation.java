@@ -5,12 +5,15 @@ public class PaymentInformation{
     String credit;
     String expdate;
     String cvv;
+    String cardName;
 
 
-    public PaymentInformation(String credit,String ExpDate, String cvv){
+    public PaymentInformation(String credit,String ExpDate, String cvv,String cardName){
         this.credit = credit;
         this.expdate = ExpDate;
         this.cvv = cvv;
+        this.cardName = cardName;
+
     }
 
     public String getCredit(){
@@ -35,6 +38,14 @@ public class PaymentInformation{
 
     public void setCVV(String cvv){
         this.cvv = cvv;
+    }
+
+    public String getCardName(){
+        return this.cardName;
+    }
+
+    public void setCardName(String cardName){
+        this.cardName = cardName;
     }
 
 

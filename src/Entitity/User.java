@@ -14,11 +14,11 @@ public class User {
 
     
     public User(String name,String address,PaymentInformation paymentInformation ,String username,String password,String userType){
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.address = address;
         this.paymentInformation = paymentInformation;
-        this.username = username;
-        this.password = password;
         this.userType = userType;
     }
 
