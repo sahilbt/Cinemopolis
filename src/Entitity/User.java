@@ -1,6 +1,6 @@
 package Entitity;
 
-public class User {
+public class User extends Data{
     
     private String name;
     private String address;
@@ -9,10 +9,6 @@ public class User {
     private String password;
     private String userType;
 
-
-    
-
-    
     public User(String name,String address,PaymentInformation paymentInformation ,String username,String password,String userType){
         this.name = name;
         this.address = address;

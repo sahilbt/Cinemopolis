@@ -1,6 +1,6 @@
 package Entitity;
 
-public class Ticket {
+public class Ticket extends Data{
     private String email;
     private String movie;
     private Showtime showtime;

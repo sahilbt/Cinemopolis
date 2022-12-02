@@ -1,14 +1,17 @@
 package BoundaryDB;
 
+import java.util.ArrayList;
 
 public interface Database{
 
-final String USERNAME = "";
+    final String USERNAME = "ensf480";
 
-final String PASSWORD = "";
+    final String PASSWORD = "password";
 
-final String URL = "";
+    final String URL = "jdbc:mysql://localhost/cinemopolis";
 
+    public void initializeConnection();
+    public ArrayList<Data> dbRecieve(int id);
 
-public void initializeConnection();
 }
+
