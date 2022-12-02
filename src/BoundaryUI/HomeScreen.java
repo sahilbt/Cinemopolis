@@ -52,8 +52,7 @@ public class HomeScreen extends JFrame {
         theaterName.setForeground(Color.white);
         theaterName.setText("Cinemopolis");
 
-        icon.setIcon(new ImageIcon("resources\\popcornIcon.png")); 
-        icon.setText("jLabel3");
+        icon.setIcon(new ImageIcon(getClass().getResource("/resources/popcorn.png")));
 
         registerButton.setBackground(new Color(221, 5, 37));
         registerButton.setFont(new Font("Dubai", 1, 18)); 
@@ -96,14 +95,14 @@ public class HomeScreen extends JFrame {
         );
         barUpLayout.setVerticalGroup(
             barUpLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 3, Short.MAX_VALUE)
+            .addGap(0, 4, Short.MAX_VALUE)
         );
 
         GroupLayout barDownLayout = new GroupLayout(barDown);
         barDown.setLayout(barDownLayout);
         barDownLayout.setHorizontalGroup(
             barDownLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 314, Short.MAX_VALUE)
+            .addGap(0, 316, Short.MAX_VALUE)
         );
         barDownLayout.setVerticalGroup(
             barDownLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -126,8 +125,7 @@ public class HomeScreen extends JFrame {
         textCatelogue.setForeground(Color.white);
         textCatelogue.setText("catalogue");
 
-        blackPanther.setIcon(new ImageIcon("C:\\Users\\patel\\Downloads\\eeee.jpg")); // NOI18N
-        blackPanther.setText("jLabel8");
+        blackPanther.setIcon(new ImageIcon(getClass().getResource("/resources/wakanda.jpg"))); // NOI18N
 
         buttonFindTheater.setBackground(new Color(221, 5, 37));
         buttonFindTheater.setFont(new Font("Nirmala UI", 1, 24)); // NOI18N
