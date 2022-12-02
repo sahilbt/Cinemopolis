@@ -30,6 +30,14 @@ public class CouponDB implements Database {
         return false;
     }
 
+    public void addCoupon(Ticket ticket){
+        
+    }
+
+    public void getCouponValue(int price){
+        int discount = 
+    }
+
 
     public void initializeConnection() {
         try {
