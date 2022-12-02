@@ -4,16 +4,19 @@ public class User {
     
     private String name;
     private String address;
-    private String credit;
+    private PaymentInformation paymentInformation;
     private String username;
     private String password;
     private String userType;
 
+
     
-    public User(String name,String address,String credit,String username,String password,String userType){
+
+    
+    public User(String name,String address,PaymentInformation paymentInformation ,String username,String password,String userType){
         this.name = name;
         this.address = address;
-        this.credit = credit;
+        this.paymentInformation = paymentInformation;
         this.username = username;
         this.password = password;
         this.userType = userType;
@@ -27,8 +30,8 @@ public class User {
         return this.address;
     }
 
-    public String getCredit(){
-        return this.credit;
+    public PaymentInformation getPaymentInformation(){
+        return this.paymentInformation;
     }
 
     public String getUsername(){
@@ -52,8 +55,8 @@ public class User {
         this.address = address;
     }
 
-    public void setCredit(String credit){
-       this.credit = credit;
+    public void setPaymentInformation(PaymentInformation paymentInformation){
+       this.paymentInformation = paymentInformation;
     }
 
     public void setUsername(String username){

@@ -38,11 +38,11 @@ public class UsersDB implements Database {
         try {
             String query = "SELECT * FROM user";
             Statement stmt = dbConnect.createStatement();
-            ResultSet set = stmt.executeQuery(query);
+            ResultSet set = stmt.InteractDataBaseQuery(query);
             while (set.next()) {
                 String name = set.getString("Name");
                 String address = set.getString("Address");
-                String credit = set.getString("Address");
+                String creditNumber = set.getString("Address");
                 String username = set.getString("Username");
                 String pswd = set.getString("Password");
                 String type = set.getString("Type");
@@ -57,7 +57,7 @@ public class UsersDB implements Database {
         return DBUser;
     }
 
-    public boolean validate(String username, String password, String userType){
+    public boolean validateLogin(String username, String password, String userType){
 
         for(User val :users.getRegisteredUsers()){
             if (username.equals(val.getUsername()) && password.equals(val.getPassword()) && userType.equals(val.getUserType())) {
@@ -67,6 +67,18 @@ public class UsersDB implements Database {
         
     return false;
     }
+
+public boolean validateRegister(String username){
+    for(User val :users.getRegisteredUsers()){
+        if (username.equals(val.getUsername())) {
+            return false;
+        }
+    } 
+    return true;
+}
+
+
+
 
     
 

@@ -3,7 +3,7 @@ package Controllers;
 public class TheaterController implements Controller{
     
     @Override
-    public void execute() {
+    public void InteractDataBase() {
         // TODO Auto-generated method stub
         
     }

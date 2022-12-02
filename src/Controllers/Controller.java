@@ -1,6 +1,6 @@
 package Controllers;
 
 public interface Controller {
-    abstract void execute();
+    abstract void InteractDataBase();
 
 }
