@@ -37,6 +37,17 @@ public class CouponDB implements Database {
 
 
 
+
+        private String email;
+        private String movie;
+        private String showtime;
+        private ArrayList<Seat> seats;
+        private int price;
+        private boolean registered;
+
+
+
+
     }
 
     public int getCouponValue(int price, boolean user){
