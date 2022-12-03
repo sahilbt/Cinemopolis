@@ -38,7 +38,7 @@ public class HomeScreen extends JFrame {
         textBrowseOur = new JLabel();
         textCatelogue = new JLabel();
         blackPanther = new JLabel();
-        buttonFindTheater = new JButton();
+        buttonFindTheater = new JButton();  
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cinemopolis");

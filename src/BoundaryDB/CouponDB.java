@@ -34,7 +34,7 @@ public class CouponDB implements Database {
         int value = getCouponValue(ticket.getPrice(), ticket.getRegistered());
 
         try {
-            String query = "INSERT INTO coupon (Value) VALUES (?) ";
+            String query = "INSERT INTO coupons (Value) VALUES (?) ";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             stmt.setInt(1, value);
             stmt.executeUpdate();
