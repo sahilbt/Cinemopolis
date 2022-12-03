@@ -14,13 +14,11 @@ public class UsersDB implements Database {
         initializeConnection();
         users = Singleton.getInstance();
         if(users.getUsersAdded())
-        return;
+            return;
         else{
-        users.setRegisteredUsers(getAllRegisteredUsers());
-        users.wasAdded();
+            users.setRegisteredUsers(getAllRegisteredUsers());
+            users.wasAdded();
         }
-        
-
     }
 
 
@@ -37,7 +35,7 @@ public class UsersDB implements Database {
     public ArrayList<Data> getAllRegisteredUsers(){
         ArrayList<Data> DBUser = new ArrayList<>();
         try {
-            String query = "SELECT * FROM user";
+            String query = "SELECT * FROM users";
             Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
@@ -83,7 +81,7 @@ public class UsersDB implements Database {
 
     public User findUser(String username){
         for(User u: users.getRegisteredUsers()){
-            if (u.getName().compareTo(username)  == 0){
+            if (u.getUsername().equals(username)){
                 return u;
             }
         }

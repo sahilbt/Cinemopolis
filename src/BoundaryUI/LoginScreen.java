@@ -215,11 +215,6 @@ public class LoginScreen extends JFrame {
         dispose();
         DashboardScreen ds = new DashboardScreen(foundUser);
         ds.performStrategy();
-        
-        
-
-
-        // TODO add your handling code here:
     }                                           
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           

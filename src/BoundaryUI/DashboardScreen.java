@@ -9,7 +9,7 @@ public class DashboardScreen {
         if(user == null){
             s = new GuestDashScreen(user);
         }
-        if(user.getUserType().compareTo("R") == 0){
+        else if(user.getUserType().compareTo("R") == 0){
             s = new RegisteredDashScreen(user);
         }
     }

@@ -2,12 +2,11 @@ package Controllers;
 import BoundaryDB.*;
 import Entitity.User;
 
-public class LoginController implements Controller{
+public class LoginController{
 
     private UsersDB userConnection;
 
-    @Override
-    public void interactDatabase() {
+    public LoginController(){
         this.userConnection = new UsersDB();
     }
 
