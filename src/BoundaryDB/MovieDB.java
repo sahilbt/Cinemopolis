@@ -20,7 +20,7 @@ public class MovieDB implements Database{
     @Override
     public void initializeConnection() {
         try {
-            this.dbConnect = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
+            this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();        
         }
@@ -38,9 +38,8 @@ public class MovieDB implements Database{
     public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
         ArrayList<Movie> DBMovies = new ArrayList<>();
         try {
-            String query = "SELECT * FROM Movies WHERE TheatreID = ?";
-            PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, theatre.getID());
+            String query = "SELECT * FROM movies WHERE TheatreID = " + Integer.toString(theatre.getID());
+            Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
                 int movieID = set.getInt("ID");

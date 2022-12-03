@@ -99,7 +99,7 @@ public class MovieScreen extends JFrame {
         movieTable.setFont(new Font("Dubai", 1, 18)); // NOI18N
         movieTable.setForeground(Color.white);
         movieTable.setGridColor(Color.white);
-        movieTable.setRowHeight(60);
+        movieTable.setRowHeight(61);
         movieTable.setSelectionBackground(new Color(183, 183, 183));
         movieTable.setShowHorizontalLines(true);
         movieTable.setShowVerticalLines(true);
@@ -107,19 +107,21 @@ public class MovieScreen extends JFrame {
         jScrollPane1.getViewport().setBackground(new Color(77,77,77));
         jScrollPane1.setBorder(BorderFactory.createLineBorder(Color.white));
 
-
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < movieTable.getModel().getColumnCount(); i++) {
-            movieTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        }
-
         DefaultTableModel model = (DefaultTableModel)movieTable.getModel();
+        model.addColumn(new Object[] {"bruh"});
 
         int i =0;
         while(i < theatres.get(0).getMovieList().size()){
             model.addRow(new Object[] {theatres.get(0).getMovieList().get(i).getMovieName()});
             i++;
+        }
+
+        movieTable.setModel(model);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (i = 0; i < movieTable.getModel().getColumnCount(); i++) {
+            movieTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
         
 

@@ -25,10 +25,10 @@ CREATE TABLE movies(
     );
 
 INSERT INTO movies (TheatreID, Name) VALUES
-(0, "Black Panther 2"), 
-(0, "Transformers"), 
-(0, "Elf"), 
-(0, "Home Alone");
+(1, "Black Panther 2"), 
+(1, "Transformers"), 
+(1, "Elf"), 
+(1, "Home Alone");
  
  
  DROP TABLE IF EXISTS showtimes;
@@ -41,10 +41,6 @@ CREATE TABLE showtimes(
  
  
 INSERT INTO showtimes (MovieID, Time) VALUES
-(0, "12:00"), 
-(0, "15:00"), 
-(0, "18:00"), 
-(0, "20:00"), 
 (1, "12:00"), 
 (1, "15:00"), 
 (1, "18:00"), 
@@ -57,6 +53,10 @@ INSERT INTO showtimes (MovieID, Time) VALUES
 (3, "15:00"), 
 (3, "18:00"), 
 (3, "20:00");
+(4, "12:00"), 
+(4, "15:00"), 
+(4, "18:00"), 
+(4, "20:00"), 
  
  
 DROP TABLE IF EXISTS seats;
