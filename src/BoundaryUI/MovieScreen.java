@@ -201,6 +201,7 @@ public class MovieScreen extends JFrame {
     }                                              
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        dispose();     
+        TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }                                                 
 }
