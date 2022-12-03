@@ -9,7 +9,6 @@ public class MovieDB implements Database {
 
     public MovieDB(){
         initializeConnection();
-        closeConnection();
     }
 
 

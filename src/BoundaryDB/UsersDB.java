@@ -1,5 +1,6 @@
 package BoundaryDB;
 
+
 import Entitity.*;
 import java.sql.*;
 import java.util.*;
@@ -15,7 +16,7 @@ public class UsersDB implements Database {
         if(users.getUsersAdded())
         return;
         else{
-        users.setRegisteredUsers(getAllRegisteredUsers());
+        users.setRegisteredUsers(dbRecieve(0));
         users.wasAdded();
         }
         
@@ -32,9 +33,9 @@ public class UsersDB implements Database {
             }
         }
     
-
-    public ArrayList<User> getAllRegisteredUsers(){
-        ArrayList<User> DBUser = new ArrayList<>();
+    @Override
+    public ArrayList<Data> dbRecieve(int id){
+        ArrayList<Data> DBUser = new ArrayList<>();
         try {
             String query = "SELECT * FROM user";
             Statement stmt = dbConnect.createStatement();
@@ -49,7 +50,7 @@ public class UsersDB implements Database {
                 String username = set.getString("Email");
                 String pswd = set.getString("Password");
                 PaymentInformation paymentinfo = new PaymentInformation(creditNumber,expdate,cvv,cardname);
-                User user = new User(name,address,paymentinfo,username,pswd,"R");
+                Data user = new User(name,address,paymentinfo,username,pswd,"R");
                 DBUser.add(user);
             }
             stmt.close();
@@ -80,10 +81,6 @@ public boolean validateRegister(String username){
     return true;
 }
 
-
-
-
-    
 
 
 

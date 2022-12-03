@@ -1,5 +1,5 @@
 package Entitity;
 
-public class Data {
+abstract public class Data {
     public int id;
 }

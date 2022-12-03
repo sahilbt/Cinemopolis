@@ -30,7 +30,7 @@ public class Ticket extends Data{
     }
 
     public String getMovie(){
-        return this.Movie;
+        return this.movie;
     }
 
     public void setMovie(String movie){

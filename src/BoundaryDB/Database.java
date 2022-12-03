@@ -1,5 +1,6 @@
 package BoundaryDB;
 
+import Entitity.*;
 import java.util.ArrayList;
 
 public interface Database{
@@ -11,7 +12,7 @@ public interface Database{
     final String URL = "jdbc:mysql://localhost/cinemopolis";
 
     public void initializeConnection();
-    public ArrayList<Data> dbRecieve(int id);
+
 
 }
 

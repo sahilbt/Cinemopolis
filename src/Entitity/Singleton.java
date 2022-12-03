@@ -19,11 +19,11 @@ public class Singleton extends Data{
         return RegisteredUsers;
     }
 
-    public void setRegisteredUsers(ArrayList<User> RegisteredUser){
+    public void setRegisteredUsers(ArrayList<Data> RegisteredUser){
         RegisteredUsers.clear();
 
-        for(User val : RegisteredUser){
-            this.RegisteredUsers.add(val);
+        for(Data val : RegisteredUser){
+            this.RegisteredUsers.add((User)val);
         }
     }
 
@@ -34,8 +34,8 @@ public class Singleton extends Data{
     }
 
 
-    public void addUser(User u) {
-        this.RegisteredUsers.add(u);
+    public void addUser(Data u) {
+        this.RegisteredUsers.add((User)u);
         return;
     }
 
