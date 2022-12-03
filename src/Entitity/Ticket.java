@@ -75,4 +75,7 @@ public class Ticket extends Data{
     public String getDate(){
         return this.date;
     }
+    public String getTheatre(){
+        return this.theatre;
+    }
 }
