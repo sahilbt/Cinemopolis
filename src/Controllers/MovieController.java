@@ -1,9 +1,31 @@
 package Controllers;
 
-public class MovieController {
-    
-    @Override
-    public void InteractDataBase() {
-        
+import java.util.ArrayList;
+
+import BoundaryDB.MovieDB;
+import Entitity.*;
+
+
+public class MovieController{
+
+    private MovieDB db;
+
+    public MovieController(){
+       db = new MovieDB();
     }
+
+    public ArrayList<Movie> getMoviePageInformation(int id){
+        return db.getMoviesFromTheatre(id);
+    }
+
+    public String getMovie(int movieID,int theatreID){
+        return db.getMovieNameFromTheatre(movieID, theatreID);
+    }
+
+    public boolean forwardMovieSearch(int TheatreID,String MovieName){
+        return db.checkMovieSearch(TheatreID, MovieName);
+    }
+
+
+
 }

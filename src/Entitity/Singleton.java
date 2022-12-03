@@ -2,7 +2,7 @@ package Entitity;
 
 import java.util.*;
 
-public class Singleton extends Data{
+public class Singleton{
     private static Singleton instance;
 
     private ArrayList<User> RegisteredUsers;

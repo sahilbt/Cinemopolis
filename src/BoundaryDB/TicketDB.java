@@ -30,10 +30,5 @@ public class TicketDB implements Database{
 
 
 
-    @Override
-    public ArrayList<Data> dbRecieve(int id){
-     return new ArrayList<Data>();
-    }
 
-    public ArrayList<
 }

@@ -43,7 +43,7 @@ public class CouponDB implements Database {
                 query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
                 stmt = dbConnect.prepareStatement(query);
                 stmt.setBoolean(1, true);
-                stmt.setInt(2, s.getSeatID());
+                stmt.setInt(2, s.getID());
                 stmt.executeUpdate();
             }
             
@@ -52,10 +52,6 @@ public class CouponDB implements Database {
         }
     }
 
-    @Override
-    public ArrayList<Data> dbRecieve(int id){
-        return new ArrayList<Data>();
-    }
 
     public int getCouponValue(int price, boolean user){
         double percent = 1;

@@ -16,7 +16,7 @@ public class UsersDB implements Database {
         if(users.getUsersAdded())
         return;
         else{
-        users.setRegisteredUsers(dbRecieve(0));
+        users.setRegisteredUsers(getAllRegisteredUsers());
         users.wasAdded();
         }
         
@@ -33,8 +33,8 @@ public class UsersDB implements Database {
             }
         }
     
-    @Override
-    public ArrayList<Data> dbRecieve(int id){
+
+    public ArrayList<Data> getAllRegisteredUsers(){
         ArrayList<Data> DBUser = new ArrayList<>();
         try {
             String query = "SELECT * FROM user";

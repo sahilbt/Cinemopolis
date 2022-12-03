@@ -1,6 +1,6 @@
 package Entitity;
 
-public class PaymentInformation extends Data{
+public class PaymentInformation{
     
     String credit;
     String expdate;

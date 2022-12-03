@@ -4,31 +4,27 @@ import java.sql.*;
 import java.util.*;
 import Entitity.*;
 
-
-
-
-public class SeatsDB implements Database{
+public class ShowtimeDB implements Database{
 
     private Connection dbConnect;
 
 
-    public SeatsDB(){
+    public ShowtimeDB(){
         initializeConnection();
     }
 
-    public ArrayList<Seat> getSeatsFromShowtime(int id) {
-        ArrayList<Seat> DBUser = new ArrayList<>();
+    public ArrayList<Showtime> getShowtimesFromMovie(int id) {
+        ArrayList<Showtime> DBUser = new ArrayList<>();
         try {
             String query = "SELECT * FROM Movies WHERE MovieID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
-                int showtimeID = set.getInt("ShowtimeID");
-                int SeatID = set.getInt("ID");
-                boolean Ruser = set.getBoolean("RUser");
-                boolean Vacancy = set.getBoolean("Vacancy");
-                DBUser.add(new Seat(Vacancy,SeatID,showtimeID,Ruser));
+                int MovieID = set.getInt("MovieID");
+                int ShowtimeID = set.getInt("ID");
+                String Time = set.getString("TIme");
+                DBUser.add(new Showtime(ShowtimeID,MovieID,Time));
             }
             stmt.close();
             set.close();
@@ -39,18 +35,6 @@ public class SeatsDB implements Database{
     }
 
 
-    public boolean checkRuserSeat(ArrayList<Seat>seats){
-        int max = seats.size()/10;
-        int counter = 0;
-        for(Seat val : seats){
-            if(val.getRuser()==true){
-                counter++;
-            }
-            if(counter > max)
-            return false;
-        }
-        return true;
-    }
 
 
 

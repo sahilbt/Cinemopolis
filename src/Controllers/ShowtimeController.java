@@ -1,10 +1,21 @@
 package Controllers;
 
-public class ShowtimeController implements Controller{
+import java.util.ArrayList;
+
+import BoundaryDB.ShowtimeDB;
+import Entitity.Showtime;
+
+public class ShowtimeController{
     
-    @Override
-    public void InteractDataBase() {
-        // TODO Auto-generated method stub
-        
+    private ShowtimeDB db;
+
+    public ShowtimeController(){
+       db = new ShowtimeDB();
     }
+
+    public ArrayList<Showtime> getShowtimePageInformation(int id){
+        return db.getShowtimesFromMovie(id);
+    }
+
+
 }

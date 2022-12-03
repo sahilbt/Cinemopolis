@@ -15,6 +15,5 @@ public interface Database{
 
     public void initializeConnection();
 
-
 }
 

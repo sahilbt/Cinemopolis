@@ -5,7 +5,7 @@ import java.util.Properties;
 import javax.mail.*;  
 
 
-public class PaymentService extends Data{
+public class PaymentService{
     
     final String fromEmail = "CinemopolisTheatre@gmail.com"; //requires valid gmail id
     final String password = "xslqzhlzmwhpozvi"; // correct password for gmail id

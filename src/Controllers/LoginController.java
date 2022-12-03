@@ -4,7 +4,7 @@ import BoundaryDB.*;
 public class LoginController implements Controller{
     
 
-    public 
+
 
     @Override
     public void InteractDataBase() {
