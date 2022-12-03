@@ -18,13 +18,13 @@ public class MovieController{
         return db.getMoviesFromTheatre(theatre);
     }
 
-    public String getMovie(int movieID,int theatreID){
-        return db.getMovieNameFromTheatre(movieID, theatreID);
-    }
+    // public String getMovie(int movieID,int theatreID){
+    //     return db.getMovieNameFromTheatre(movieID, theatreID);
+    // }
 
-    public boolean forwardMovieSearch(int TheatreID,String MovieName){
-        return db.checkMovieSearch(TheatreID, MovieName);
-    }
+    // public boolean forwardMovieSearch(int TheatreID,String MovieName){
+    //     return db.checkMovieSearch(TheatreID, MovieName);
+    // }
 
 
 
