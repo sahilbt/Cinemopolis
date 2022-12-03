@@ -21,4 +21,45 @@ public class Ticket extends Data{
     }
 
 
+    public String getEmail(){
+        return this.email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getMovie(){
+        return this.Movie;
+    }
+
+    public void setMovie(String movie){
+        this.movie = movie;
+    }
+
+    public String getShowtime(){
+        return this.showtime;
+    }
+
+    public void setShowtime(String showtime){
+        this.showtime = showtime;
+    }
+
+    public ArrayList<Seat> getSeats(){
+        return this.seats;
+    }
+
+    public void setSeats(ArrayList<Seat> seats){
+        this.seats = seats;
+    }
+
+    private int getPrice(){
+        return this.price;
+    }
+
+    private void setPrice(int price){
+        return this.price;
+    }
+
+
 }
