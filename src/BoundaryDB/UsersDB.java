@@ -88,6 +88,26 @@ public class UsersDB implements Database {
         return null;
     }
 
+public void addRegister(User u){
+    try {
+        String query = "INSERT INTO users (Email, Password,  Name, CardNum, ExpDate, CVV, CardName, Address, UserType) VALUES (?,?,?,?,?,?,?,?,?) ";
+        PreparedStatement stmt = dbConnect.prepareStatement(query);
+        stmt.setString(1, u.getUsername());
+        stmt.setString(2,u.getPassword());
+        stmt.setString(3,u.getName());
+        stmt.setString(4,u.getPaymentInformation().getCredit());
+        stmt.setString(5,u.getPaymentInformation().getExpDate());
+        stmt.setString(6,u.getPaymentInformation().getCVV());
+        stmt.setString(7,u.getPaymentInformation().getCardName());
+        stmt.setString(8,u.getAddress());
+        stmt.setString(9,u.getUserType());
+        stmt.executeUpdate();
+        stmt.close();
+        }catch (SQLException e) {
+            e.printStackTrace();
+    }
+}
+
 
 
 
