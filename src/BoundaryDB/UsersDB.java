@@ -61,10 +61,10 @@ public class UsersDB implements Database {
         return DBUser;
     }
 
-    public boolean validateLogin(String username, String password, String userType){
+    public boolean validateLogin(String username, String password){
 
         for(User val :users.getRegisteredUsers()){
-            if (username.equals(val.getUsername()) && password.equals(val.getPassword()) && userType.equals(val.getUserType())) {
+            if (username.equals(val.getUsername()) && password.equals(val.getPassword())) {
                 return true;
             }
         } 
@@ -72,14 +72,23 @@ public class UsersDB implements Database {
     return false;
     }
 
-public boolean validateRegister(String username){
-    for(User val :users.getRegisteredUsers()){
-        if (username.equals(val.getUsername())) {
-            return false;
+    public boolean validateRegister(String username){
+        for(User val :users.getRegisteredUsers()){
+            if (username.equals(val.getUsername())) {
+                return false;
+            }
+        } 
+        return true;
+    }
+
+    public User findUser(String username){
+        for(User u: users.getRegisteredUsers()){
+            if (u.getName().compareTo(username)  == 0){
+                return u;
+            }
         }
-    } 
-    return true;
-}
+        return null;
+    }
 
 public void addRegister(User u){
     try {

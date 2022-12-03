@@ -1,12 +1,22 @@
 package Controllers;
 import BoundaryDB.*;
+import Entitity.User;
 
 public class LoginController implements Controller{
 
+    private UsersDB userConnection;
+
     @Override
     public void interactDatabase() {
-        UsersDB UserConnection = new UsersDB();
+        this.userConnection = new UsersDB();
     }
 
+    public boolean forwardUserCreds(String user, String pass){
+        return userConnection.validateLogin(user, pass);
+    }
+
+    public User findUserFromSingleton(String user){
+        return userConnection.findUser(user);
+    }
 
 }

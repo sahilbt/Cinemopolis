@@ -1,5 +1,6 @@
 package BoundaryUI;
 import Controllers.*;
+import Entitity.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -193,7 +194,31 @@ public class LoginScreen extends JFrame {
     
     
 
-    private void loginButtonActionPerformed(ActionEvent evt) {                                            
+    private void loginButtonActionPerformed(ActionEvent evt) {   
+        String usernameField = emailTextbox.getText();
+        String passwordField = String.valueOf(passwordTextbox.getPassword());
+
+        if(usernameField.isEmpty() || passwordField.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter BOTH your email and password >:(","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        LoginController lc = new LoginController();
+        boolean userExists = lc.forwardUserCreds(usernameField, passwordField);
+  
+        if(!userExists){
+            JOptionPane.showMessageDialog(this, "Incorrect username or password ","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        User foundUser = lc.findUserFromSingleton(usernameField);
+        dispose();
+        DashboardScreen ds = new DashboardScreen(foundUser);
+        ds.performStrategy();
+        
+        
+
+
         // TODO add your handling code here:
     }                                           
 
