@@ -3,7 +3,6 @@ package Entitity;
 import java.util.ArrayList;
 
 public class Ticket extends Data{
-    private int ID;
     private String email;
     private String movie;
     private String showtime;
@@ -13,10 +12,12 @@ public class Ticket extends Data{
     private String date;
     private String theatre;
 
-    public Ticket(){}
+    public Ticket(){
+        super(0);
+    }
 
     public Ticket(int ID, String email, String movie, String showtime, String date, ArrayList<Integer> seats, int price, boolean registered, String theatre){
-        this.ID = ID;
+        super(ID);
         this.email = email;
         this.movie = movie;
         this.showtime = showtime;
@@ -73,9 +74,5 @@ public class Ticket extends Data{
 
     public String getDate(){
         return this.date;
-    }
-
-    public int getID(){
-        return this.ID;
     }
 }

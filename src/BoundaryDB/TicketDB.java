@@ -66,11 +66,4 @@ public class TicketDB implements Database {
         }
     }
 
-
-
-    @Override
-    public ArrayList<Data> dbRecieve(int id){
-        //TODO
-        return new ArrayList<Data>();
-    }
 }
