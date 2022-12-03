@@ -35,8 +35,8 @@ public class MovieDB implements Database{
     }
 
     
-    public ArrayList<Movie> getMoviesFromTheatre(int id) {
-        ArrayList<Movie> DBUser = new ArrayList<>();
+    public ArrayList<Movie> getMoviesFromTheatre(int id,Theatre theatre) {
+        ArrayList<Movie> DBMovies = new ArrayList<>();
         try {
             String query = "SELECT * FROM Movies WHERE TheatreID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
@@ -46,18 +46,22 @@ public class MovieDB implements Database{
                 int MovieID = set.getInt("ID");
                 int TheatreID = set.getInt("TheatreID");
                 String Name = set.getString("Name");
-                DBUser.add(new Movie(Name,TheatreID,MovieID));
+                DBMovies.add(new Movie(Name,TheatreID,MovieID));
             }
             stmt.close();
             set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return DBUser;
+        theatre.setMovieList(DBMovies);
+        return DBMovies;
     }
 
-    public String getMovieNameFromTheatre(int MovieID,int TheatreID){
-        ArrayList<Movie> MovieList = getMoviesFromTheatre(TheatreID);
+
+    
+
+    public String getMovieNameFromTheatre(int MovieID,int TheatreID,Theatre theatre){
+        ArrayList<Movie> MovieList = theatre.getMovieList();
 
         for(Movie val : MovieList){
             if(MovieID == val.getID()){
@@ -67,8 +71,8 @@ public class MovieDB implements Database{
         return null;
     }
 
-    public boolean checkMovieSearch(int TheatreID,String MovieName){
-        ArrayList<Movie> MovieList = getMoviesFromTheatre(TheatreID);
+    public boolean checkMovieSearch(int TheatreID,String MovieName,Theatre theatre){
+        ArrayList<Movie> MovieList = theatre.getMovieList();
         for(Movie val : MovieList){
             if(MovieName.equals(val.getMovieName())){
                 return true;

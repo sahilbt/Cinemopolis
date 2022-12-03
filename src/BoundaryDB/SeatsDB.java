@@ -19,7 +19,7 @@ public class SeatsDB implements Database{
     public ArrayList<Seat> getSeatsFromShowtime(int id) {
         ArrayList<Seat> DBUser = new ArrayList<>();
         try {
-            String query = "SELECT * FROM Movies WHERE MovieID = ?";
+            String query = "SELECT * FROM seats WHERE ShowtimeID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet set = stmt.executeQuery(query);
