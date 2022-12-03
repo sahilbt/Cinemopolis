@@ -53,12 +53,16 @@ public class Ticket extends Data{
         this.seats = seats;
     }
 
-    private int getPrice(){
+    public int getPrice(){
         return this.price;
     }
 
-    private void setPrice(int price){
-        return this.price;
+    public void setPrice(int price){
+        this.price = price;
+    }
+
+    public boolean getRegistered(){
+        return this.registered;
     }
 
 

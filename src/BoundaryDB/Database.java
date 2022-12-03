@@ -3,6 +3,8 @@ package BoundaryDB;
 import Entitity.*;
 import java.util.ArrayList;
 
+import Entitity.Data;
+
 public interface Database{
 
     final String USERNAME = "ensf480";

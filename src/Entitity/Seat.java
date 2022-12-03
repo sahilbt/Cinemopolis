@@ -2,23 +2,25 @@ package Entitity;
 
 public class Seat extends Data {
    private boolean vacant;
-   private String seatNum;
-   private String ShowTimeID;
+   private int seatID;
+   private int ShowTimeID;
+   private boolean isRegistered;
 
    
-   public Seat(boolean vacant,String seatNum, String ShowTimeID){
+   public Seat(boolean vacant,int seatNum, int ShowTimeID, boolean isRegistered){
     this.vacant = vacant;
-    this.seatNum = seatNum;
+    this.seatID = seatNum;
     this.ShowTimeID = ShowTimeID;
+    this.isRegistered = isRegistered;
    }
 
-   public String getSeatNum(){
-      return seatNum;
+   public int getSeatID(){
+      return seatID;
      }
 
 
-   public void setSeatNum(String seatNum){
-    this.seatNum = seatNum;
+   public void setSeatID(int seatNum){
+    this.seatID = seatNum;
    }
 
 
@@ -31,11 +33,11 @@ public class Seat extends Data {
    }
 
 
-   public String getShowTImeID(){
+   public int getShowTImeID(){
       return this.ShowTimeID;
      }
 
-   public void setShowTImeID(String ShowTimeID){
+   public void setShowTImeID(int ShowTimeID){
       this.ShowTimeID = ShowTimeID;
    }
 
