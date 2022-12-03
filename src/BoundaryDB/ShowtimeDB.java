@@ -16,7 +16,7 @@ public class ShowtimeDB implements Database{
     public ArrayList<Showtime> getShowtimesFromMovie(int id) {
         ArrayList<Showtime> DBUser = new ArrayList<>();
         try {
-            String query = "SELECT * FROM Movies WHERE MovieID = ?";
+            String query = "SELECT * FROM showtimes WHERE MovieID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             stmt.setInt(1, id);
             ResultSet set = stmt.executeQuery(query);
