@@ -3,7 +3,7 @@ package Controllers;
 public class SeatController implements Controller{
     
     @Override
-    public void InteractDataBase() {
+    public void interactDatabase() {
         // TODO Auto-generated method stub
         
     }

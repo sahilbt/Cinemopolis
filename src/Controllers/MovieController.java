@@ -1,9 +1,9 @@
 package Controllers;
 
-public class MovieController {
+public class MovieController implements Controller {
     
     @Override
-    public void InteractDataBase() {
+    public void interactDatabase() {
         
     }
 }
