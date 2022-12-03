@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import Entitity.Theatre;
 import Entitity.User;
@@ -113,6 +114,16 @@ public class MovieScreen extends JFrame {
             movieTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
+        DefaultTableModel model = (DefaultTableModel)movieTable.getModel();
+
+        int i =0;
+        while(i < theatres.get(0).getMovieList().size()){
+            model.addRow(new Object[] {theatres.get(0).getMovieList().get(i).getMovieName()});
+            i++;
+        }
+        
+
+        
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(

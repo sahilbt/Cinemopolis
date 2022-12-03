@@ -14,8 +14,8 @@ public class MovieController{
        db = new MovieDB();
     }
 
-    public ArrayList<Movie> getMoviePageInformation(int id){
-        return db.getMoviesFromTheatre(id);
+    public ArrayList<Movie> getMoviePageInformation(Theatre theatre ){
+        return db.getMoviesFromTheatre(theatre);
     }
 
     public String getMovie(int movieID,int theatreID){

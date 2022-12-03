@@ -35,18 +35,18 @@ public class MovieDB implements Database{
     }
 
     
-    public ArrayList<Movie> getMoviesFromTheatre(int id,Theatre theatre) {
+    public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
         ArrayList<Movie> DBMovies = new ArrayList<>();
         try {
             String query = "SELECT * FROM Movies WHERE TheatreID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setInt(1, theatre.getID());
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
-                int MovieID = set.getInt("ID");
-                int TheatreID = set.getInt("TheatreID");
-                String Name = set.getString("Name");
-                DBMovies.add(new Movie(Name,TheatreID,MovieID));
+                int movieID = set.getInt("ID");
+                int theatreID = set.getInt("TheatreID");
+                String name = set.getString("Name");
+                DBMovies.add(new Movie(name,theatreID,movieID));
             }
             stmt.close();
             set.close();

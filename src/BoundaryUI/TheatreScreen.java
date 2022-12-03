@@ -3,6 +3,9 @@ package BoundaryUI;
 import Entitity.Theatre;
 import Entitity.User;
 import javax.swing.*;
+
+import Controllers.MovieController;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -146,13 +149,17 @@ public class TheatreScreen extends JFrame{
     }                     
 
     private void theatreButtonActionPerformed(ActionEvent evt) {                                              
-        // TODO add your handling code here:
+        MovieController mc = new MovieController();
+        mc.getMoviePageInformation(theatres.get(0));
+        dispose();
+        MovieScreen ms = new MovieScreen(user, theatres, 0);
     }                                             
 
     private void backButtonActionPerformed(ActionEvent evt) { 
         dispose();     
         DashboardScreen ds = new DashboardScreen(this.user);
         ds.performStrategy();
+
     }                                                      
 }
 
