@@ -3,7 +3,6 @@ package BoundaryDB;
 import Entitity.*;
 import java.sql.*;
 import java.util.*;
-
 public class CouponDB implements Database {
     
     private Connection dbConnect;
@@ -31,23 +30,31 @@ public class CouponDB implements Database {
     }
 
     public void addCoupon(Ticket ticket){
-        int value = getCouponValue(ticket.getPrice(), ticket.getRU());
+        int value = getCouponValue(ticket.getPrice(), ticket.getRegistered());
 
-        
+        try {
+            String query = "INSERT INTO coupon (Value) VALUES (?) ";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+            stmt.setInt(1, value);
+            stmt.executeUpdate();
+            stmt.close();
 
+            for (Seat s: ticket.getSeats()){
+                query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
+                stmt = dbConnect.prepareStatement(query);
+                stmt.setBoolean(1, true);
+                stmt.setInt(2, s.getSeatID());
+                stmt.executeUpdate();
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-
-
-        private String email;
-        private String movie;
-        private String showtime;
-        private ArrayList<Seat> seats;
-        private int price;
-        private boolean registered;
-
-
-
-
+    @Override
+    public ArrayList<Data> dbRecieve(int id){
+        return new ArrayList<Data>();
     }
 
     public int getCouponValue(int price, boolean user){
@@ -60,7 +67,6 @@ public class CouponDB implements Database {
         double discount = price * percent;
         return (int)discount;
     }
-
 
     public void initializeConnection() {
         try {
