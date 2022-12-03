@@ -200,6 +200,6 @@ public class GuestDashScreen extends JFrame implements Strategy {
     }                                          
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
-        // TODO add your handling code here:
+
     }                                                          
 }
