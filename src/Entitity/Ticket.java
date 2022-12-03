@@ -9,15 +9,19 @@ public class Ticket extends Data{
     private ArrayList<Seat> seats;
     private int price;
     private boolean registered;
+    private String date;
+    private int id;
 
 
-    public Ticket(String email, String movie, String showtime, String date, ArrayList<Seat> seats, int price, boolean registered){
+    public Ticket(String email, String movie, String showtime, String date, ArrayList<Seat> seats, int price, boolean registered, int id){
         this.email = email;
         this.movie = movie;
         this.showtime = showtime;
         this.seats = seats;
         this.price = price;
         this.registered = registered;
+        this.date = date;
+        this.id = id;
     }
 
 
