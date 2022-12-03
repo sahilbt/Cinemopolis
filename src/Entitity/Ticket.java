@@ -3,23 +3,29 @@ package Entitity;
 import java.util.ArrayList;
 
 public class Ticket extends Data{
+    private int ID;
     private String email;
     private String movie;
     private String showtime;
-    private ArrayList<Seat> seats;
+    private ArrayList<Integer> seats;
     private int price;
     private boolean registered;
+    private String date;
+    private String theatre;
 
+    public Ticket(){}
 
-    public Ticket(String email, String movie, String showtime, String date, ArrayList<Seat> seats, int price, boolean registered){
+    public Ticket(int ID, String email, String movie, String showtime, String date, ArrayList<Integer> seats, int price, boolean registered, String theatre){
+        this.ID = ID;
         this.email = email;
         this.movie = movie;
         this.showtime = showtime;
         this.seats = seats;
         this.price = price;
         this.registered = registered;
+        this.date = date;
+        this.theatre = theatre;
     }
-
 
     public String getEmail(){
         return this.email;
@@ -45,11 +51,11 @@ public class Ticket extends Data{
         this.showtime = showtime;
     }
 
-    public ArrayList<Seat> getSeats(){
+    public ArrayList<Integer> getSeats(){
         return this.seats;
     }
 
-    public void setSeats(ArrayList<Seat> seats){
+    public void setSeats(ArrayList<Integer> seats){
         this.seats = seats;
     }
 
@@ -65,5 +71,11 @@ public class Ticket extends Data{
         return this.registered;
     }
 
+    public String getDate(){
+        return this.date;
+    }
 
+    public int getID(){
+        return this.ID;
+    }
 }

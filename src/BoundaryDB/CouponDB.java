@@ -13,6 +13,7 @@ public class CouponDB implements Database {
 
     public boolean validateCoupon(int id){
         try {
+            //Maybe change this so you look for the ID and if nothing is returned, then return false
             String query = "SELECT * FROM coupons";
             Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
@@ -39,14 +40,18 @@ public class CouponDB implements Database {
             stmt.executeUpdate();
             stmt.close();
 
-            for (Seat s: ticket.getSeats()){
+            for (int s: ticket.getSeats()){
                 query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
                 stmt = dbConnect.prepareStatement(query);
                 stmt.setBoolean(1, true);
-                stmt.setInt(2, s.getID());
+                stmt.setInt(2, s);
                 stmt.executeUpdate();
             }
-            
+
+            query = "DELETE FROM tickets where ID = ?";
+            stmt = dbConnect.prepareStatement(query);
+            stmt.setInt(1, ticket.getID());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

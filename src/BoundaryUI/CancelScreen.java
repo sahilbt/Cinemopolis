@@ -1,5 +1,10 @@
 package BoundaryUI;
 import javax.swing.*;
+
+import Controllers.CouponController;
+import Controllers.TicketController;
+import Entitity.Ticket;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -12,7 +17,7 @@ public class CancelScreen extends JFrame {
     private JLabel disclaimerText2;
     private JLabel headerText;
     private JPanel line;
-    private JButton loginButton;
+    private JButton refundButton;
     private JLabel orderText;
 
     public CancelScreen() {
@@ -37,7 +42,7 @@ public class CancelScreen extends JFrame {
         backButton = new JButton();
         couponTextbox = new JTextField();
         orderText = new JLabel();
-        loginButton = new JButton();
+        refundButton = new JButton();
         disclaimerText1 = new JLabel();
         disclaimerText2 = new JLabel();
 
@@ -85,12 +90,12 @@ public class CancelScreen extends JFrame {
         orderText.setForeground(Color.white);
         orderText.setText("Order ID");
 
-        loginButton.setBackground(new Color(221, 5, 37));
-        loginButton.setFont(new Font("Dubai", 1, 20)); 
-        loginButton.setForeground(Color.white);
-        loginButton.setText("Refund");
-        loginButton.setBorderPainted(false);
-        loginButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        refundButton.setBackground(new Color(221, 5, 37));
+        refundButton.setFont(new Font("Dubai", 1, 20)); 
+        refundButton.setForeground(Color.white);
+        refundButton.setText("Refund");
+        refundButton.setBorderPainted(false);
+        refundButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
         disclaimerText1.setBackground(Color.black);
         disclaimerText1.setFont(new Font("Dubai", 0, 12)); 
@@ -135,7 +140,7 @@ public class CancelScreen extends JFrame {
                             .addComponent(couponTextbox, GroupLayout.PREFERRED_SIZE, 222, GroupLayout.PREFERRED_SIZE)
                             .addGroup(backgroundPanelLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(refundButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE))))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(347, 347, 347)
                         .addComponent(orderText)))
@@ -158,7 +163,7 @@ public class CancelScreen extends JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(couponTextbox, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(loginButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                .addComponent(refundButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(disclaimerText1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -183,15 +188,9 @@ public class CancelScreen extends JFrame {
             }
         });
 
-        loginButton.addActionListener(new ActionListener() {
+        refundButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                loginButtonActionPerformed(evt);
-            }
-        });
-
-        couponTextbox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                couponTextboxActionPerformed(evt);
+                refundButtonActionPerformed(evt);
             }
         });
 
@@ -205,11 +204,27 @@ public class CancelScreen extends JFrame {
         HomeScreen.main(null);                                       
     }                                          
 
-    private void couponTextboxActionPerformed(ActionEvent evt) {                                              
+                                         
 
-    }                                             
+    private void refundButtonActionPerformed(ActionEvent evt) {    
+        String id = couponTextbox.getText();                                        
+        TicketController tc = new TicketController();
+        CouponController cc = new CouponController();
+        boolean existence = tc.exists(getName());
 
-    private void loginButtonActionPerformed(ActionEvent evt) {                                            
+        if(!existence){
+            //SHOW POPUP
+        }
 
+        boolean notExp = tc.notExpired();
+
+        if(!notExp){
+            //SHOW POPUP
+        }
+
+        Ticket ticket = tc.getTicket(id);
+        cc.addCoupon(ticket);
+
+        //MAKE SUCCESSFUL POPUP
     }                                                       
 }
