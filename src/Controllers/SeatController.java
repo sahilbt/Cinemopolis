@@ -18,7 +18,11 @@ public class SeatController{
         return db.getSeatsFromShowtime(id);
     }
 
-    public boolean forwardRuserCheck(ArrayList<Seat>seats){
-        return db.checkRuserSeat(seats);
+    public boolean forwardRuserCheck(ArrayList<Seat>seats,User u){
+        return db.checkRuserSeatLimit(seats,u);
+    }
+
+    public boolean bookSeat(ArrayList<Seat>seats,User u){
+        return db.checkRuserSeatLimit(seats,u);
     }
 }

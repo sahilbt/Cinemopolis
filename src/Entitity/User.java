@@ -10,7 +10,7 @@ public class User extends Data{
     private String userType;
 
     public User(String name,String address,PaymentInformation paymentInformation ,String username,String password,String userType){
-        
+        super(-1);
         this.username = username;
         this.password = password;
         this.name = name;
