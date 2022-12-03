@@ -1,5 +1,10 @@
 package BoundaryUI;
 import javax.swing.*;
+
+import Controllers.LoginController;
+import Entitity.PaymentInformation;
+import Entitity.User;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,7 +29,7 @@ public class RegisterScreen extends JFrame {
     private JLabel lastNameLabel;
     private JTextField nameInput;
     private JLabel nameLabel;
-    private JTextField passwordInput;
+    private JPasswordField passwordInput;
     private JLabel passwordLabel;
     private JButton regButton;
     private JPanel paymentLine;   
@@ -59,7 +64,7 @@ public class RegisterScreen extends JFrame {
         expLabel = new JLabel();
         cardNumberInput = new JTextField();
         firstNameLabel = new JLabel();
-        passwordInput = new JTextField();
+        passwordInput = new JPasswordField();
         passwordLabel = new JLabel();
         regButton = new JButton();
         lastNameInput = new JTextField();
@@ -340,7 +345,7 @@ public class RegisterScreen extends JFrame {
 
         regButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                payButtonActionPerformed(evt);
+                regButtonActionPerformed(evt);
             }
         });
         
@@ -354,7 +359,69 @@ public class RegisterScreen extends JFrame {
         HomeScreen.main(null);
     }                                           
 
-    private void payButtonActionPerformed(ActionEvent evt) {                                          
+    private void regButtonActionPerformed(ActionEvent evt) {                                          
+        String fName = firstNameInput1.getText();
+        String lName = lastNameInput.getText();
+        String address = addressInput.getText();
 
+        if(fName.isEmpty() || lName.isEmpty() || address.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        String cardNum = cardNumberInput.getText();
+        String nameOnCard = nameInput.getText();
+        String exp = expInput.getText();
+        String cvv = cvvInput.getText();
+
+        if(cardNum.isEmpty() || nameOnCard.isEmpty() || exp.isEmpty() || cvv.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        if(!cardNum.matches("^[0-9]*$") || cardNum.length() != 16){
+            JOptionPane.showMessageDialog(this, "Please enter a valid credit card number!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;           
+        }
+
+        if(!exp.matches("^(0[1-9]|1[0-2])/?(([0-9]{4}|[0-9]{2})$)")){
+            JOptionPane.showMessageDialog(this, "Please enter the expiry date in the correct format! (mm/yy)","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;    
+        }
+
+        if(!cvv.matches("^[0-9]*$") || cvv.length() != 3){
+            JOptionPane.showMessageDialog(this, "Please enter a valid CVV number (3 digits)","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;       
+        }
+
+
+        String email = emailInput.getText();
+        String pass =  String.valueOf(passwordInput.getPassword());
+
+        if(email.isEmpty() || pass.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;    
+        }
+
+
+        LoginController lc = new LoginController();
+        boolean exists = lc.forwardUserCreds(exp, cvv);
+
+        if(exists){
+            JOptionPane.showMessageDialog(this, "An account with this email already exists!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;      
+        }
+
+        String fullName = fName + " " + lName;
+        PaymentInformation p = new PaymentInformation(cardNum, exp, cvv, nameOnCard);
+
+        User u = new User(fullName, address, p, email, pass, "R");
+
+        lc.forwardRegistrationValidation(u);
+
+
+        JOptionPane.showMessageDialog(this, "Successfully registered! You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);
+        dispose();
+        HomeScreen.main(null);
     }                                                  
-}
+} 

@@ -18,10 +18,6 @@ public class LoginController{
         return userConnection.findUser(user);
     }
 
-    public boolean forwardRegistrationValidation(String user){
-        return userConnection.validateRegister(user);
-    }
-
     public void forwardRegistrationValidation(User u){
         userConnection.addRegister(u);
     }

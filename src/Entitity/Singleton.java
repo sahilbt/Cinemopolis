@@ -5,25 +5,25 @@ import java.util.*;
 public class Singleton{
     private static Singleton instance;
 
-    private ArrayList<User> RegisteredUsers;
+    private ArrayList<User> registeredUsers;
 
     private boolean UsersAdded = false;
 
 
     private Singleton() {
-        this.RegisteredUsers = new ArrayList<User>();
+        this.registeredUsers = new ArrayList<User>();
 
     }
 
     public ArrayList<User> getRegisteredUsers(){
-        return RegisteredUsers;
+        return registeredUsers;
     }
 
-    public void setRegisteredUsers(ArrayList<Data> RegisteredUser){
-        RegisteredUsers.clear();
+    public void setRegisteredUsers(ArrayList<User> registeredUser){
+        this.registeredUsers.clear();
 
-        for(Data val : RegisteredUser){
-            this.RegisteredUsers.add((User)val);
+        for(User val : registeredUser){
+            this.registeredUsers.add(val);
         }
     }
 
@@ -34,8 +34,8 @@ public class Singleton{
     }
 
 
-    public void addUser(Data u) {
-        this.RegisteredUsers.add((User)u);
+    public void addUser(User u) {
+        this.registeredUsers.add(u);
         return;
     }
 

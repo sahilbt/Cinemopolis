@@ -32,8 +32,8 @@ public class UsersDB implements Database {
         }
     
 
-    public ArrayList<Data> getAllRegisteredUsers(){
-        ArrayList<Data> DBUser = new ArrayList<>();
+    public ArrayList<User> getAllRegisteredUsers(){
+        ArrayList<User> DBUser = new ArrayList<>();
         try {
             String query = "SELECT * FROM users";
             Statement stmt = dbConnect.createStatement();
@@ -48,7 +48,7 @@ public class UsersDB implements Database {
                 String username = set.getString("Email");
                 String pswd = set.getString("Password");
                 PaymentInformation paymentinfo = new PaymentInformation(creditNumber,expdate,cvv,cardname);
-                Data user = new User(name,address,paymentinfo,username,pswd,"R");
+                User user = new User(name,address,paymentinfo,username,pswd,"R");
                 DBUser.add(user);
             }
             stmt.close();
@@ -70,15 +70,6 @@ public class UsersDB implements Database {
     return false;
     }
 
-    public boolean validateRegister(String username){
-        for(User val :users.getRegisteredUsers()){
-            if (username.equals(val.getUsername())) {
-                return false;
-            }
-        } 
-        return true;
-    }
-
     public User findUser(String username){
         for(User u: users.getRegisteredUsers()){
             if (u.getUsername().equals(username)){
@@ -88,25 +79,31 @@ public class UsersDB implements Database {
         return null;
     }
 
-public void addRegister(User u){
-    try {
-        String query = "INSERT INTO users (Email, Password,  Name, CardNum, ExpDate, CVV, CardName, Address, UserType) VALUES (?,?,?,?,?,?,?,?,?) ";
-        PreparedStatement stmt = dbConnect.prepareStatement(query);
-        stmt.setString(1, u.getUsername());
-        stmt.setString(2,u.getPassword());
-        stmt.setString(3,u.getName());
-        stmt.setString(4,u.getPaymentInformation().getCredit());
-        stmt.setString(5,u.getPaymentInformation().getExpDate());
-        stmt.setString(6,u.getPaymentInformation().getCVV());
-        stmt.setString(7,u.getPaymentInformation().getCardName());
-        stmt.setString(8,u.getAddress());
-        stmt.setString(9,u.getUserType());
-        stmt.executeUpdate();
-        stmt.close();
-        }catch (SQLException e) {
-            e.printStackTrace();
+    public void addRegister(User u){
+        try {
+            String query = "INSERT INTO users (Email, Password,  Name, CardNum, ExpDate, CVV, CardName, Address, UserType) VALUES (?,?,?,?,?,?,?,?,?) ";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+            stmt.setString(1, u.getUsername());
+            stmt.setString(2,u.getPassword());
+            stmt.setString(3,u.getName());
+            stmt.setString(4,u.getPaymentInformation().getCredit());
+            stmt.setString(5,u.getPaymentInformation().getExpDate());
+            stmt.setString(6,u.getPaymentInformation().getCVV());
+            stmt.setString(7,u.getPaymentInformation().getCardName());
+            stmt.setString(8,u.getAddress());
+            stmt.setString(9,u.getUserType());
+            stmt.executeUpdate();
+            stmt.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
+        }
+        users.addUser(u);
     }
-}
+
+
+    public Singleton getSingleton(){
+        return users;
+    }
 
 
 
