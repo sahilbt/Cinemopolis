@@ -12,31 +12,30 @@ public class TicketDB implements Database {
 
     public boolean exists(int id){
         try {
-            String query = "SELECT * FROM tickets WHERE ID = ?";
-            PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet res = stmt.executeQuery();
-
-            if(!res.first()){
-                return false;
+            String query = "SELECT * FROM tickets";
+            Statement stmt = dbConnect.createStatement();
+            ResultSet set = stmt.executeQuery(query);
+            while (set.next()) {
+                if(set.getInt(1) == id){
+                    return true;
+                }
             }
-            return true;
-            
+            stmt.close();
+            set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
 
     public Ticket getTicket(int id){
         Ticket t = new Ticket();
         try {
-            String query = "SELECT * FROM tickets WHERE ID = ?";
-            PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet res = stmt.executeQuery();
-            res.first();
+            String query = "SELECT * FROM tickets WHERE ID = " + Integer.toString(id);
+            Statement stmt = dbConnect.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            res.next();
 
             String seatsDB = res.getString(4);
             String[] split = seatsDB.split(" ");
@@ -54,8 +53,6 @@ public class TicketDB implements Database {
         }     
         return t;
     }
-
-
 
     public void initializeConnection() {
         try {

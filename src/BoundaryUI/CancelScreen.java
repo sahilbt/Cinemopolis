@@ -205,26 +205,33 @@ public class CancelScreen extends JFrame {
     }                                          
 
                                          
-
     private void refundButtonActionPerformed(ActionEvent evt) {    
-        String id = couponTextbox.getText();                                        
+        String id = couponTextbox.getText();    
+        
+        if(id.isEmpty() || !id.matches("^[0-9]*$")){
+            JOptionPane.showMessageDialog(this, "Please enter a valid order number","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
         TicketController tc = new TicketController();
         CouponController cc = new CouponController();
-        boolean existence = tc.exists(getName());
+        boolean existence = tc.exists(id);
 
         if(!existence){
-            //SHOW POPUP
-        }
-
-        boolean notExp = tc.notExpired();
-
-        if(!notExp){
-            //SHOW POPUP
+            JOptionPane.showMessageDialog(this, "This Order ID does not exist!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
         }
 
         Ticket ticket = tc.getTicket(id);
         cc.addCoupon(ticket);
 
-        //MAKE SUCCESSFUL POPUP
+        boolean notExp = tc.notExpired();
+
+        if(!notExp){
+            JOptionPane.showMessageDialog(this, "This Order was purchased more than 72 hours ago!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Order successfully canceled! Please check your email for the refund details.","Success", JOptionPane.PLAIN_MESSAGE);
     }                                                       
 }

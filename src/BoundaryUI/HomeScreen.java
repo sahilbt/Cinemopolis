@@ -38,7 +38,7 @@ public class HomeScreen extends JFrame {
         textBrowseOur = new JLabel();
         textCatelogue = new JLabel();
         blackPanther = new JLabel();
-        buttonFindTheater = new JButton();
+        buttonFindTheater = new JButton();  
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cinemopolis");
@@ -247,7 +247,9 @@ public class HomeScreen extends JFrame {
     }                                           
 
     private void buttonFindTheaterActionPerformed(ActionEvent evt) {                                                  
-        
+        dispose();
+        DashboardScreen ds = new DashboardScreen(null);
+        ds.performStrategy();
     }                                                 
 
     public static void main(String args[]) {

@@ -173,13 +173,7 @@ public class LoginScreen extends JFrame {
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        emailTextbox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                emailTextboxActionPerformed(evt);
-            }
-        });   
-        
+ 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
@@ -206,9 +200,5 @@ public class LoginScreen extends JFrame {
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();
         HomeScreen.main(null);
-    }                                          
-
-    private void emailTextboxActionPerformed(ActionEvent evt) {                                             
-        // TODO add your handling code here:
-    }                                                     
+    }                                                                                           
 }
