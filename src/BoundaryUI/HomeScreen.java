@@ -247,7 +247,9 @@ public class HomeScreen extends JFrame {
     }                                           
 
     private void buttonFindTheaterActionPerformed(ActionEvent evt) {                                                  
-        
+        dispose();
+        DashboardScreen ds = new DashboardScreen(null);
+        ds.performStrategy();
     }                                                 
 
     public static void main(String args[]) {

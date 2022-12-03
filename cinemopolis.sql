@@ -164,9 +164,13 @@ CREATE TABLE tickets(
     Movie				varchar(50) NOT NULL,
     Theatre				varchar(50) NOT NULL,
     Showtime			varchar(50) NOT NULL,
+    Email               varchar(50) NOT NULL,
+    Price               int NOT NULL,
     primary key (ID)
 );
 
+INSERT INTO tickets (RUser, PurchaseDate, Seats, Movie, Theatre, Showtime, Email, Price) VALUES
+(false, "12/02/2022", "1", "fwefwf", "fewfwf", "wrwrew", "rewrwer", 20);
 
 DROP TABLE IF EXISTS coupons;
 CREATE TABLE coupons(
