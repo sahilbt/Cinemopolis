@@ -1,9 +1,12 @@
 package BoundaryUI;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Controllers.TheatreController;
+import Entitity.Theatre;
 import Entitity.User;
 
 public class GuestDashScreen extends JFrame implements Strategy {
@@ -200,6 +203,9 @@ public class GuestDashScreen extends JFrame implements Strategy {
     }                                          
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
-
+        TheatreController tc = new TheatreController();
+        ArrayList<Theatre> theatres = tc.getTheatreInfo();
+        dispose();
+        TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }                                                          
 }

@@ -1,8 +1,11 @@
 package BoundaryUI;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Controllers.TheatreController;
+import Entitity.Theatre;
 import Entitity.User;
 
 import java.awt.*;
@@ -205,8 +208,11 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
         HomeScreen.main(null); 
     }                                            
 
-    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {     
+        TheatreController tc = new TheatreController();
+        ArrayList<Theatre> theatres = tc.getTheatreInfo();
+        dispose();
+        TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }                                              
 
     private void changeButrtonActionPerformed(java.awt.event.ActionEvent evt) {                                              

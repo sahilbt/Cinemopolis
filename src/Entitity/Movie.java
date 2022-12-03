@@ -3,38 +3,38 @@ package Entitity;
 import java.util.ArrayList;
 
 public class Movie extends Data{
-    private String MovieName;
-    private ArrayList<Showtime> ShowTimes;
-    private int TheatreID;
+    private String movieName;
+    private ArrayList<Showtime> showTimes;
+    private int theatreID;
 
-    public Movie(String MovieName,int TheatreID,int MovieID){
-        super(MovieID);
-        this.MovieName = MovieName;
-        this.TheatreID = TheatreID;
+    public Movie(String movieName, int theatreID, int movieID){
+        super(movieID);
+        this.movieName = movieName;
+        this.theatreID = theatreID;
     }
 
     public String getMovieName(){
-        return this.MovieName;
+        return this.movieName;
     }
 
-    public void setMovieName(String MovieName){
-        this.MovieName = MovieName;
+    public void setMovieName(String movieName){
+        this.movieName = movieName;
     }
 
     public int getTheatreID(){
-        return this.TheatreID;
+        return this.theatreID;
     } 
 
-    public void setTheatreID(int TheatreID){
-        this.TheatreID = TheatreID;
+    public void setTheatreID(int theatreID){
+        this.theatreID = theatreID;
     }
 
     public ArrayList<Showtime> getShowTimes(){
-        return this.ShowTimes;
+        return this.showTimes;
     }
 
-    public void setShowTimes(ArrayList<Showtime> ShowTimes){
-        this.ShowTimes = ShowTimes;
+    public void setShowTimes(ArrayList<Showtime> showTimes){
+        this.showTimes = showTimes;
     }
     
 }

@@ -7,36 +7,30 @@ import Entitity.*;
 
 
 public class TheatreDB implements Database {
-    
-
     private Connection dbConnect;
-
 
     public TheatreDB(){
         initializeConnection();
     }
 
-    public ArrayList<Theatre> getALLTheatres() {
-        ArrayList<Theatre> DBUser = new ArrayList<>();
+    public ArrayList<Theatre> getAllTheatres() {
+        ArrayList<Theatre> theatres = new ArrayList<Theatre>();
         try {
             String query = "SELECT * FROM theatres";
             Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
-                String Name = set.getString("Name");
+                String name = set.getString("Name");
                 int ID = set.getInt("ID");
-                DBUser.add(new Theatre(Name,ID));
+                theatres.add(new Theatre(name, ID));
             }
             stmt.close();
             set.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException e) {            e.printStackTrace();
         }
-        return DBUser;
+        return theatres;
+
     }
-
-
-
 
 
     @Override
