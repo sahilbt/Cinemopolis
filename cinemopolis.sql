@@ -169,8 +169,6 @@ CREATE TABLE tickets(
     primary key (ID)
 );
 
-INSERT INTO tickets (RUser, PurchaseDate, Seats, Movie, Theatre, Showtime, Email, Price) VALUES
-(false, "12/02/2022", "1", "fwefwf", "fewfwf", "wrwrew", "rewrwer", 20);
 
 DROP TABLE IF EXISTS coupons;
 CREATE TABLE coupons(

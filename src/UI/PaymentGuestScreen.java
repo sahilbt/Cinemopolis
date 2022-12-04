@@ -9,7 +9,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-import Business.PaymentService;
+// import Business.PaymentService;
 import Controllers.CouponController;
 import Controllers.SeatController;
 import Controllers.TicketController;
@@ -391,9 +391,9 @@ public class PaymentGuestScreen extends JFrame {
         
         Ticket t = new Ticket(-1, email, movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
 
-        PaymentService ps = new PaymentService();
+        // PaymentService ps = new PaymentService();
 
-        ps.makeEmail(t, null);
+        // ps.makeEmail(t, null);
 
         TicketController tc = new TicketController();
         tc.addTicketToDB(t);
@@ -414,10 +414,15 @@ public class PaymentGuestScreen extends JFrame {
     private void applyActionPerformed(ActionEvent evt) {
         String id = couponInput.getText();
 
+        if(id.isEmpty() || !id.matches("^[0-9]*$")){
+            JOptionPane.showMessageDialog(this, "This coupon is invalid !","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
         CouponController cc = new CouponController();
         boolean validCoupon = cc.sendCouponCreds(id);
        
-        if(!(validCoupon) || id.isEmpty() || !id.matches("^[0-9]*$")){
+        if(!(validCoupon)){
             JOptionPane.showMessageDialog(this, "This coupon is invalid !","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
