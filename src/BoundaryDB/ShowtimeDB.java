@@ -14,11 +14,10 @@ public class ShowtimeDB implements Database{
     }
 
     public ArrayList<Showtime> getShowtimesFromMovie(Movie movie) {
-        ArrayList<Showtime> dbMovies = new ArrayList<>();
+        ArrayList<Showtime> dbMovies = new ArrayList<Showtime>();
         try {
-            String query = "SELECT * FROM showtimes WHERE MovieID = ?";
-            PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, movie.getID());
+            String query = "SELECT * FROM showtimes WHERE MovieID = " + Integer.toString(movie.getID());
+            Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
                 int MovieID = set.getInt("MovieID");

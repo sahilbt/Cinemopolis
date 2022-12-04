@@ -36,7 +36,7 @@ public class MovieDB implements Database{
 
     
     public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
-        ArrayList<Movie> DBMovies = new ArrayList<>();
+        ArrayList<Movie> DBMovies = new ArrayList<Movie>();
         try {
             String query = "SELECT * FROM movies WHERE TheatreID = " + Integer.toString(theatre.getID());
             Statement stmt = dbConnect.createStatement();

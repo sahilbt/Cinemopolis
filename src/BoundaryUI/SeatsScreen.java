@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Entitity.Theatre;
+import Entitity.User;
+
 public class SeatsScreen extends JFrame {
     private JButton backButton;
     private JPanel backgroundPanel;
@@ -32,9 +35,19 @@ public class SeatsScreen extends JFrame {
     private JToggleButton seat7;
     private JToggleButton seat8;
     private JToggleButton seat9;
-    private ArrayList<JToggleButton> arr;
+    private ArrayList<JToggleButton> arr = new ArrayList<JToggleButton>();
+    private User user;
+    private ArrayList<Theatre> theatres;
+    private int t;
+    private int m;
+    private int s;
 
-    public SeatsScreen() {
+    public SeatsScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s) {
+        this.user = user;
+        this.theatres = theatres;
+        this.t = t;
+        this.m = m;
+        this.s = s;
         initComponents();
     }
                      
@@ -386,6 +399,7 @@ public class SeatsScreen extends JFrame {
         });
         arr.add(seat20);
 
+
         jLabel1.setIcon(new ImageIcon(getClass().getResource("/resources/screen.png"))); // NOI18N
 
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
@@ -517,6 +531,14 @@ public class SeatsScreen extends JFrame {
             .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        // for(int i = 0; i < arr.size(); i++){
+        //     if(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getVacant() == false){
+        //         arr.get(i).setEnabled(false);
+        //         arr.get(i).setText("X");
+        //         arr.get(i).setForeground(Color.black);
+        //     }
+        // }
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -531,7 +553,7 @@ public class SeatsScreen extends JFrame {
     }                                              
 
     private void seat1ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
+        
     }                                     
 
     private void seat2ActionPerformed(ActionEvent evt) {                                      

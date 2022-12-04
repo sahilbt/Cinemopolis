@@ -52,11 +52,11 @@ INSERT INTO showtimes (MovieID, Time) VALUES
 (3, "12:00"), 
 (3, "15:00"), 
 (3, "18:00"), 
-(3, "20:00");
+(3, "20:00"),
 (4, "12:00"), 
 (4, "15:00"), 
 (4, "18:00"), 
-(4, "20:00"), 
+(4, "20:00");
  
  
 DROP TABLE IF EXISTS seats;
@@ -69,10 +69,6 @@ CREATE TABLE seats(
  );
  
 INSERT INTO seats (ShowtimeID, Vacancy, RUser) VALUES
-(0, true, false), (0, true, false), (0, true, false), (0, true, false), (0, true, false),
-(0, true, false), (0, true, false), (0, true, false), (0, true, false), (0, true, false),
-(0, true, false), (0, true, false), (0, true, false), (0, true, false), (0, true, false),
-(0, true, false), (0, true, false), (0, true, false), (0, true, false), (0, true, false),
 (1, true, false), (1, true, false), (1, true, false), (1, true, false), (1, true, false),
 (1, true, false), (1, true, false), (1, true, false), (1, true, false), (1, true, false),
 (1, true, false), (1, true, false), (1, true, false), (1, true, false), (1, true, false),
@@ -132,7 +128,11 @@ INSERT INTO seats (ShowtimeID, Vacancy, RUser) VALUES
 (15, true, false), (15, true, false), (15, true, false), (15, true, false), (15, true, false),
 (15, true, false), (15, true, false), (15, true, false), (15, true, false), (15, true, false),
 (15, true, false), (15, true, false), (15, true, false), (15, true, false), (15, true, false),
-(15, true, false), (15, true, false), (15, true, false), (15, true, false), (15, true, false);
+(15, true, false), (15, true, false), (15, true, false), (15, true, false), (15, true, false),
+(16, true, false), (16, true, false), (16, true, false), (16, true, false), (16, true, false),
+(16, true, false), (16, true, false), (16, true, false), (16, true, false), (16, true, false),
+(16, true, false), (16, true, false), (16, true, false), (16, true, false), (16, true, false),
+(16, true, false), (16, true, false), (16, true, false), (16, true, false), (16, true, false);
 
 
 DROP TABLE IF EXISTS users;

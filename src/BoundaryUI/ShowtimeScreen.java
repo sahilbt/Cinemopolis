@@ -205,6 +205,7 @@ public class ShowtimeScreen extends JFrame {
     }                                          
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        dispose();
+        SeatsScreen sc = new SeatsScreen(user, theatres, t, m, 0);
     }                                                         
 }
