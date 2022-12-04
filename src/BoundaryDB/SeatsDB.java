@@ -4,9 +4,6 @@ import java.sql.*;
 import java.util.*;
 import Entitity.*;
 
-
-
-
 public class SeatsDB implements Database{
 
     private Connection dbConnect;
@@ -44,7 +41,7 @@ public class SeatsDB implements Database{
             String query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             for(int val : seats){
-                stmt.setBoolean(1, true);
+                stmt.setBoolean(1, false);
                 stmt.setInt(2, val);
                 stmt.executeUpdate();
                 }
@@ -52,10 +49,6 @@ public class SeatsDB implements Database{
             e.printStackTrace();
             }
     }
-
-
-
-
 
 
     @Override

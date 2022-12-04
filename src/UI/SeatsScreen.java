@@ -581,7 +581,7 @@ public class SeatsScreen extends JFrame {
         }
         else{
             dispose();
-            PaymentRegisteredScreen prg = new PaymentRegisteredScreen();
+            PaymentRegisteredScreen prg = new PaymentRegisteredScreen(user, theatres, t, m, s, seats);
         }
     }                                              
 

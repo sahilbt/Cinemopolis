@@ -49,7 +49,7 @@ public class TicketDB implements Database {
             stmt.setString(7, t.getEmail());
             stmt.setInt(8, t.getPrice());
 
-            stmt.executeQuery(query);
+            stmt.executeUpdate();
             stmt.close();
             
         } catch (SQLException e) {

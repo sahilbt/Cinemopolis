@@ -448,8 +448,5 @@ public class PaymentGuestScreen extends JFrame {
         }
 
         JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);
-            
-        
-
     }                                                    
 }
