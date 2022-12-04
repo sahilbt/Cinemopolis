@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Entitity.Showtime;
 import Entitity.Theatre;
+import Entitity.Ticket;
 import Entitity.User;
 
 public class SeatsScreen extends JFrame {
@@ -531,13 +533,13 @@ public class SeatsScreen extends JFrame {
             .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        // for(int i = 0; i < arr.size(); i++){
-        //     if(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getVacant() == false){
-        //         arr.get(i).setEnabled(false);
-        //         arr.get(i).setText("X");
-        //         arr.get(i).setForeground(Color.black);
-        //     }
-        // }
+        for(int i = 0; i < arr.size(); i++){
+            if(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getVacant() == false){
+                arr.get(i).setEnabled(false);
+                arr.get(i).setText("X");
+                arr.get(i).setForeground(Color.black);
+            }
+        }
 
         pack();
         setLocationRelativeTo(null);
@@ -545,90 +547,101 @@ public class SeatsScreen extends JFrame {
     }                     
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        dispose();
+        ShowtimeScreen sc = new ShowtimeScreen(user, theatres, t, m);
     }                                          
 
-    private void continueButtonActionPerformed(ActionEvent evt) {                                               
-        // TODO add your handling code here:
+    private void continueButtonActionPerformed(ActionEvent evt) {         
+        ArrayList<Integer> seats = new ArrayList<Integer>();                                      
+        int selected = 0;
+        int r = 0;
+
+        for(int i = 0; i < arr.size(); i++){
+            if(arr.get(i).isSelected()){
+                selected++;
+                seats.add(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getID());
+            }
+            if(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getRuser())
+                r++;
+        }
+
+        if(selected == 0){
+            JOptionPane.showMessageDialog(this, "Please select at least 1 seat to continue!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        // if(r >= 2 && user != null){
+        //     JOptionPane.showMessageDialog(this, "Registered users may only book 10% of the theatre","Error!", JOptionPane.PLAIN_MESSAGE);
+        //     return;
+        // }
+
+        if(user == null){
+            dispose();
+            PaymentGuestScreen pg = new PaymentGuestScreen(user, theatres, t, m, s, seats);
+        }
+        else{
+            dispose();
+            PaymentRegisteredScreen prg = new PaymentRegisteredScreen();
+        }
     }                                              
 
     private void seat1ActionPerformed(ActionEvent evt) {                                      
-        
     }                                     
 
     private void seat2ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat3ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat4ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat5ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat6ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat7ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat8ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat9ActionPerformed(ActionEvent evt) {                                      
-        // TODO add your handling code here:
     }                                     
 
     private void seat10ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat11ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat12ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat13ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat14ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat15ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat16ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat17ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat18ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat19ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                      
 
     private void seat20ActionPerformed(ActionEvent evt) {                                       
-        // TODO add your handling code here:
     }                                                    
 }

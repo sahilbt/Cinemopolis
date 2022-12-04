@@ -202,6 +202,12 @@ public class MovieScreen extends JFrame {
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
         int row = movieTable.getSelectedRow();
+
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Please select a movie to continue!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
         String movieNameFromTable = movieTable.getModel().getValueAt(row, 0).toString();
 
         ShowtimeController sc = new ShowtimeController();

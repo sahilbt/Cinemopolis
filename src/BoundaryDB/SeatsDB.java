@@ -16,12 +16,11 @@ public class SeatsDB implements Database{
         initializeConnection();
     }
 
-    public ArrayList<Seat> getSeatsFromShowtime(int id) {
+    public ArrayList<Seat> getSeatsFromShowtime(Showtime s) {
         ArrayList<Seat> DBUser = new ArrayList<Seat>();
         try {
-            String query = "SELECT * FROM seats WHERE ShowtimeID = ?";
-            PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, id);
+            String query = "SELECT * FROM seats WHERE ShowtimeID = " + Integer.toString(s.getID());
+            Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
                 int showtimeID = set.getInt("ShowtimeID");
@@ -35,6 +34,7 @@ public class SeatsDB implements Database{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        s.setSeats(DBUser);
         return DBUser;
     }
 

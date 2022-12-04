@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import Controllers.SeatController;
 import Entitity.Theatre;
 import Entitity.User;
 
@@ -204,8 +205,18 @@ public class ShowtimeScreen extends JFrame {
         MovieScreen ms = new MovieScreen(this.user, this.theatres, this.t);
     }                                          
 
-    private void continueButtonActionPerformed(ActionEvent evt) {                                               
+    private void continueButtonActionPerformed(ActionEvent evt) {       
+        int row = showtimeTable.getSelectedRow();
+
+        if(row == -1){
+            JOptionPane.showMessageDialog(this, "Please select a showtime to continue!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        SeatController sco = new SeatController();
+        sco.getSeatPageInformation(theatres.get(t).getMovieList().get(m).getShowTimes().get(row));
+
         dispose();
-        SeatsScreen sc = new SeatsScreen(user, theatres, t, m, 0);
+        SeatsScreen sc = new SeatsScreen(user, theatres, t, m, row);
     }                                                         
 }

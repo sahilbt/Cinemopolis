@@ -14,8 +14,8 @@ public class SeatController{
        db = new SeatsDB();
     }
 
-    public ArrayList<Seat> getSeatPageInformation(int id){
-        return db.getSeatsFromShowtime(id);
+    public ArrayList<Seat> getSeatPageInformation(Showtime s){
+        return db.getSeatsFromShowtime(s);
     }
 
     public boolean forwardRuserCheck(ArrayList<Seat>seats,User u){
