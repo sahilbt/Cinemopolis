@@ -2,12 +2,17 @@ package BoundaryUI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 import Controllers.CouponController;
+import Entitity.Coupon;
 import Entitity.Theatre;
+import Entitity.Ticket;
 import Entitity.User;
 
 public class PaymentGuestScreen extends JFrame {
@@ -36,6 +41,7 @@ public class PaymentGuestScreen extends JFrame {
     private int m;
     private int s;
     private ArrayList<Integer> seats;
+    int price;
     
 
     public PaymentGuestScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s, ArrayList<Integer> seats) {
@@ -195,7 +201,7 @@ public class PaymentGuestScreen extends JFrame {
         cardNumberLabel1.setFont(new Font("Dubai", 0, 24)); // NOI18N
         cardNumberLabel1.setForeground(Color.white);
 
-        int price = 20 * seats.size();
+        price = 20 * seats.size();
 
         cardNumberLabel1.setText("Total: $" + Integer.toString(price));
 
@@ -340,6 +346,54 @@ public class PaymentGuestScreen extends JFrame {
     }                      
 
     private void payButtonActionPerformed(ActionEvent evt) {                                          
+        String cardNumber = cardNumberInput.getText();
+        String nameOnCard = nameInput.getText();
+        String expiry = expInput.getText();
+        String cvv = cvvInput.getText();
+        String email = emailInput.getText();
+
+        if(cardNumber.isEmpty()|| nameOnCard.isEmpty() || expiry.isEmpty() || cvv.isEmpty() || email.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        if(!cardNumber.matches("^[0-9]*$") || cardNumber.length() != 16){
+            JOptionPane.showMessageDialog(this, "Please enter a valid credit card number","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        if(!expiry.matches("^(0[1-9]|1[0-2])/?(([0-9]{4}|[0-9]{2})$)")){
+            JOptionPane.showMessageDialog(this, "Please enter the expiry date in the correct format! (mm/yy)","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;    
+        }
+
+        if(!cvv.matches("^[0-9]*$") || cvv.length() != 3){
+            JOptionPane.showMessageDialog(this, "Please enter a valid CVV number (3 digits)","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;       
+        }
+
+        String movieS = theatres.get(t).getMovieList().get(m).getMovieName();
+        String theatreS = theatres.get(t).getTheatreName();
+        String showTimesS = theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getTime();
+        Boolean registerdOrNot;
+        if (user == null){
+            registerdOrNot = false;
+        }else{
+            registerdOrNot = true;
+        }
+        Date date = new Date();
+        Format formatted = new SimpleDateFormat("MM/dd/yyyy");
+        String dateString = formatted.format(date);
+
+        
+        Ticket t = new Ticket(-1, email, movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
+        
+
+
+
+
+
+
 
     }                                         
 
@@ -352,6 +406,35 @@ public class PaymentGuestScreen extends JFrame {
         String id = couponInput.getText();
 
         CouponController cc = new CouponController();
+        boolean validCoupon = cc.sendCouponCreds(id);
+       
+        if(!(validCoupon) || id.isEmpty() || !id.matches("^[0-9]*$")){
+            JOptionPane.showMessageDialog(this, "This coupon is invalid !","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        Coupon coupon = cc.getCouponFromBoundaryDB(id);
+
+        if(coupon.getValue() > price){
+            coupon.setValue(coupon.getValue()-price);
+            price = 0;
+        }
+        else{
+            price = price - coupon.getValue();
+            coupon.setValue(0);
+        }
+
+        cardNumberLabel1.setText("Total: $" + Integer.toString(price));
+
+        if(coupon.getValue() == 0){
+            cc.performDeletionOfCoupon(coupon);
+        }
+        else{
+            cc.updateCouponValueInDB(coupon);
+        }
+
+        JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);
+            
         
 
     }                                                    

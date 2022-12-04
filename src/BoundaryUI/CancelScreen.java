@@ -223,14 +223,13 @@ public class CancelScreen extends JFrame {
         }
 
         Ticket ticket = tc.getTicket(id);
-        cc.addCoupon(ticket);
 
         boolean notExp = tc.notExpired();
-
         if(!notExp){
             JOptionPane.showMessageDialog(this, "This Order was purchased more than 72 hours ago!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+        cc.addCoupon(ticket);
 
         JOptionPane.showMessageDialog(this, "Order successfully canceled! Please check your email for the refund details.","Success", JOptionPane.PLAIN_MESSAGE);
     }                                                       
