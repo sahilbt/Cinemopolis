@@ -1,4 +1,4 @@
-package Entitity;
+package Business;
 
 import java.util.ArrayList;
 import java.util.Properties;
@@ -8,7 +8,10 @@ import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.security.auth.Subject; 
+import javax.security.auth.Subject;
+
+import Entitity.Coupon;
+import Entitity.Ticket; 
 
 
 public class PaymentService{

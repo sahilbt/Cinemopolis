@@ -1,4 +1,4 @@
-package BoundaryUI;
+package UI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -9,7 +9,9 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Business.PaymentService;
 import Controllers.CouponController;
+import Controllers.TicketController;
 import Entitity.Coupon;
 import Entitity.Theatre;
 import Entitity.Ticket;
@@ -387,10 +389,15 @@ public class PaymentGuestScreen extends JFrame {
 
         
         Ticket t = new Ticket(-1, email, movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
+
+        PaymentService ps = new PaymentService();
+
+        ps.makeEmail(t, null);
+
+        TicketController tc = new TicketController();
+        tc.addTicketToDB(t);
+
         
-
-
-
 
 
 

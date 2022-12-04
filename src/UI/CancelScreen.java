@@ -1,4 +1,4 @@
-package BoundaryUI;
+package UI;
 import javax.swing.*;
 
 import Controllers.CouponController;

@@ -1,4 +1,4 @@
-package BoundaryUI;
+package UI;
 import Controllers.*;
 import Entitity.User;
 

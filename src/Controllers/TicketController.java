@@ -31,6 +31,10 @@ public class TicketController implements Controller{
         return tmp;
     }
 
+    public void addTicketToDB(Ticket ticket){
+        t.addTicketToDB(ticket);
+    }
+
     public boolean notExpired(){
         try{
             String pDate = tick.getDate();

@@ -28,6 +28,34 @@ public class TicketDB implements Database {
         return false;
     }
 
+    public void addTicketToDB(Ticket t){
+        try {
+            String query = "INSERT into tickets (RUser, PurchaseDate, Seats, Movie, Theatre, Showtime, Email, Price) VALUES (?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+
+            String seatsIntoString = new String();
+            for(int number: t.getSeats()){
+                seatsIntoString += Integer.toString(number) + " ";
+            }
+
+            seatsIntoString.strip();
+
+            stmt.setBoolean(1, t.getRegistered());
+            stmt.setString(2, t.getDate());
+            stmt.setString(3, seatsIntoString);
+            stmt.setString(4, t.getMovie());
+            stmt.setString(5, t.getTheatre());
+            stmt.setString(6, t.getShowtime());
+            stmt.setString(7, t.getEmail());
+            stmt.setInt(8, t.getPrice());
+
+            stmt.executeQuery(query);
+            stmt.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Ticket getTicket(int id){
         Ticket t = new Ticket();

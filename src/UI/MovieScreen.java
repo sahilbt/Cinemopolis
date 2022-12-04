@@ -1,4 +1,4 @@
-package BoundaryUI;
+package UI;
 
 import java.awt.*;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package BoundaryUI;
+package UI;
 
 public class PaymentRegisteredScreen {
     
