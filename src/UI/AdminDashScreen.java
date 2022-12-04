@@ -208,7 +208,8 @@ public class AdminDashScreen extends JFrame implements Strategy{
     }                                          
 
     private void movieButtonActionPerformed(ActionEvent evt) {                                            
-
+        dispose();
+        AdminMovieScreen ads = new AdminMovieScreen(user);
     }                                           
 
     private void logoutButtonActionPerformed(ActionEvent evt) {                                             

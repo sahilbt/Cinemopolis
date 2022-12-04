@@ -36,8 +36,9 @@ public class UsersDB extends Database {
                 String cardname = set.getString("CardName");
                 String username = set.getString("Email");
                 String pswd = set.getString("Password");
+                String type = set.getString("UserType");
                 PaymentInformation paymentinfo = new PaymentInformation(creditNumber,expdate,cvv,cardname);
-                User user = new User(name,address,paymentinfo,username,pswd,"R");
+                User user = new User(name,address,paymentinfo,username,pswd,type);
                 DBUser.add(user);
             }
             stmt.close();
