@@ -22,9 +22,13 @@ public class MovieScreen extends JFrame {
     private JScrollPane jScrollPane1;
     private JPanel line;
     private JTable movieTable;
+    private JButton searchButton;
+    private JTextField searchInput;
+    private JLabel searchText;
     private User user;
     private ArrayList<Theatre> theatres;
     private int t;
+
 
     public MovieScreen(User user, ArrayList<Theatre> theatres, int t) {
         this.user = user;
@@ -32,7 +36,7 @@ public class MovieScreen extends JFrame {
         this.t = t;
         initComponents();
     }
-                        
+           
     private void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -43,7 +47,7 @@ public class MovieScreen extends JFrame {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }  
+        } 
 
         backgroundPanel = new JPanel();
         backButton = new JButton();
@@ -52,6 +56,9 @@ public class MovieScreen extends JFrame {
         continueButton = new JButton();
         jScrollPane1 = new JScrollPane();
         movieTable = new JTable();
+        searchInput = new JTextField();
+        searchText = new JLabel();
+        searchButton = new JButton();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cinemopolis");
@@ -93,6 +100,9 @@ public class MovieScreen extends JFrame {
         continueButton.setBorderPainted(false);
         continueButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+
+        jScrollPane1.setBackground(new Color(77, 77, 77));
+
         movieTable.setTableHeader(null);
         movieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         movieTable.setDefaultEditor(Object.class, null);
@@ -125,9 +135,24 @@ public class MovieScreen extends JFrame {
         for (i = 0; i < movieTable.getModel().getColumnCount(); i++) {
             movieTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-        
 
-        
+        searchInput.setBackground(new Color(77, 77, 77));
+        searchInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        searchInput.setForeground(Color.white);
+        searchInput.setBorder(BorderFactory.createEtchedBorder());
+        searchInput.setSelectionColor(new Color(77, 77, 77));
+
+        searchText.setBackground(Color.black);
+        searchText.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        searchText.setForeground(Color.white);
+        searchText.setText("Search: ");
+
+        searchButton.setBackground(new Color(221, 5, 37));
+        searchButton.setFont(new Font("Dubai", 1, 14)); // NOI18N
+        searchButton.setForeground(Color.white);
+        searchButton.setText("Search");
+        searchButton.setBorderPainted(false);
+
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
@@ -135,20 +160,30 @@ public class MovieScreen extends JFrame {
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(headerText)
                 .addGap(203, 203, 203))
             .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(line, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(156, 156, 156))
+            .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                 .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                        .addComponent(line, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(156, 156, 156))
-                    .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(continueButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(searchInput, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(searchText))))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(searchButton)))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 385, GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(continueButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -162,14 +197,23 @@ public class MovieScreen extends JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(line, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(54, Short.MAX_VALUE))
                     .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(continueButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGap(25, 25, 25))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(searchText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(searchButton, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(54, Short.MAX_VALUE))))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -183,12 +227,17 @@ public class MovieScreen extends JFrame {
             .addComponent(backgroundPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
-
         continueButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 continueButtonActionPerformed(evt);
@@ -228,5 +277,24 @@ public class MovieScreen extends JFrame {
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();     
         TheatreScreen ts = new TheatreScreen(theatres, this.user);
-    }                                                 
+    }  
+    private void searchButtonActionPerformed(ActionEvent evt) {                                             
+        String search = searchInput.getText();
+
+        if(search.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a movie name!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;    
+        }
+
+        for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
+            if(search.equals(theatres.get(t).getMovieList().get(i).getMovieName())){
+                dispose();
+                SearchResultScreen sr = new SearchResultScreen(user, theatres, t, i);
+                return;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this, "We're not playing this movie at the moment!","Error!", JOptionPane.PLAIN_MESSAGE);
+    }                                            
+     
 }
