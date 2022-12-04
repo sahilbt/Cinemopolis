@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
+import Controllers.CouponController;
 import Entitity.Theatre;
 import Entitity.User;
 
@@ -193,7 +194,10 @@ public class PaymentGuestScreen extends JFrame {
         cardNumberLabel1.setBackground(Color.black);
         cardNumberLabel1.setFont(new Font("Dubai", 0, 24)); // NOI18N
         cardNumberLabel1.setForeground(Color.white);
-        cardNumberLabel1.setText("Total: $");
+
+        int price = 20 * seats.size();
+
+        cardNumberLabel1.setText("Total: $" + Integer.toString(price));
 
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
@@ -344,7 +348,11 @@ public class PaymentGuestScreen extends JFrame {
         SeatsScreen ss = new SeatsScreen(user, theatres, t, m, s);
     }                                          
 
-    private void applyActionPerformed(ActionEvent evt) {                                            
+    private void applyActionPerformed(ActionEvent evt) {
+        String id = couponInput.getText();
+
+        CouponController cc = new CouponController();
+        
 
     }                                                    
 }
