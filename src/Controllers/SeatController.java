@@ -18,10 +18,8 @@ public class SeatController{
         return db.getSeatsFromShowtime(s);
     }
 
-
     public void updateSeatinDB(ArrayList<Integer> seats){
         db.bookSeat(seats);
     }
-
     
 }

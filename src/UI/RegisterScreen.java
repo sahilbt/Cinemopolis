@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class RegisterScreen extends JFrame {
+public class RegisterScreen extends JFrame implements UI{
     private JTextField addressInput;
     private JLabel addressLabel;
     private JButton backButton;
@@ -38,7 +38,7 @@ public class RegisterScreen extends JFrame {
         initComponents();
     }
                         
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

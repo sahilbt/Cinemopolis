@@ -9,7 +9,7 @@ import Controllers.LoginController;
 import Entitity.PaymentInformation;
 import Entitity.User;
 
-public class UserUpdateScreen extends JFrame {
+public class UserUpdateScreen extends JFrame implements UI{
     private JButton backButton8;
     private JPanel backgroundPanel;
     private JTextField cardNumberInput;
@@ -31,7 +31,7 @@ public class UserUpdateScreen extends JFrame {
         initComponents();
     }
                      
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

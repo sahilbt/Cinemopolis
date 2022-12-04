@@ -4,14 +4,14 @@ import java.sql.*;
 import java.util.*;
 import Entitity.*;
 
-public class ShowtimeDB implements Database{
-
-    private Connection dbConnect;
+public class ShowtimeDB extends Database{
 
 
     public ShowtimeDB(){
         initializeConnection();
     }
+
+    
 
     public ArrayList<Showtime> getShowtimesFromMovie(Movie movie) {
         ArrayList<Showtime> dbMovies = new ArrayList<Showtime>();
@@ -32,28 +32,5 @@ public class ShowtimeDB implements Database{
         }
         movie.setShowTimes(dbMovies);
         return dbMovies;
-    }
-
-
-
-
-
-
-
-    @Override
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();        
-        }
-    }
-
-    public void closeConnection(){
-        try {
-            this.dbConnect.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

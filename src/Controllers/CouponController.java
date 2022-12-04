@@ -5,42 +5,40 @@ import Entitity.Ticket;
 
 public class CouponController implements Controller{
 
-    private CouponDB c;
+    private CouponDB db;
 
     public CouponController(){
-        c = new CouponDB();
+        db = new CouponDB();
     }
 
 
     public void addCoupon(Ticket ticket){
-        c.addCoupon(ticket);
+        db.addCoupon(ticket);
     }
 
     public boolean sendCouponCreds(String id){
-        return c.validateCoupon(Integer.parseInt(id));
+        return db.validateCoupon(Integer.parseInt(id));
     }
 
     public Coupon getCouponFromBoundaryDB(String id){
-        return c.getCouponFromDB(Integer.parseInt(id));
+        return db.getCouponFromDB(Integer.parseInt(id));
     }
 
     public void performDeletionOfCoupon(Coupon coup){
-        c.removeCouponFromDB(coup);
+        db.removeCouponFromDB(coup);
     }
 
     public void updateCouponValueInDB(Coupon coup){
-        c.updateCouponIntoDB(coup);
+        db.updateCouponIntoDB(coup);
     }
 
     public Coupon getRecentCoupon(){
-        return c.getRecentCoupon();
+        return db.getRecentCoupon();
     }
 
 
 
 
-    @Override
-    public void interactDatabase() {
-    }
+    
     
 }

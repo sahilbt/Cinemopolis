@@ -12,7 +12,7 @@ import Controllers.SeatController;
 import Entitity.Theatre;
 import Entitity.User;
 
-public class ShowtimeScreen extends JFrame {
+public class ShowtimeScreen extends JFrame implements UI{
     private JButton backButton;
     private JPanel backgroundPanel;
     private JButton continueButton;
@@ -34,7 +34,7 @@ public class ShowtimeScreen extends JFrame {
     }
 
     
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

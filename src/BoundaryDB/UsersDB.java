@@ -5,10 +5,9 @@ import Entitity.*;
 import java.sql.*;
 import java.util.*;
 
-public class UsersDB implements Database {
+public class UsersDB extends Database {
     
     private Singleton users;
-    private Connection dbConnect;
 
     public UsersDB(){
         initializeConnection();
@@ -18,16 +17,6 @@ public class UsersDB implements Database {
         else{
             users.setRegisteredUsers(getAllRegisteredUsers());
             users.wasAdded();
-        }
-    }
-
-
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 

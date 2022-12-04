@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class HomeScreen extends JFrame {
+public class HomeScreen extends JFrame implements UI {
     private JPanel backgroundPanel;
     private JPanel barDown;
     private JPanel barUp;
@@ -24,7 +24,7 @@ public class HomeScreen extends JFrame {
         initComponents();
     }
                        
-    private void initComponents() {
+    public void initComponents() {
         backgroundPanel = new JPanel();
         theaterName = new JLabel();
         icon = new JLabel();

@@ -16,11 +16,6 @@ public class TicketController implements Controller{
         t = new TicketDB();
     }
     
-    @Override
-    public void interactDatabase() {
-        
-    }
-
     public boolean exists(String id){
         return t.exists(Integer.parseInt(id));
     }
@@ -58,5 +53,4 @@ public class TicketController implements Controller{
     public int getRecentTicket(){
        return t.getRecentTicket();
     }
-
 }

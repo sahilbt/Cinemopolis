@@ -18,7 +18,7 @@ import Entitity.Ticket;
 import Entitity.User;
 
 
-public class PaymentRegisteredScreen extends JFrame {
+public class PaymentRegisteredScreen extends JFrame implements UI{
     private JButton backButton;
     private JButton backButton1;
     private JPanel backgroundPanel;
@@ -48,7 +48,7 @@ public class PaymentRegisteredScreen extends JFrame {
     }
 
          
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

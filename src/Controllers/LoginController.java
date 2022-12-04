@@ -4,26 +4,26 @@ import Entitity.User;
 
 public class LoginController{
 
-    private UsersDB userConnection;
+    private UsersDB db;
 
     public LoginController(){
-        this.userConnection = new UsersDB();
+        this.db = new UsersDB();
     }
 
     public boolean forwardUserCreds(String user, String pass){
-        return userConnection.validateLogin(user, pass);
+        return db.validateLogin(user, pass);
     }
 
     public User findUserFromSingleton(String user){
-        return userConnection.findUser(user);
+        return db.findUser(user);
     }
 
     public void forwardRegistrationValidation(User u){
-        userConnection.addRegister(u);
+        db.addRegister(u);
     }
 
     public void forwardUpdate(User u){
-        userConnection.updateUser(u);
+        db.updateUser(u);
     }
 
 }

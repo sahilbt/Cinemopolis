@@ -10,7 +10,7 @@ import Entitity.Theatre;
 import Entitity.Ticket;
 import Entitity.User;
 
-public class SeatsScreen extends JFrame {
+public class SeatsScreen extends JFrame implements UI {
     private JButton backButton;
     private JPanel backgroundPanel;
     private JButton continueButton;
@@ -53,7 +53,7 @@ public class SeatsScreen extends JFrame {
         initComponents();
     }
                      
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -6,8 +6,7 @@ import java.util.*;
 import Entitity.*;
 
 
-public class TheatreDB implements Database {
-    private Connection dbConnect;
+public class TheatreDB extends Database {
 
     public TheatreDB(){
         initializeConnection();
@@ -31,16 +30,4 @@ public class TheatreDB implements Database {
         return theatres;
 
     }
-
-
-    @Override
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();        
-        }
-    }
-
-
 }

@@ -4,9 +4,8 @@ import java.sql.*;
 import java.util.*;
 import Entitity.*;
 
-public class SeatsDB implements Database{
+public class SeatsDB extends Database{
 
-    private Connection dbConnect;
 
 
     public SeatsDB(){
@@ -35,7 +34,6 @@ public class SeatsDB implements Database{
         return DBUser;
     }
 
-
     public void bookSeat(ArrayList<Integer> seats){
         try {
             String query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
@@ -48,23 +46,5 @@ public class SeatsDB implements Database{
         } catch (SQLException e) {
             e.printStackTrace();
             }
-    }
-
-
-    @Override
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(Database.URL, Database.USERNAME, Database.PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();        
-        }
-    }
-
-    public void closeConnection(){
-        try {
-            this.dbConnect.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

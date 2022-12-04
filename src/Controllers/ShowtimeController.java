@@ -18,5 +18,4 @@ public class ShowtimeController{
         return db.getShowtimesFromMovie(movie);
     }
 
-
 }

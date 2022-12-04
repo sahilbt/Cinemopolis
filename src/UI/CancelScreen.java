@@ -11,7 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CancelScreen extends JFrame {
+public class CancelScreen extends JFrame implements UI {
     private JButton backButton;
     private JPanel backgroundPanel;
     private JTextField couponTextbox;
@@ -25,8 +25,9 @@ public class CancelScreen extends JFrame {
     public CancelScreen() {
         initComponents();
     }
-                      
-    private void initComponents() {
+    
+    @Override
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -36,7 +37,7 @@ public class CancelScreen extends JFrame {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-        }         
+        }          
 
         backgroundPanel = new JPanel();
         headerText = new JLabel();

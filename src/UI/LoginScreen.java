@@ -22,7 +22,7 @@ public class LoginScreen extends JFrame {
         initComponents();
     }
 
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

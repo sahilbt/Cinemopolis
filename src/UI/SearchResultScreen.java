@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
-public class SearchResultScreen extends JFrame{        
+public class SearchResultScreen extends JFrame implements UI{        
     private JButton backButton;
     private JPanel backgroundPanel;
     private JLabel headerText;
@@ -32,7 +32,7 @@ public class SearchResultScreen extends JFrame{
         initComponents();
     }
            
-    private void initComponents() {
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -6,35 +6,14 @@ import java.util.*;
 
 import Entitity.*;
 
-public class MovieDB implements Database{
+public class MovieDB extends Database{
     
-    private Connection dbConnect;
  
-
-
     public MovieDB(){
         initializeConnection();
     }
 
 
-    @Override
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (Exception e) {
-            e.printStackTrace();        
-        }
-    }
-
-    public void closeConnection(){
-        try {
-            this.dbConnect.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    
     public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
         ArrayList<Movie> DBMovies = new ArrayList<Movie>();
         try {
@@ -56,12 +35,8 @@ public class MovieDB implements Database{
         return DBMovies;
     }
 
-
-    
-
     public String getMovieNameFromTheatre(int MovieID,int TheatreID,Theatre theatre){
         ArrayList<Movie> MovieList = theatre.getMovieList();
-
         for(Movie val : MovieList){
             if(MovieID == val.getID()){
                 return val.getMovieName();
@@ -78,9 +53,5 @@ public class MovieDB implements Database{
             }
         }
         return false;
-
     }
-
-
-
 }

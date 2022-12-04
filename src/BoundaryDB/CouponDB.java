@@ -2,8 +2,7 @@ package BoundaryDB;
 
 import Entitity.*;
 import java.sql.*;
-import java.util.*;
-public class CouponDB implements Database {
+public class CouponDB extends Database {
     
     private Connection dbConnect;
     
@@ -11,6 +10,7 @@ public class CouponDB implements Database {
         initializeConnection();
     }
 
+    
     public boolean validateCoupon(int id){
         try {
             //Maybe change this so you look for the ID and if nothing is returned, then return false
@@ -134,17 +134,4 @@ public class CouponDB implements Database {
         }
         return c;
     }
-
-    public void initializeConnection() {
-        try {
-            this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    
-
 }
