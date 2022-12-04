@@ -22,4 +22,8 @@ public class LoginController{
         userConnection.addRegister(u);
     }
 
+    public void forwardUpdate(User u){
+        userConnection.updateUser(u);
+    }
+
 }

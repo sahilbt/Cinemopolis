@@ -1,8 +1,10 @@
 package UI;
 import javax.swing.*;
 
+import Business.PaymentService;
 import Controllers.CouponController;
 import Controllers.TicketController;
+import Entitity.Coupon;
 import Entitity.Ticket;
 
 import java.awt.*;
@@ -230,6 +232,11 @@ public class CancelScreen extends JFrame {
             return;
         }
         cc.addCoupon(ticket);
+
+        Coupon c = cc.getRecentCoupon();
+
+        PaymentService ps = new PaymentService();
+        ps.makeEmail(ticket.getEmail(), id, c);
 
         JOptionPane.showMessageDialog(this, "Order successfully canceled! Please check your email for the refund details.","Success", JOptionPane.PLAIN_MESSAGE);
     }                                                       

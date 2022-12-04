@@ -10,6 +10,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.security.auth.Subject;
 
+import Controllers.TicketController;
 import Entitity.Coupon;
 import Entitity.Ticket; 
 
@@ -24,7 +25,7 @@ public class PaymentService{
 
     }
 
-    public void makeEmail(Ticket t,Coupon c){
+    public void makeEmail(Ticket t){
         Properties props = new Properties();
 
 		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -41,73 +42,83 @@ public class PaymentService{
 		Session session = Session.getInstance(props, auth);
         String subject;
         String body;
-        if(c==null){
-            subject = makeSubjectEmail(t);
-            body = makeBodyEmail(t);
-        }
-        else{
-            subject = makeSubjectEmail(t, c);
-            body = makeBodyEmail(t, c);
-        }
+        subject = makeSubjectEmail(t);
+        body = makeBodyEmail(t);
+        
+        EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
+    } 
+
+
+    public void makeEmail(String email, String id, Coupon c){
+        Properties props = new Properties();
+
+		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+		props.put("mail.smtp.port", "587"); //TLS Port
+		props.put("mail.smtp.auth", "true"); //enable authentication 
+    	props.put("mail.smtp.starttls.required", "true");
+        String toEmail = email;
+
+        Authenticator auth = new Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(fromEmail, password);
+			}
+		};
+		Session session = Session.getInstance(props, auth);
+        String subject;
+        String body;
+
+        subject = makeSubjectEmail(id, c);
+        body = makeBodyEmail(id, c);
 
         EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
-        
-
     } 
 
     public String makeSubjectEmail(Ticket T){
-       
             String subject = "Your Cinemopolis Ticket Purchase Confirmation";
             return subject;
     }
        
 
-    public String makeSubjectEmail(Ticket T,Coupon C){
-        
-            String subject = "Your Cinemopolis Ticket Cancelation Confirmation";
+    public String makeSubjectEmail(String id, Coupon c){
+            String subject = "Your Cinemopolis Ticket Cancellation Confirmation";
             return subject;
-        
     }
 
     public String makeBodyEmail(Ticket T){
+        TicketController tc = new TicketController();
+        int id = tc.getRecentTicket();
         
-        String body = "Thank you for your purchase at Cinemopolis\n\n";
-        body+= "Below you will find the information for your tickets\n\n";
+        String body = "Thank you for your purchase at Cinemopolis!\n\n";
+        body+= "Below you will find the information for your tickets:\n\n";
         body+= "Movie: " + T.getMovie() + '\n';
         body+= "Theatre: " + T.getTheatre()+ '\n';
-        body+= "Date: " + T.getShowtime() + '\n';
+        body+= "Showtime: " + T.getShowtime() + '\n';
         body+= "Quantity: " + T.getSeats().size() + "\n";
         body+= "Seats: ";
         for(int val : T.getSeats()){
-            body+=" Seat " + val%20 + ",";
+            int v = val%20;
+
+            if(v == 0){
+                body+=" Seat " + 20 + ",";
+            }
+            else{
+                body+=" Seat " + val%20 + ",";
+            }
         }
         body = body.substring(0,body.length()-1);
         body+='\n';
         body+= "Price: " + T.getPrice() + '\n';
+        body+= "Your order ID is: " + id + '\n';
         body+='\n';
         body+= "We hope to see you again!";
         return body;
     }
 
-    public String makeBodyEmail(Ticket T,Coupon C){
-     
-        String body = "Your Cinemopolis Ticket Cancelation Confirmation";
-        body+= "Below you will find the information for your tickets that you cancelled and your coupon\n\n";
-        body+= "Movie: " + T.getMovie() + '\n';
-        body+= "Theatre: " + T.getTheatre()+ '\n';
-        body+= "Date: " + T.getShowtime() + '\n';
-        body+= "Quantity: " + T.getSeats().size() + "\n";
-        body+= "Seats: ";
-        for(int val : T.getSeats()){
-            body+=" Seat " + val + ",";
-        }
-        body = body.substring(0,body.length()-1);
-        body+='\n';
-        body+= "Price: " + T.getPrice() + '\n';
-        body+='\n';
-
-        body+="Coupon Code: " + C.getID();
-        body+="Coupon Value: " + C.getValue(); 
+    public String makeBodyEmail(String id, Coupon C){
+        String body = "Your Cinemopolis Ticket Cancellation Confirmation :(\n";
+        body+= "Your order with ID: " + id + " has successfully been canceled.\n\n";
+        body+="Coupon Code: " + C.getID() + '\n';
+        body+="Coupon Value: " + C.getValue() + '\n'; 
         body+="We hope to see you again!";
         return body;
         }
@@ -115,8 +126,6 @@ public class PaymentService{
    
 
 class EmailUtil {
-
- 
     public static void sendEmail(Session session, String toEmail, String subject, String body,String FromEmail){
         try
         {

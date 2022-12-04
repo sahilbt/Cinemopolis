@@ -47,5 +47,10 @@ public class Singleton{
         return UsersAdded;
     }
 
+    public void updateUser(){
+
+        
+    }
+
     
 }

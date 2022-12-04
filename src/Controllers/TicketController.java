@@ -55,4 +55,8 @@ public class TicketController implements Controller{
         return true;
     }
 
+    public int getRecentTicket(){
+       return t.getRecentTicket();
+    }
+
 }

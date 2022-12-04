@@ -118,6 +118,23 @@ public class CouponDB implements Database {
         return (int)discount;
     }
 
+    public Coupon getRecentCoupon(){
+        Coupon c = new Coupon(-1, -1);
+        try {
+            String query = "SELECT * FROM coupons WHERE ID = (SELECT MAX(ID) FROM coupons)";
+            Statement stmt = dbConnect.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            res.next();
+            int id = res.getInt("ID");
+            int val = res.getInt("Value");
+            c = new Coupon(id, val);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
+
     public void initializeConnection() {
         try {
             this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-// import Business.PaymentService;
+import Business.PaymentService;
 import Controllers.CouponController;
 import Controllers.SeatController;
 import Controllers.TicketController;
@@ -28,14 +28,14 @@ public class PaymentRegisteredScreen extends JFrame {
     private JLabel jLabel1;
     private JButton payButton;
     private JLabel paymentHeader;
-    private JPanel paymentLine;    
+    private JPanel paymentLine;
     private User user;
     private ArrayList<Theatre> theatres;
     private int t;
     private int m;
     private int s;
     private ArrayList<Integer> seats;
-    int price;  
+    private int price;
 
     public PaymentRegisteredScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s, ArrayList<Integer> seats) {
         this.user = user;
@@ -46,6 +46,7 @@ public class PaymentRegisteredScreen extends JFrame {
         this.seats = seats;
         initComponents();
     }
+
          
     private void initComponents() {
         try {
@@ -75,7 +76,6 @@ public class PaymentRegisteredScreen extends JFrame {
         setBackground(new Color(0, 0, 0));
         setResizable(false);
 
-
         backgroundPanel.setBackground(Color.black);
 
         backButton.setBackground(new Color(221, 5, 37));
@@ -83,7 +83,11 @@ public class PaymentRegisteredScreen extends JFrame {
         backButton.setForeground(Color.white);
         backButton.setText("Back");
         backButton.setBorderPainted(false);
-
+        backButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         paymentHeader.setFont(new Font("Nirmala UI", 1, 48)); // NOI18N
         paymentHeader.setForeground(Color.white);
@@ -132,7 +136,11 @@ public class PaymentRegisteredScreen extends JFrame {
         backButton1.setForeground(Color.white);
         backButton1.setText("Apply");
         backButton1.setBorderPainted(false);
-
+        backButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                backButton1ActionPerformed(evt);
+            }
+        });
 
         cardNumberLabel1.setBackground(Color.black);
         cardNumberLabel1.setFont(new Font("Dubai", 0, 24)); // NOI18N
@@ -220,18 +228,6 @@ public class PaymentRegisteredScreen extends JFrame {
             .addComponent(backgroundPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         );
 
-        backButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backButtonActionPerformed(evt);
-            }
-        });
-
-        backButton1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                backButton1ActionPerformed(evt);
-            }
-        });
-
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -259,19 +255,21 @@ public class PaymentRegisteredScreen extends JFrame {
         
         Ticket t = new Ticket(-1, user.getUsername(), movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
 
-        // PaymentService ps = new PaymentService();
-
-        // ps.makeEmail(t, null);
+        PaymentService ps = new PaymentService();
 
         TicketController tc = new TicketController();
         tc.addTicketToDB(t);
+
+        t.setID(tc.getRecentTicket());
+        ps.makeEmail(t);
 
         SeatController s = new SeatController();
         s.updateSeatinDB(seats);
 
         JOptionPane.showMessageDialog(this, "Tickets sucessfully purchased! Check your email for details","Success!", JOptionPane.PLAIN_MESSAGE);
         dispose();
-        HomeScreen.main(null);
+        DashboardScreen ds = new DashboardScreen(user);
+        ds.performStrategy();
     }                                         
 
     private void backButton1ActionPerformed(ActionEvent evt) {                                            
@@ -311,5 +309,5 @@ public class PaymentRegisteredScreen extends JFrame {
         }
 
         JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);
-    }                                                    
+    }                                                  
 }

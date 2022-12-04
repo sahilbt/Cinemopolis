@@ -1,14 +1,14 @@
 package UI;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
-
 import Controllers.TheatreController;
 import Entitity.Theatre;
 import Entitity.User;
 
-import java.awt.*;
 
 public class RegisteredDashScreen extends JFrame implements Strategy{
     private User user;
@@ -55,15 +55,15 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
         setBackground(new Color(0, 0, 0));
         setResizable(false);
 
-        backgroundPanel3.setBackground(java.awt.Color.black);
+        backgroundPanel3.setBackground(Color.black);
 
-        headerText3.setFont(new java.awt.Font("Nirmala UI", 1, 48)); 
-        headerText3.setForeground(java.awt.Color.white);
+        headerText3.setFont(new Font("Nirmala UI", 1, 48)); 
+        headerText3.setForeground(Color.white);
         headerText3.setText("My Account");
         headerText3.setToolTipText("");
 
-        line3.setMaximumSize(new java.awt.Dimension(0, 2));
-        line3.setMinimumSize(new java.awt.Dimension(0, 2));
+        line3.setMaximumSize(new Dimension(0, 2));
+        line3.setMinimumSize(new Dimension(0, 2));
 
         GroupLayout line3Layout = new GroupLayout(line3);
         line3.setLayout(line3Layout);
@@ -76,40 +76,40 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
             .addGap(0, 2, Short.MAX_VALUE)
         );
 
-        changeButrton.setBackground(new java.awt.Color(221, 5, 37));
-        changeButrton.setFont(new java.awt.Font("Dubai", 1, 20)); 
-        changeButrton.setForeground(java.awt.Color.white);
+        changeButrton.setBackground(new Color(221, 5, 37));
+        changeButrton.setFont(new Font("Dubai", 1, 20)); 
+        changeButrton.setForeground(Color.white);
         changeButrton.setText("Change Payment");
         changeButrton.setBorderPainted(false);
-        changeButrton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        changeButrton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-        continueButton.setBackground(new java.awt.Color(221, 5, 37));
-        continueButton.setFont(new java.awt.Font("Dubai", 1, 20)); 
-        continueButton.setForeground(java.awt.Color.white);
+        continueButton.setBackground(new Color(221, 5, 37));
+        continueButton.setFont(new Font("Dubai", 1, 20)); 
+        continueButton.setForeground(Color.white);
         continueButton.setText("Find a Theatre");
         continueButton.setBorderPainted(false);
-        continueButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        continueButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-        accountText.setBackground(java.awt.Color.black);
-        accountText.setFont(new java.awt.Font("Dubai", 0, 18)); 
-        accountText.setForeground(java.awt.Color.white);
+        accountText.setBackground(Color.black);
+        accountText.setFont(new Font("Dubai", 0, 18)); 
+        accountText.setForeground(Color.white);
         accountText.setText("Account Settings");
 
-        accountText1.setBackground(java.awt.Color.black);
-        accountText1.setFont(new java.awt.Font("Dubai", 0, 18)); 
-        accountText1.setForeground(java.awt.Color.white);
+        accountText1.setBackground(Color.black);
+        accountText1.setFont(new Font("Dubai", 0, 18)); 
+        accountText1.setForeground(Color.white);
         accountText1.setText("Continue to Theatre Selection");
 
-        logoutButton.setBackground(new java.awt.Color(221, 5, 37));
-        logoutButton.setFont(new java.awt.Font("Dubai", 1, 20));
-        logoutButton.setForeground(java.awt.Color.white);
+        logoutButton.setBackground(new Color(221, 5, 37));
+        logoutButton.setFont(new Font("Dubai", 1, 20));
+        logoutButton.setForeground(Color.white);
         logoutButton.setText("Log Out");
         logoutButton.setBorderPainted(false);
-        logoutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        logoutButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-        accountText2.setBackground(java.awt.Color.black);
-        accountText2.setFont(new java.awt.Font("Dubai", 0, 18)); 
-        accountText2.setForeground(java.awt.Color.white);
+        accountText2.setBackground(Color.black);
+        accountText2.setFont(new Font("Dubai", 0, 18)); 
+        accountText2.setForeground(Color.white);
         accountText2.setText("Welcome to your Account!");
 
         GroupLayout backgroundPanel3Layout = new GroupLayout(backgroundPanel3);
@@ -180,20 +180,20 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
                 .addComponent(backgroundPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
 
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        logoutButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 logoutButtonActionPerformed(evt);
             }
         });
 
-        continueButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        continueButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 continueButtonActionPerformed(evt);
             }
         });
 
-        changeButrton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        changeButrton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 changeButrtonActionPerformed(evt);
             }
         });
@@ -203,19 +203,20 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
         setVisible(true);
     }                    
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void logoutButtonActionPerformed(ActionEvent evt) {                                             
         dispose();
         HomeScreen.main(null); 
     }                                            
 
-    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {     
+    private void continueButtonActionPerformed(ActionEvent evt) {     
         TheatreController tc = new TheatreController();
         ArrayList<Theatre> theatres = tc.getTheatreInfo();
         dispose();
         TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }                                              
 
-    private void changeButrtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+    private void changeButrtonActionPerformed(ActionEvent evt) {                                              
+        dispose();
+        UserUpdateScreen us = new UserUpdateScreen(user);
     }                                                          
 }

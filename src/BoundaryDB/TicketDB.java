@@ -82,6 +82,22 @@ public class TicketDB implements Database {
         return t;
     }
 
+    public int getRecentTicket(){
+        int tmp = 0;
+        try {
+            String query = "SELECT ID FROM tickets WHERE ID = (SELECT MAX(ID) FROM tickets)";
+            Statement stmt = dbConnect.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            res.next();
+            tmp = res.getInt("ID");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tmp;
+    }
+
+
     public void initializeConnection() {
         try {
             this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);

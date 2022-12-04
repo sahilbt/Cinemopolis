@@ -9,7 +9,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 
-// import Business.PaymentService;
+import Business.PaymentService;
 import Controllers.CouponController;
 import Controllers.SeatController;
 import Controllers.TicketController;
@@ -44,7 +44,7 @@ public class PaymentGuestScreen extends JFrame {
     private int m;
     private int s;
     private ArrayList<Integer> seats;
-    int price;
+    private int price;
     
 
     public PaymentGuestScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s, ArrayList<Integer> seats) {
@@ -391,12 +391,13 @@ public class PaymentGuestScreen extends JFrame {
         
         Ticket t = new Ticket(-1, email, movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
 
-        // PaymentService ps = new PaymentService();
-
-        // ps.makeEmail(t, null);
+        PaymentService ps = new PaymentService();
 
         TicketController tc = new TicketController();
         tc.addTicketToDB(t);
+
+        t.setID(tc.getRecentTicket());
+        ps.makeEmail(t);
 
         SeatController s = new SeatController();
         s.updateSeatinDB(seats);

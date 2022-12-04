@@ -22,15 +22,15 @@ public class UsersDB implements Database {
     }
 
 
-        public void initializeConnection() {
-            try {
-                this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void initializeConnection() {
+        try {
+            this.dbConnect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    
+    }
+
 
     public ArrayList<User> getAllRegisteredUsers(){
         ArrayList<User> DBUser = new ArrayList<>();
@@ -103,6 +103,23 @@ public class UsersDB implements Database {
 
     public Singleton getSingleton(){
         return users;
+    }
+
+    
+    public void updateUser(User u){
+        try {
+            String query = "UPDATE users SET CardNum = ?, ExpDate = ?, CVV = ?, CardName = ? WHERE Email = ?";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+            stmt.setString(1, u.getPaymentInformation().getCredit());
+            stmt.setString(2, u.getPaymentInformation().getExpDate());
+            stmt.setString(3, u.getPaymentInformation().getCVV());
+            stmt.setString(4, u.getPaymentInformation().getCardName());
+            stmt.setString(5, u.getUsername());
+            stmt.executeUpdate();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

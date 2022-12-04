@@ -32,6 +32,10 @@ public class CouponController implements Controller{
         c.updateCouponIntoDB(coup);
     }
 
+    public Coupon getRecentCoupon(){
+        return c.getRecentCoupon();
+    }
+
 
 
 
