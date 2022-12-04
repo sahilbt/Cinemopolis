@@ -151,6 +151,7 @@ public class TheatreScreen extends JFrame implements UI{
     private void theatreButtonActionPerformed(ActionEvent evt) {                                              
         MovieController mc = new MovieController();
         mc.getMoviePageInformation(theatres.get(0));
+        mc.closeControl();
         dispose();
         MovieScreen ms = new MovieScreen(user, theatres, 0);
     }                                             

@@ -156,6 +156,7 @@ public class SearchResultScreen extends JFrame implements UI{
     private void movieButtonActionPerformed(ActionEvent evt) { 
         ShowtimeController sc = new ShowtimeController();
         sc.getShowtimePageInformation(theatres.get(t).getMovieList().get(m));
+        sc.closeControl();
         dispose();
         ShowtimeScreen ss = new ShowtimeScreen(user, theatres, t, m);
     }                                             

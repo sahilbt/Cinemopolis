@@ -260,6 +260,7 @@ public class MovieScreen extends JFrame implements UI {
         String movieNameFromTable = movieTable.getModel().getValueAt(row, 0).toString();
 
         ShowtimeController sc = new ShowtimeController();
+
         int movieID = -1;
 
         for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
@@ -270,7 +271,7 @@ public class MovieScreen extends JFrame implements UI {
             } 
         }
         dispose();
-        
+        sc.closeControl();
         ShowtimeScreen ms = new ShowtimeScreen(user, theatres,t, movieID-1);
     }                                              
 

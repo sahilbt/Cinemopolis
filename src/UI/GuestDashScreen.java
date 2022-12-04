@@ -207,5 +207,6 @@ public class GuestDashScreen extends JFrame implements Strategy {
         ArrayList<Theatre> theatres = tc.getTheatreInfo();
         dispose();
         TheatreScreen ts = new TheatreScreen(theatres, this.user);
+        tc.closeControl();
     }                                                          
 }

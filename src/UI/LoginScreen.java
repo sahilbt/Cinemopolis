@@ -212,6 +212,7 @@ public class LoginScreen extends JFrame {
         }
 
         User foundUser = lc.findUserFromSingleton(usernameField);
+        lc.closeControl();
         dispose();
         DashboardScreen ds = new DashboardScreen(foundUser);
         ds.performStrategy();

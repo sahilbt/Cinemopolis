@@ -9,25 +9,29 @@ import BoundaryDB.*;
 import Entitity.*;
 
 public class TicketController implements Controller{
-    TicketDB t;
+    TicketDB db;
     Ticket tick;
 
     public TicketController(){
-        t = new TicketDB();
+        db = new TicketDB();
+    }
+
+    public void closeControl(){
+        close(db);
     }
     
     public boolean exists(String id){
-        return t.exists(Integer.parseInt(id));
+        return db.exists(Integer.parseInt(id));
     }
 
     public Ticket getTicket(String id){
-        Ticket tmp = t.getTicket(Integer.parseInt(id));
+        Ticket tmp = db.getTicket(Integer.parseInt(id));
         this.tick = tmp;
         return tmp;
     }
 
     public void addTicketToDB(Ticket ticket){
-        t.addTicketToDB(ticket);
+        db.addTicketToDB(ticket);
     }
 
     public boolean notExpired(){
@@ -51,6 +55,6 @@ public class TicketController implements Controller{
     }
 
     public int getRecentTicket(){
-       return t.getRecentTicket();
+       return db.getRecentTicket();
     }
 }

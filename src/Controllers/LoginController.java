@@ -2,9 +2,13 @@ package Controllers;
 import BoundaryDB.*;
 import Entitity.User;
 
-public class LoginController{
+public class LoginController implements Controller{
 
     private UsersDB db;
+
+    public void closeControl(){
+        close(db);
+    }
 
     public LoginController(){
         this.db = new UsersDB();

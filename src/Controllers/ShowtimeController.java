@@ -6,7 +6,7 @@ import BoundaryDB.ShowtimeDB;
 import Entitity.Movie;
 import Entitity.Showtime;
 
-public class ShowtimeController{
+public class ShowtimeController implements Controller{
     
     private ShowtimeDB db;
 
@@ -14,6 +14,10 @@ public class ShowtimeController{
        db = new ShowtimeDB();
     }
 
+    public void closeControl(){
+        close(db);
+    }
+    
     public ArrayList<Showtime> getShowtimePageInformation(Movie movie){
         return db.getShowtimesFromMovie(movie);
     }

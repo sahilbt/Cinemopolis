@@ -287,6 +287,7 @@ public class UserUpdateScreen extends JFrame implements UI{
 
         LoginController lc = new LoginController();
         lc.forwardUpdate(user);
+        lc.closeControl();
         JOptionPane.showMessageDialog(this, "Successfully updated your payment details!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                            
 }

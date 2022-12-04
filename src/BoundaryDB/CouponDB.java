@@ -4,7 +4,6 @@ import Entitity.*;
 import java.sql.*;
 public class CouponDB extends Database {
     
-    private Connection dbConnect;
     
     public CouponDB(){
         initializeConnection();
@@ -94,7 +93,7 @@ public class CouponDB extends Database {
     public void updateCouponIntoDB(Coupon c){
         int id = c.getID();
         try {
-            String query = "UPDATE coupon SET Value = ? WHERE ID = ?";
+            String query = "UPDATE coupons SET Value = ? WHERE ID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
             stmt.setInt(1, c.getValue());
             stmt.setInt(2, id);

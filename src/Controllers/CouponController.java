@@ -11,7 +11,9 @@ public class CouponController implements Controller{
         db = new CouponDB();
     }
 
-
+    public void closeControl(){
+        close(db);
+    }
     public void addCoupon(Ticket ticket){
         db.addCoupon(ticket);
     }

@@ -392,15 +392,22 @@ public class PaymentGuestScreen extends JFrame implements UI{
         Ticket t = new Ticket(-1, email, movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
 
         PaymentService ps = new PaymentService();
+        if (!ps.makeEmail(t)){
+            JOptionPane.showMessageDialog(this, "Please enter a valid email!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return; 
+        }
 
         TicketController tc = new TicketController();
         tc.addTicketToDB(t);
 
         t.setID(tc.getRecentTicket());
-        ps.makeEmail(t);
+        
 
         SeatController s = new SeatController();
         s.updateSeatinDB(seats);
+
+        tc.closeControl();
+        s.closeControl();
 
         JOptionPane.showMessageDialog(this, "Tickets sucessfully purchased! Check your email for details","Success!", JOptionPane.PLAIN_MESSAGE);
         dispose();
@@ -447,6 +454,8 @@ public class PaymentGuestScreen extends JFrame implements UI{
         else{
             cc.updateCouponValueInDB(coupon);
         }
+
+        cc.closeControl();
 
         JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                                    

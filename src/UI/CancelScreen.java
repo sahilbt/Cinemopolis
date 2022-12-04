@@ -239,6 +239,9 @@ public class CancelScreen extends JFrame implements UI {
         PaymentService ps = new PaymentService();
         ps.makeEmail(ticket.getEmail(), id, c);
 
+        tc.closeControl();
+        cc.closeControl();
+
         JOptionPane.showMessageDialog(this, "Order successfully canceled! Please check your email for the refund details.","Success", JOptionPane.PLAIN_MESSAGE);
     }                                                       
 }

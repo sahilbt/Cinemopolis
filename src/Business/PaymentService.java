@@ -25,7 +25,7 @@ public class PaymentService{
 
     }
 
-    public void makeEmail(Ticket t){
+    public boolean makeEmail(Ticket t){
         Properties props = new Properties();
 
 		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -45,11 +45,11 @@ public class PaymentService{
         subject = makeSubjectEmail(t);
         body = makeBodyEmail(t);
         
-        EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
+        return EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
     } 
 
 
-    public void makeEmail(String email, String id, Coupon c){
+    public boolean makeEmail(String email, String id, Coupon c){
         Properties props = new Properties();
 
 		props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
@@ -70,7 +70,7 @@ public class PaymentService{
         subject = makeSubjectEmail(id, c);
         body = makeBodyEmail(id, c);
 
-        EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
+        return EmailUtil.sendEmail(session, toEmail,subject, body,fromEmail);
     } 
 
     public String makeSubjectEmail(Ticket T){
@@ -126,7 +126,7 @@ public class PaymentService{
    
 
 class EmailUtil {
-    public static void sendEmail(Session session, String toEmail, String subject, String body,String FromEmail){
+    public static boolean sendEmail(Session session, String toEmail, String subject, String body,String FromEmail){
         try
         {
           MimeMessage msg = new MimeMessage(session);
@@ -140,10 +140,11 @@ class EmailUtil {
           msg.setText(body, "UTF-8");
           msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail, false));
           Transport.send(msg);
-
+          return true;
+            
         }
         catch (Exception e) {
-          e.printStackTrace();
+          return false;
         }
     }
 }
