@@ -9,6 +9,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import Controllers.ShowtimeController;
 import Entitity.Theatre;
 import Entitity.User;
 
@@ -22,12 +23,12 @@ public class MovieScreen extends JFrame {
     private JTable movieTable;
     private User user;
     private ArrayList<Theatre> theatres;
-    private int tIndex;
+    private int t;
 
-    public MovieScreen(User user, ArrayList<Theatre> theatres, int tIndex) {
+    public MovieScreen(User user, ArrayList<Theatre> theatres, int t) {
         this.user = user;
         this.theatres = theatres;
-        this.tIndex = tIndex;
+        this.t = t;
         initComponents();
     }
                         
@@ -199,7 +200,19 @@ public class MovieScreen extends JFrame {
     }                     
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        int row = movieTable.getSelectedRow();
+        String movieNameFromTable = movieTable.getModel().getValueAt(row, 0).toString();
+
+        ShowtimeController sc = new ShowtimeController();
+        int movieID = -1;
+
+        for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
+            if (theatres.get(t).getMovieList().get(i).getMovieName().equals(movieNameFromTable)){
+                movieID = theatres.get(t).getMovieList().get(i).getID();
+            } 
+        }
+
+        sc.getShowtimePageInformation(movieID);
     }                                              
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           
