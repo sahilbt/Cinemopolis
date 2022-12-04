@@ -13,25 +13,26 @@ public class ShowtimeDB implements Database{
         initializeConnection();
     }
 
-    public ArrayList<Showtime> getShowtimesFromMovie(int id) {
-        ArrayList<Showtime> DBUser = new ArrayList<>();
+    public ArrayList<Showtime> getShowtimesFromMovie(Movie movie) {
+        ArrayList<Showtime> dbMovies = new ArrayList<>();
         try {
             String query = "SELECT * FROM showtimes WHERE MovieID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setInt(1, movie.getID());
             ResultSet set = stmt.executeQuery(query);
             while (set.next()) {
                 int MovieID = set.getInt("MovieID");
                 int ShowtimeID = set.getInt("ID");
                 String Time = set.getString("TIme");
-                DBUser.add(new Showtime(ShowtimeID,MovieID,Time));
+                dbMovies.add(new Showtime(ShowtimeID,MovieID,Time));
             }
             stmt.close();
             set.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return DBUser;
+        movie.setShowTimes(dbMovies);
+        return dbMovies;
     }
 
 

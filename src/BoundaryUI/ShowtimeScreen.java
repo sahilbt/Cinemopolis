@@ -112,10 +112,10 @@ public class ShowtimeScreen extends JFrame {
         model.addColumn(new Object[] {"bruh"});
 
         int i =0;
-        // while(i < theatres.get(0).getMovieList().size()){
-        //     model.addRow(new Object[] {theatres.get(0).getMovieList().get(i).getMovieName()});
-        //     i++;
-        // }
+        while(i < theatres.get(0).getMovieList().get(m).getShowTimes().size()){
+            model.addRow(new Object[] {theatres.get(0).getMovieList().get(m).getShowTimes().get(i).getTime()});
+            i++;
+        }
 
         showtimeTable.setModel(model);
 
@@ -200,7 +200,8 @@ public class ShowtimeScreen extends JFrame {
     }                  
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           
-        // TODO add your handling code here:
+        dispose();     
+        MovieScreen ms = new MovieScreen(this.user, this.theatres, this.t);
     }                                          
 
     private void continueButtonActionPerformed(ActionEvent evt) {                                               

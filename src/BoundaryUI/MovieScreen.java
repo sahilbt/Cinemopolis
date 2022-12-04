@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import Controllers.ShowtimeController;
+import Entitity.Movie;
 import Entitity.Theatre;
 import Entitity.User;
 
@@ -209,10 +210,13 @@ public class MovieScreen extends JFrame {
         for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
             if (theatres.get(t).getMovieList().get(i).getMovieName().equals(movieNameFromTable)){
                 movieID = theatres.get(t).getMovieList().get(i).getID();
+                sc.getShowtimePageInformation(theatres.get(t).getMovieList().get(i));
+                break;
             } 
         }
-
-        sc.getShowtimePageInformation(movieID);
+        dispose();
+        
+        ShowtimeScreen ms = new ShowtimeScreen(user, theatres,t, movieID-1);
     }                                              
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           

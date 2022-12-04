@@ -3,6 +3,7 @@ package Controllers;
 import java.util.ArrayList;
 
 import BoundaryDB.ShowtimeDB;
+import Entitity.Movie;
 import Entitity.Showtime;
 
 public class ShowtimeController{
@@ -13,8 +14,8 @@ public class ShowtimeController{
        db = new ShowtimeDB();
     }
 
-    public ArrayList<Showtime> getShowtimePageInformation(int id){
-        return db.getShowtimesFromMovie(id);
+    public ArrayList<Showtime> getShowtimePageInformation(Movie movie){
+        return db.getShowtimesFromMovie(movie);
     }
 
 
