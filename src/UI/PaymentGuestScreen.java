@@ -11,6 +11,7 @@ import javax.swing.*;
 
 import Business.PaymentService;
 import Controllers.CouponController;
+import Controllers.SeatController;
 import Controllers.TicketController;
 import Entitity.Coupon;
 import Entitity.Theatre;
@@ -397,11 +398,12 @@ public class PaymentGuestScreen extends JFrame {
         TicketController tc = new TicketController();
         tc.addTicketToDB(t);
 
-        
+        SeatController s = new SeatController();
+        s.updateSeatinDB(seats);
 
-
-
-
+        JOptionPane.showMessageDialog(this, "Tickets sucessfully purchased! Check your email for details","Success!", JOptionPane.PLAIN_MESSAGE);
+        dispose();
+        HomeScreen.main(null);
     }                                         
 
     private void backButtonActionPerformed(ActionEvent evt) {                                           

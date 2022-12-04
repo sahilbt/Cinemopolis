@@ -39,21 +39,6 @@ public class SeatsDB implements Database{
     }
 
 
-    public boolean checkRuserSeatLimit(ArrayList<Seat>seats,User u){
-        if(u==null)
-        return true;
-        int max = seats.size()/10;
-        int counter = 0;
-        for(Seat val : seats){
-            if(val.getRuser()==true){
-                counter++;
-            }
-            if(counter > max)
-            return false;
-        }
-        return true;
-    }
-
     public void bookSeat(ArrayList<Integer> seats){
         try {
             String query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
@@ -66,7 +51,7 @@ public class SeatsDB implements Database{
         } catch (SQLException e) {
             e.printStackTrace();
             }
-        }
+    }
 
 
 
