@@ -8,23 +8,25 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AdminMovieScreen extends JFrame {
+public class AdminUserScreen extends JFrame {
     private JButton addButton;
     private JButton backButton;
     private JPanel backgroundPanel;
     private JTextField couponInput;
     private JLabel headText;
     private JLabel infoText;
+    private JLabel infoText1;
     private JPanel line;
     private JLabel movieText;
-    private JButton removeButton;
+    private JButton removeButton;   
     private User user;
-               
-    public AdminMovieScreen(User user) {
+
+
+    public AdminUserScreen(User user) {
         this.user = user;
         initComponents();
     }
-                      
+                   
     private void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -37,6 +39,7 @@ public class AdminMovieScreen extends JFrame {
             ex.printStackTrace();
         } 
 
+
         backgroundPanel = new JPanel();
         headText = new JLabel();
         line = new JPanel();
@@ -46,6 +49,7 @@ public class AdminMovieScreen extends JFrame {
         backButton = new JButton();
         couponInput = new JTextField();
         movieText = new JLabel();
+        infoText1 = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cinemopolis");
@@ -54,9 +58,9 @@ public class AdminMovieScreen extends JFrame {
 
         backgroundPanel.setBackground(Color.black);
 
-        headText.setFont(new Font("Nirmala UI", 1, 48)); 
+        headText.setFont(new Font("Nirmala UI", 1, 48)); // NOI18N
         headText.setForeground(Color.white);
-        headText.setText("Manage Movies");
+        headText.setText("Manage Users");
         headText.setToolTipText("");
 
         line.setMaximumSize(new Dimension(0, 2));
@@ -80,6 +84,7 @@ public class AdminMovieScreen extends JFrame {
         addButton.setBorderPainted(false);
         addButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+
         removeButton.setBackground(new Color(221, 5, 37));
         removeButton.setFont(new Font("Dubai", 1, 20)); // NOI18N
         removeButton.setForeground(Color.white);
@@ -87,10 +92,11 @@ public class AdminMovieScreen extends JFrame {
         removeButton.setBorderPainted(false);
         removeButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+
         infoText.setBackground(Color.black);
         infoText.setFont(new Font("Dubai", 0, 18)); // NOI18N
         infoText.setForeground(Color.white);
-        infoText.setText("Enter a Movie name to either add or remove it");
+        infoText.setText("Enter an email to remove a user");
 
         backButton.setBackground(new Color(221, 5, 37));
         backButton.setFont(new Font("Dubai", 1, 14)); // NOI18N
@@ -107,7 +113,12 @@ public class AdminMovieScreen extends JFrame {
         movieText.setBackground(Color.black);
         movieText.setFont(new Font("Dubai", 0, 18)); // NOI18N
         movieText.setForeground(Color.white);
-        movieText.setText("Movie Name");
+        movieText.setText("User Email");
+
+        infoText1.setBackground(Color.black);
+        infoText1.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        infoText1.setForeground(Color.white);
+        infoText1.setText("To add a user, click 'Add' to prompt the registration page");
 
         GroupLayout backgroundPanelLayout = new GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
@@ -118,51 +129,61 @@ public class AdminMovieScreen extends JFrame {
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124)
+                        .addGap(144, 144, 144)
                         .addComponent(headText))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(161, 161, 161)
                         .addComponent(line, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
-                        .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
+                        .addGap(118, 118, 118)
                         .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(infoText)
+                            .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                             .addGroup(backgroundPanelLayout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addComponent(movieText))))
+                                .addGap(67, 67, 67)
+                                .addComponent(movieText))
+                            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)))
+                        .addGap(117, 117, 117)
+                        .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                        .addGap(254, 254, 254)
+                        .addComponent(infoText))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(infoText1)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(headText))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(backButton, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(headText)
+                        .addGap(5, 5, 5)))
                 .addComponent(line, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(infoText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(movieText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
+                .addGap(5, 5, 5)
+                .addComponent(infoText1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addComponent(addButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+                        .addGap(157, 157, 157))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(movieText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         GroupLayout layout = new GroupLayout(getContentPane());
@@ -173,11 +194,8 @@ public class AdminMovieScreen extends JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(backgroundPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
 
         backButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -200,7 +218,7 @@ public class AdminMovieScreen extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }                    
+    }                       
 
     private void addButtonActionPerformed(ActionEvent evt) {                                          
     }                                         
@@ -208,8 +226,8 @@ public class AdminMovieScreen extends JFrame {
     private void removeButtonActionPerformed(ActionEvent evt) {                                             
     }                                            
 
-    private void backButtonActionPerformed(ActionEvent evt) { 
+    private void backButtonActionPerformed(ActionEvent evt) {      
         dispose();
-        DashboardScreen ds = new DashboardScreen(user);                                          
-    }                                          
+        DashboardScreen ds = new DashboardScreen(user);                                           
+    }                                                      
 }
