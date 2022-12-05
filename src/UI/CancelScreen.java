@@ -22,10 +22,22 @@ public class CancelScreen extends JFrame implements UI {
     private JButton refundButton;
     private JLabel orderText;
 
+
+    /**
+	 * Cancel Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/           
     public CancelScreen() {
         initComponents();
     }
     
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/      
     @Override
     public void initComponents() {
         try {
@@ -202,13 +214,25 @@ public class CancelScreen extends JFrame implements UI {
         setVisible(true);
     }                   
 
+
+    /**
+	 * Function to send user to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void backButtonActionPerformed(ActionEvent evt) {    
         dispose();
         HomeScreen.main(null);                                       
     }                                          
 
-                                         
-    private void refundButtonActionPerformed(ActionEvent evt) {    
+  
+    /**
+	 * Function to cancel the ticket and produce a coupon id the refund button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/      
+    private void refundButtonActionPerformed(ActionEvent evt) {  
+        //get input and make sure input is valid  
         String id = couponTextbox.getText();    
         
         if(id.isEmpty() || !id.matches("^[0-9]*$")){
@@ -220,28 +244,33 @@ public class CancelScreen extends JFrame implements UI {
         CouponController cc = new CouponController();
         boolean existence = tc.exists(id);
 
+        //make sure ticket exists
         if(!existence){
             JOptionPane.showMessageDialog(this, "This Order ID does not exist!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
         Ticket ticket = tc.getTicket(id);
-
         boolean notExp = tc.notExpired();
+
+        //make sure ricket is within refund range
         if(!notExp){
             JOptionPane.showMessageDialog(this, "This Order was purchased more than 72 hours ago!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
-        cc.addCoupon(ticket);
 
+        // add coupon to database
+        cc.addCoupon(ticket);
         Coupon c = cc.getRecentCoupon();
 
+        //send cancellation email
         PaymentService ps = new PaymentService();
         ps.makeEmail(ticket.getEmail(), id, c);
 
         tc.closeControl();
         cc.closeControl();
 
+        //Display success message
         JOptionPane.showMessageDialog(this, "Order successfully canceled! Please check your email for the refund details.","Success", JOptionPane.PLAIN_MESSAGE);
     }                                                       
 }

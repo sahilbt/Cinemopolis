@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AdminUserScreen extends JFrame {
+public class AdminUserScreen extends JFrame implements UI {
     private JButton addButton;
     private JButton backButton;
     private JPanel backgroundPanel;
@@ -22,13 +22,24 @@ public class AdminUserScreen extends JFrame {
     private JButton removeButton;   
     private User user;
 
-
+    /**
+	 * AdminMovieScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/         
     public AdminUserScreen(User user) {
         this.user = user;
         initComponents();
     }
-                   
-    private void initComponents() {
+
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/  
+    @Override    
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -220,12 +231,25 @@ public class AdminUserScreen extends JFrame {
         setVisible(true);
     }                       
 
+
+    /**
+	 * Function to send user to the next page to be able to add users
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void addButtonActionPerformed(ActionEvent evt) {   
         dispose();
         AdminCreateUserScreen acus = new AdminCreateUserScreen(user);                                       
-    }                                         
-
+    }     
+    
+    
+    /**
+	 * Function to remove a user if the remove button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void removeButtonActionPerformed(ActionEvent evt) {   
+        //Get input and make sure input is valid
         String email = emailInput.getText();
         
         if(email.isEmpty()){
@@ -234,18 +258,26 @@ public class AdminUserScreen extends JFrame {
         }
 
         LoginController lc = new LoginController();
-
         User tmp = lc.findUserFromSingleton(email);
 
+        //Make sure user already exists 
         if(tmp == null){
             JOptionPane.showMessageDialog(this, "A user with this email does not exist!","Error!", JOptionPane.PLAIN_MESSAGE);
             return; 
         }
 
         lc.removeUser(email);
+
+        //Display success message
         JOptionPane.showMessageDialog(this, "User successfully removed!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                            
 
+
+    /**
+	 * Function to send user to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void backButtonActionPerformed(ActionEvent evt) {      
         dispose();
         DashboardScreen ds = new DashboardScreen(user);

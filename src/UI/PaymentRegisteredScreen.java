@@ -37,6 +37,17 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
     private ArrayList<Integer> seats;
     private int price;
 
+
+    /**
+	 * PaymentRegisteredScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+     * @param t index of theatre 
+     * @param m index of movie
+     * @param s index of showtime
+     * @param seats list of all selected seats
+	*/  
     public PaymentRegisteredScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s, ArrayList<Integer> seats) {
         this.user = user;
         this.theatres = theatres;
@@ -47,7 +58,13 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         initComponents();
     }
 
-         
+        
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/       
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -233,31 +250,51 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         setVisible(true);
     }                     
 
+
+    /**
+	 * Function that sends user to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();
         SeatsScreen ss = new SeatsScreen(user, theatres, t, m, s);
     }                                          
 
-    private void payButtonActionPerformed(ActionEvent evt) {                                          
+
+    /**
+	 * Function that handles payment functioanlity when the user clicks the pay button
+	 * 
+	 * @param evt event used to trigger method
+	*/  
+    private void payButtonActionPerformed(ActionEvent evt) {     
+        //get user input and make sure input is valid                                     
         String movieS = theatres.get(t).getMovieList().get(m).getMovieName();
         String theatreS = theatres.get(t).getTheatreName();
         String showTimesS = theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getTime();
         Boolean registerdOrNot;
+
+        //Check if user is registered or not
         if (user == null){
             registerdOrNot = false;
         }else{
             registerdOrNot = true;
         }
+
+        //get current date
         Date date = new Date();
         Format formatted = new SimpleDateFormat("MM/dd/yyyy");
         String dateString = formatted.format(date);
 
         TicketController tc = new TicketController();
     
+        //Create new ticket object and add ticket to database
         Ticket t = new Ticket(-1, user.getUsername(), movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
         tc.addTicketToDB(t);
         t.setID(tc.getRecentTicket());
 
+
+        //Send confirmation email
         PaymentService ps = new PaymentService();
         if (!ps.makeEmail(t)){
             tc.removeTicket(t);
@@ -265,20 +302,28 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
             return; 
         }
         
-    
-
+        //update seat vacancy in database
         SeatController s = new SeatController();
         s.updateSeats(seats);
 
         tc.closeControl();
         s.closeControl();
+
+        //Display success message and send user to the dashbaord screen
         JOptionPane.showMessageDialog(this, "Tickets sucessfully purchased! Check your email for details","Success!", JOptionPane.PLAIN_MESSAGE);
         dispose();
         DashboardScreen ds = new DashboardScreen(user);
         ds.performStrategy();
     }                                         
 
-    private void backButton1ActionPerformed(ActionEvent evt) {                                            
+
+    /**
+	 * Function that handles updating ticket price if the apply button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
+    private void backButton1ActionPerformed(ActionEvent evt) {  
+        //Get user input and make sure input is valid                                          
         String id = couponInput.getText();
 
         if(id.isEmpty() || !id.matches("^[0-9]*$")){
@@ -289,6 +334,7 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         CouponController cc = new CouponController();
         boolean validCoupon = cc.validateCoupon(id);
        
+        //Make sure coupon is a valid coupon
         if(!(validCoupon)){
             JOptionPane.showMessageDialog(this, "This coupon is invalid !","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
@@ -296,6 +342,7 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
 
         Coupon coupon = cc.getCoupon(id);
 
+        //Update ticket price based on coupon
         if(coupon.getValue() > price){
             coupon.setValue(coupon.getValue()-price);
             price = 0;
@@ -305,8 +352,10 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
             coupon.setValue(0);
         }
 
+        //Display new price
         cardNumberLabel1.setText("Total: $" + Integer.toString(price));
 
+        //Update/remove ticket from database
         if(coupon.getValue() == 0){
             cc.deleteCoupon(coupon);
         }
@@ -314,6 +363,7 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
             cc.updateCoupon(coupon);
         }
 
+        //display success message
         JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                                  
 }

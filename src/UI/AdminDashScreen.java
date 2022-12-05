@@ -1,12 +1,8 @@
 package UI;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
-
-import Controllers.TheatreController;
-import Entitity.Theatre;
 import Entitity.User;
 
 public class AdminDashScreen extends JFrame implements Strategy{
@@ -21,10 +17,22 @@ public class AdminDashScreen extends JFrame implements Strategy{
     private JLabel userText;
     private User user;
 
+
+    /**
+	 * AdminDashScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/ 
     public AdminDashScreen(User user) {
         this.user = user;
     }
-         
+        
+    
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/      
     @Override
     public void initComponents() {
         try {
@@ -201,18 +209,36 @@ public class AdminDashScreen extends JFrame implements Strategy{
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }                     
-
+    }  
+    
+    
+    /**
+	 * Function to send user to the Admin User page if the user button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/ 
     private void userButtonActionPerformed(ActionEvent evt) {   
         dispose();
         AdminUserScreen aus = new AdminUserScreen(user);                                     
-    }                                          
-
+    }     
+    
+    
+    /**
+	 * Function to send user to the Admin Movie page if the movie button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/ 
     private void movieButtonActionPerformed(ActionEvent evt) {                                            
         dispose();
         AdminMovieScreen ads = new AdminMovieScreen(user);
     }                                           
 
+
+    /**
+	 * Function to send user to the home page if the log out button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void logoutButtonActionPerformed(ActionEvent evt) {                                             
         dispose();
         HomeScreen.main(null); 

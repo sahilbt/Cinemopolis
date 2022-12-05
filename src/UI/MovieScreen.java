@@ -30,13 +30,27 @@ public class MovieScreen extends JFrame implements UI {
     private int t;
 
 
+    /**
+	 * MovieScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+     * @param t index of theatre for which movies will be displayed
+	*/  
     public MovieScreen(User user, ArrayList<Theatre> theatres, int t) {
         this.user = user;
         this.theatres = theatres;
         this.t = t;
         initComponents();
     }
-           
+         
+    
+     /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/        
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -254,7 +268,14 @@ public class MovieScreen extends JFrame implements UI {
         setVisible(true);
     }                     
 
-    private void continueButtonActionPerformed(ActionEvent evt) {                                               
+
+    /**
+	 * Function that sends the user to the showtime screen depending on the chosen movie when the continue button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
+    private void continueButtonActionPerformed(ActionEvent evt) {     
+        //Get selected row number table and make sure user selected a movie before continueing                                          
         int row = movieTable.getSelectedRow();
 
         if(row == -1){
@@ -262,12 +283,12 @@ public class MovieScreen extends JFrame implements UI {
             return;
         }
 
+        //Find corresponding movie from the table
         String movieNameFromTable = movieTable.getModel().getValueAt(row, 0).toString();
-
         ShowtimeController sc = new ShowtimeController();
-
         int movieID = -1;
 
+        //Find showtimes for corresponding movie
         for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
             if (theatres.get(t).getMovieList().get(i).getMovieName().equals(movieNameFromTable)){
                 movieID = theatres.get(t).getMovieList().get(i).getID();
@@ -275,16 +296,32 @@ public class MovieScreen extends JFrame implements UI {
                 break;
             } 
         }
+
+        //senmd user to next page
         dispose();
         sc.closeControl();
         ShowtimeScreen ms = new ShowtimeScreen(user, theatres,t, movieID-1);
     }                                              
 
+
+    /**
+	 * Function that send user to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();     
         TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }  
-    private void searchButtonActionPerformed(ActionEvent evt) {                                             
+
+
+    /**
+	 * Function that sends user to the search results screen if the search button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
+    private void searchButtonActionPerformed(ActionEvent evt) {      
+        //get user input and make sure input is valid                                       
         String search = searchInput.getText();
 
         if(search.isEmpty()){
@@ -292,6 +329,7 @@ public class MovieScreen extends JFrame implements UI {
             return;    
         }
 
+        //Find movie in database based on search and send them to next page if found
         for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
             if(search.equals(theatres.get(t).getMovieList().get(i).getMovieName())){
                 dispose();
@@ -300,7 +338,7 @@ public class MovieScreen extends JFrame implements UI {
             }
         }
 
+        //Error message if movie not found
         JOptionPane.showMessageDialog(this, "We're not playing this movie at the moment!","Error!", JOptionPane.PLAIN_MESSAGE);
     }                                            
-     
 }

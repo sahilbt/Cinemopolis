@@ -22,11 +22,21 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
     private JPanel line3;
     private JButton logoutButton;   
 
-
+    /**
+	 * RegisteredDashScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/  
     public RegisteredDashScreen(User user) {
         this.user = user;
     }
 
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/       
     @Override                        
     public void initComponents() {
         try {
@@ -203,11 +213,21 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
         setVisible(true);
     }                    
 
+    /**
+	 * Function that sends user to the home screen if the logout button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void logoutButtonActionPerformed(ActionEvent evt) {                                             
         dispose();
         HomeScreen.main(null); 
     }                                            
 
+    /**
+	 * Function that sends user to the theatre selection page if the continue button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void continueButtonActionPerformed(ActionEvent evt) {     
         TheatreController tc = new TheatreController();
         ArrayList<Theatre> theatres = tc.getTheatres();
@@ -216,6 +236,12 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
         TheatreScreen ts = new TheatreScreen(theatres, this.user);
     }                                              
 
+
+    /**
+	 * Function that sends user to the update screen if the update button is pressed
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void changeButrtonActionPerformed(ActionEvent evt) {                                              
         dispose();
         UserUpdateScreen us = new UserUpdateScreen(user);

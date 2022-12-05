@@ -20,10 +20,23 @@ public class HomeScreen extends JFrame implements UI {
     private JLabel textFindYou;
     private JLabel theaterName;    
 
+
+    /**
+	 * HomeScreen Constructor
+	 * 
+	 * @param None
+	*/        
     public HomeScreen() {
         initComponents();
     }
-                       
+           
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/   
+    @Override
     public void initComponents() {
         backgroundPanel = new JPanel();
         theaterName = new JLabel();
@@ -231,27 +244,57 @@ public class HomeScreen extends JFrame implements UI {
         setVisible(true);
     }                     
 
+
+    /**
+	 * Function to send user to the registration page if the register button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void registerButtonActionPerformed(ActionEvent evt) {                                               
         dispose();
         RegisterScreen rs = new RegisterScreen();
     }                                              
 
+
+    /**
+	 * Function to send user to the cancellation page if the cancel button is cliecked
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void cancellationButtonActionPerformed(ActionEvent evt) {                                                   
         dispose();
         CancelScreen cs = new CancelScreen();
     }                                                  
 
+
+    /**
+	 * Function to send user to the login page if the login button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/       
     private void loginButtonActionPerformed(ActionEvent evt) {
         dispose();                                            
         LoginScreen ls = new LoginScreen();
     }                                           
 
+
+    /**
+	 * Function to send user to the theatre selection page if thetheatre button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/        
     private void buttonFindTheaterActionPerformed(ActionEvent evt) {                                                  
         dispose();
         DashboardScreen ds = new DashboardScreen(null);
         ds.performStrategy();
     }                                                 
 
+
+    /**
+	 * Main method that is called when the program is first run
+	 * 
+	 * @param None
+	*/    
     public static void main(String args[]) {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

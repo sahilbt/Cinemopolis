@@ -25,6 +25,16 @@ public class ShowtimeScreen extends JFrame implements UI{
     private int t;
     private int m;
 
+
+    /**
+	 * ShowtimeScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+     * @param t index of theatre 
+     * @param m index of movie
+     * @param s index of showtime
+	*/    
     public ShowtimeScreen(User user, ArrayList<Theatre> theatres, int t, int m) {
         this.user = user;
         this.theatres = theatres;
@@ -33,7 +43,13 @@ public class ShowtimeScreen extends JFrame implements UI{
         initComponents();
     }
 
-    
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/       
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -200,22 +216,38 @@ public class ShowtimeScreen extends JFrame implements UI{
         setVisible(true);
     }                  
 
+
+    /**
+	 * Function that sends user back to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/ 
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();     
         MovieScreen ms = new MovieScreen(this.user, this.theatres, this.t);
     }                                          
 
-    private void continueButtonActionPerformed(ActionEvent evt) {       
+
+    /**
+	 * Function that sends user to the seat selection page after they have selected a showtime and the continue button is pressed
+	 * 
+	 * @param evt event used to trigger method
+	*/     
+    private void continueButtonActionPerformed(ActionEvent evt) {    
+        //get row number based on selected row   
         int row = showtimeTable.getSelectedRow();
 
+        //Make sure something is selected
         if(row == -1){
             JOptionPane.showMessageDialog(this, "Please select a showtime to continue!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
+        //Get corresponding seats to the showtime
         SeatController sco = new SeatController();
         sco.getSeats(theatres.get(t).getMovieList().get(m).getShowTimes().get(row));
 
+        //Send user to the seats selction page
         sco.closeControl();
         dispose();
         SeatsScreen sc = new SeatsScreen(user, theatres, t, m, row);

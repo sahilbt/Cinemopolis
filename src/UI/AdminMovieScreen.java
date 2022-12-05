@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AdminMovieScreen extends JFrame {
+public class AdminMovieScreen extends JFrame implements UI {
     private JButton addButton;
     private JButton backButton;
     private JPanel backgroundPanel;
@@ -20,13 +20,25 @@ public class AdminMovieScreen extends JFrame {
     private JLabel movieText;
     private JButton removeButton;
     private User user;
-               
+             
+    /**
+	 * AdminMovieScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/     
     public AdminMovieScreen(User user) {
         this.user = user;
         initComponents();
     }
-                      
-    private void initComponents() {
+          
+    
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/        
+    @Override
+    public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -203,7 +215,14 @@ public class AdminMovieScreen extends JFrame {
         setVisible(true);
     }                    
 
-    private void addButtonActionPerformed(ActionEvent evt) {  
+
+     /**
+	 * Function to add a movie if the user clicks on the add button
+	 * 
+	 * @param evt event used to trigger method
+	*/    
+    private void addButtonActionPerformed(ActionEvent evt) { 
+        //Get input and make sure input is valid 
         String name = movieInput.getText();
 
         if(name.isEmpty()){
@@ -211,10 +230,9 @@ public class AdminMovieScreen extends JFrame {
             return;
         }
 
-        
-        
         MovieController mc = new MovieController();
 
+        //Make sure movie doesn't already exist
         if(!mc.findMovie(name)){
             mc.addMovie(name);
         }else{
@@ -222,11 +240,20 @@ public class AdminMovieScreen extends JFrame {
             return; 
         }
         mc.closeControl();
+
+        //Display Success message
         JOptionPane.showMessageDialog(this, "Movie has been added to the database","Success!", JOptionPane.PLAIN_MESSAGE);
                                       
     }                                         
 
+
+     /**
+	 * Function to remove a movie if the user clicks on the remove button
+	 * 
+	 * @param evt event used to trigger method
+	*/  
     private void removeButtonActionPerformed(ActionEvent evt) {   
+        //get in put and make sure input is valid
         String name = movieInput.getText();
 
         if(name.isEmpty()){
@@ -236,6 +263,7 @@ public class AdminMovieScreen extends JFrame {
         
         MovieController mc = new MovieController();
 
+        //Make sure movie exists before deleting
         if(mc.findMovie(name)){
             mc.deleteMovie(name);
         }else{
@@ -246,10 +274,16 @@ public class AdminMovieScreen extends JFrame {
 
         mc.closeControl();
 
+        //display success Message
         JOptionPane.showMessageDialog(this, "Movie has been removed from the database","Success!", JOptionPane.PLAIN_MESSAGE);
-        
     }                                            
 
+    
+    /**
+	 * Function to send user back to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void backButtonActionPerformed(ActionEvent evt) { 
         dispose();
         DashboardScreen ds = new DashboardScreen(user);      

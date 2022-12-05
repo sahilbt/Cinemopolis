@@ -1,10 +1,8 @@
 package UI;
 import javax.swing.*;
-
 import Controllers.LoginController;
 import Entitity.PaymentInformation;
 import Entitity.User;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,12 +33,26 @@ public class AdminCreateUserScreen extends JFrame implements UI{
     private JPanel paymentLine;  
     private User user; 
 
+
+    /**
+	 * AdminCreateUserScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/ 
     public AdminCreateUserScreen(User user) {
         this.user = user;
         initComponents();
     }
-                        
+       
+    
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/     
+    @Override
     public void initComponents() {
+        //Set new look and feel
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -84,12 +96,12 @@ public class AdminCreateUserScreen extends JFrame implements UI{
         backgroundPanel.setBackground(Color.black);
 
         backButton.setBackground(new Color(221, 5, 37));
-        backButton.setFont(new Font("Dubai", 1, 14)); // NOI18N
+        backButton.setFont(new Font("Dubai", 1, 14)); 
         backButton.setForeground(Color.white);
         backButton.setText("Back");
         backButton.setBorderPainted(false);
 
-        headerText.setFont(new Font("Nirmala UI", 1, 48)); // NOI18N
+        headerText.setFont(new Font("Nirmala UI", 1, 48)); 
         headerText.setForeground(Color.white);
         headerText.setText("New User");
         headerText.setToolTipText("");
@@ -109,108 +121,108 @@ public class AdminCreateUserScreen extends JFrame implements UI{
         );
 
         cvvInput.setBackground(new Color(77, 77, 77));
-        cvvInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        cvvInput.setFont(new Font("Dubai", 0, 18)); 
         cvvInput.setForeground(Color.white);
         cvvInput.setBorder(BorderFactory.createEtchedBorder());
         cvvInput.setSelectionColor(new Color(77, 77, 77));
 
         nameLabel.setBackground(Color.black);
-        nameLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        nameLabel.setFont(new Font("Dubai", 0, 18)); 
         nameLabel.setForeground(Color.white);
         nameLabel.setText("Name on Card");
 
         emailLabel.setBackground(Color.black);
-        emailLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        emailLabel.setFont(new Font("Dubai", 0, 18)); 
         emailLabel.setForeground(Color.white);
         emailLabel.setText("Email");
 
         emailInput.setBackground(new Color(77, 77, 77));
-        emailInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        emailInput.setFont(new Font("Dubai", 0, 18));
         emailInput.setForeground(Color.white);
         emailInput.setBorder(BorderFactory.createEtchedBorder());
         emailInput.setSelectionColor(new Color(77, 77, 77));
 
         nameInput.setBackground(new Color(77, 77, 77));
-        nameInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        nameInput.setFont(new Font("Dubai", 0, 18)); 
         nameInput.setForeground(Color.white);
         nameInput.setBorder(BorderFactory.createEtchedBorder());
         nameInput.setSelectionColor(new Color(77, 77, 77));
 
         expInput.setBackground(new Color(77, 77, 77));
-        expInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        expInput.setFont(new Font("Dubai", 0, 18)); 
         expInput.setForeground(Color.white);
         expInput.setBorder(BorderFactory.createEtchedBorder());
         expInput.setSelectionColor(new Color(77, 77, 77));
 
         cvvLabel.setBackground(Color.black);
-        cvvLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        cvvLabel.setFont(new Font("Dubai", 0, 18)); 
         cvvLabel.setForeground(Color.white);
         cvvLabel.setText("CVV");
 
         expLabel.setBackground(Color.black);
-        expLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        expLabel.setFont(new Font("Dubai", 0, 18)); 
         expLabel.setForeground(Color.white);
         expLabel.setText("Exp");
 
         cardNumberInput.setBackground(new Color(77, 77, 77));
-        cardNumberInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        cardNumberInput.setFont(new Font("Dubai", 0, 18));
         cardNumberInput.setForeground(Color.white);
         cardNumberInput.setBorder(BorderFactory.createEtchedBorder());
         cardNumberInput.setSelectionColor(new Color(77, 77, 77));
 
         firstNameLabel.setBackground(Color.black);
-        firstNameLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        firstNameLabel.setFont(new Font("Dubai", 0, 18)); 
         firstNameLabel.setForeground(Color.white);
         firstNameLabel.setText("First Name");
 
         passwordInput.setBackground(new Color(77, 77, 77));
-        passwordInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        passwordInput.setFont(new Font("Dubai", 0, 18)); 
         passwordInput.setForeground(Color.white);
         passwordInput.setBorder(BorderFactory.createEtchedBorder());
         passwordInput.setSelectionColor(new Color(77, 77, 77));
 
         passwordLabel.setBackground(Color.black);
-        passwordLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        passwordLabel.setFont(new Font("Dubai", 0, 18)); 
         passwordLabel.setForeground(Color.white);
         passwordLabel.setText("Password");
 
         createButton.setBackground(new Color(221, 5, 37));
-        createButton.setFont(new Font("Dubai", 1, 20)); // NOI18N
+        createButton.setFont(new Font("Dubai", 1, 20)); 
         createButton.setForeground(Color.white);
         createButton.setText("Create");
         createButton.setBorderPainted(false);
         createButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
         lastNameInput.setBackground(new Color(77, 77, 77));
-        lastNameInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        lastNameInput.setFont(new Font("Dubai", 0, 18));
         lastNameInput.setForeground(Color.white);
         lastNameInput.setBorder(BorderFactory.createEtchedBorder());
         lastNameInput.setSelectionColor(new Color(77, 77, 77));
 
         firstNameInput1.setBackground(new Color(77, 77, 77));
-        firstNameInput1.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        firstNameInput1.setFont(new Font("Dubai", 0, 18)); 
         firstNameInput1.setForeground(Color.white);
         firstNameInput1.setBorder(BorderFactory.createEtchedBorder());
         firstNameInput1.setSelectionColor(new Color(77, 77, 77));
 
         addressInput.setBackground(new Color(77, 77, 77));
-        addressInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        addressInput.setFont(new Font("Dubai", 0, 18)); 
         addressInput.setForeground(Color.white);
         addressInput.setBorder(BorderFactory.createEtchedBorder());
         addressInput.setSelectionColor(new Color(77, 77, 77));
 
         cardNumberLabel1.setBackground(Color.black);
-        cardNumberLabel1.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        cardNumberLabel1.setFont(new Font("Dubai", 0, 18)); 
         cardNumberLabel1.setForeground(Color.white);
         cardNumberLabel1.setText("Card Number");
 
         lastNameLabel.setBackground(Color.black);
-        lastNameLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        lastNameLabel.setFont(new Font("Dubai", 0, 18)); 
         lastNameLabel.setForeground(Color.white);
         lastNameLabel.setText("Last Name");
 
         addressLabel.setBackground(Color.black);
-        addressLabel.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        addressLabel.setFont(new Font("Dubai", 0, 18)); 
         addressLabel.setForeground(Color.white);
         addressLabel.setText("Address");
 
@@ -356,72 +368,94 @@ public class AdminCreateUserScreen extends JFrame implements UI{
         setVisible(true);
     }                      
 
+
+    /**
+	 * Function to send user back to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/ 
     private void backButtonActionPerformed(ActionEvent evt) {  
         dispose();
         AdminUserScreen aus = new AdminUserScreen(user);
     }                                           
 
-    private void regButtonActionPerformed(ActionEvent evt) {                                          
+
+    /**
+	 * Function to create a new user if the create user button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/  
+    private void regButtonActionPerformed(ActionEvent evt) {
+        //Get inputs                                          
         String fName = firstNameInput1.getText();
         String lName = lastNameInput.getText();
         String address = addressInput.getText();
 
+        //Make sure inputs are valid
         if(fName.isEmpty() || lName.isEmpty() || address.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
+        //Get inputs
         String cardNum = cardNumberInput.getText();
         String nameOnCard = nameInput.getText();
         String exp = expInput.getText();
         String cvv = cvvInput.getText();
 
+        //Make sure inputs are valid
         if(cardNum.isEmpty() || nameOnCard.isEmpty() || exp.isEmpty() || cvv.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
+        //Make sure inputs are valid
         if(!cardNum.matches("^[0-9]*$") || cardNum.length() != 16){
             JOptionPane.showMessageDialog(this, "Please enter a valid credit card number!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;           
         }
 
+        //Make sure inputs are valid
         if(!exp.matches("^(0[1-9]|1[0-2])/?(([0-9]{4}|[0-9]{2})$)")){
             JOptionPane.showMessageDialog(this, "Please enter the expiry date in the correct format! (mm/yy)","Error!", JOptionPane.PLAIN_MESSAGE);
             return;    
         }
 
+        //Make sure inputs are valid
         if(!cvv.matches("^[0-9]*$") || cvv.length() != 3){
             JOptionPane.showMessageDialog(this, "Please enter a valid CVV number (3 digits)","Error!", JOptionPane.PLAIN_MESSAGE);
             return;       
         }
 
-
+        //Get inputs
         String email = emailInput.getText();
         String pass =  String.valueOf(passwordInput.getPassword());
 
+        //Make sure inputs are valid
         if(email.isEmpty() || pass.isEmpty()){
             JOptionPane.showMessageDialog(this, "Please ensure you have filled out all fields!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;    
         }
 
-
         LoginController lc = new LoginController();
         User tmp = lc.findUserFromSingleton(email);
 
+        //make sure registering user is a unique user
         if(tmp != null){
             JOptionPane.showMessageDialog(this, "An account with this email already exists!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;      
         }
 
+        //Create User object and send information to the database
         String fullName = fName + " " + lName;
         PaymentInformation p = new PaymentInformation(cardNum, exp, cvv, nameOnCard);
 
         User u = new User(fullName, address, p, email, pass, "R");
 
         lc.addUser(u);
-
         lc.closeControl();
+
+        //display success message
         JOptionPane.showMessageDialog(this, "New user successfully added!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                                  
 } 

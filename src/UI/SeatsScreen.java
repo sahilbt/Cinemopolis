@@ -44,6 +44,15 @@ public class SeatsScreen extends JFrame implements UI {
     private int m;
     private int s;
 
+    /**
+	 * SeatsScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+     * @param t index of theatre 
+     * @param m index of movie
+     * @param s index of showtime
+	*/     
     public SeatsScreen(User user, ArrayList<Theatre> theatres, int t, int m, int s) {
         this.user = user;
         this.theatres = theatres;
@@ -52,7 +61,14 @@ public class SeatsScreen extends JFrame implements UI {
         this.s = s;
         initComponents();
     }
-                     
+       
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/    
+    @Override    
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -147,11 +163,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat1.setText("1");
         seat1.setBorder(null);
         seat1.setBorderPainted(false);
-        seat1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat1ActionPerformed(evt);
-            }
-        });
         arr.add(seat1);
 
         seat2.setBackground(new Color(77, 77, 77));
@@ -160,11 +171,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat2.setText("2");
         seat2.setBorder(null);
         seat2.setBorderPainted(false);
-        seat2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat2ActionPerformed(evt);
-            }
-        });
         arr.add(seat2);
 
         seat3.setBackground(new Color(77, 77, 77));
@@ -173,11 +179,7 @@ public class SeatsScreen extends JFrame implements UI {
         seat3.setText("4");
         seat3.setBorder(null);
         seat3.setBorderPainted(false);
-        seat3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat3ActionPerformed(evt);
-            }
-        });
+
         arr.add(seat3);
 
         seat4.setBackground(new Color(77, 77, 77));
@@ -186,11 +188,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat4.setText("3");
         seat4.setBorder(null);
         seat4.setBorderPainted(false);
-        seat4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat4ActionPerformed(evt);
-            }
-        });
         arr.add(seat4);
 
         seat5.setBackground(new Color(77, 77, 77));
@@ -199,11 +196,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat5.setText("5");
         seat5.setBorder(null);
         seat5.setBorderPainted(false);
-        seat5.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat5ActionPerformed(evt);
-            }
-        });
         arr.add(seat5);
 
         seat6.setBackground(new Color(77, 77, 77));
@@ -212,11 +204,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat6.setText("6");
         seat6.setBorder(null);
         seat6.setBorderPainted(false);
-        seat6.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat6ActionPerformed(evt);
-            }
-        });
         arr.add(seat6);
 
         seat7.setBackground(new Color(77, 77, 77));
@@ -225,11 +212,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat7.setText("7");
         seat7.setBorder(null);
         seat7.setBorderPainted(false);
-        seat7.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat7ActionPerformed(evt);
-            }
-        });
         arr.add(seat7);
 
         seat8.setBackground(new Color(77, 77, 77));
@@ -238,11 +220,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat8.setText("8");
         seat8.setBorder(null);
         seat8.setBorderPainted(false);
-        seat8.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat8ActionPerformed(evt);
-            }
-        });
         arr.add(seat8);
 
         seat9.setBackground(new Color(77, 77, 77));
@@ -251,11 +228,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat9.setText("9");
         seat9.setBorder(null);
         seat9.setBorderPainted(false);
-        seat9.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat9ActionPerformed(evt);
-            }
-        });
         arr.add(seat9);
 
         seat10.setBackground(new Color(77, 77, 77));
@@ -264,11 +236,7 @@ public class SeatsScreen extends JFrame implements UI {
         seat10.setText("10");
         seat10.setBorder(null);
         seat10.setBorderPainted(false);
-        seat10.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat10ActionPerformed(evt);
-            }
-        });
+
         arr.add(seat10);
 
         seat11.setBackground(new Color(77, 77, 77));
@@ -277,11 +245,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat11.setText("11");
         seat11.setBorder(null);
         seat11.setBorderPainted(false);
-        seat11.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat11ActionPerformed(evt);
-            }
-        });
         arr.add(seat11);
 
         seat12.setBackground(new Color(77, 77, 77));
@@ -290,11 +253,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat12.setText("12");
         seat12.setBorder(null);
         seat12.setBorderPainted(false);
-        seat12.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat12ActionPerformed(evt);
-            }
-        });
         arr.add(seat12);
 
         seat13.setBackground(new Color(77, 77, 77));
@@ -303,11 +261,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat13.setText("13");
         seat13.setBorder(null);
         seat13.setBorderPainted(false);
-        seat13.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat13ActionPerformed(evt);
-            }
-        });
         arr.add(seat13);
 
         seat14.setBackground(new Color(77, 77, 77));
@@ -316,11 +269,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat14.setText("14");
         seat14.setBorder(null);
         seat14.setBorderPainted(false);
-        seat14.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat14ActionPerformed(evt);
-            }
-        });
         arr.add(seat14);
 
         seat15.setBackground(new Color(77, 77, 77));
@@ -329,11 +277,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat15.setText("15");
         seat15.setBorder(null);
         seat15.setBorderPainted(false);
-        seat15.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat15ActionPerformed(evt);
-            }
-        });
         arr.add(seat15);
 
         seat16.setBackground(new Color(77, 77, 77));
@@ -342,11 +285,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat16.setText("16");
         seat16.setBorder(null);
         seat16.setBorderPainted(false);
-        seat16.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat16ActionPerformed(evt);
-            }
-        });
         arr.add(seat16);
 
         seat17.setBackground(new Color(77, 77, 77));
@@ -355,11 +293,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat17.setText("17");
         seat17.setBorder(null);
         seat17.setBorderPainted(false);
-        seat17.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat17ActionPerformed(evt);
-            }
-        });
         arr.add(seat17);
 
         seat18.setBackground(new Color(77, 77, 77));
@@ -368,11 +301,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat18.setText("19");
         seat18.setBorder(null);
         seat18.setBorderPainted(false);
-        seat18.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat18ActionPerformed(evt);
-            }
-        });
         arr.add(seat18);
 
         seat19.setBackground(new Color(77, 77, 77));
@@ -381,11 +309,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat19.setText("18");
         seat19.setBorder(null);
         seat19.setBorderPainted(false);
-        seat19.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat19ActionPerformed(evt);
-            }
-        });
         arr.add(seat19);
 
         seat20.setBackground(new Color(77, 77, 77));
@@ -394,11 +317,6 @@ public class SeatsScreen extends JFrame implements UI {
         seat20.setText("20");
         seat20.setBorder(null);
         seat20.setBorderPainted(false);
-        seat20.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                seat20ActionPerformed(evt);
-            }
-        });
         arr.add(seat20);
 
 
@@ -533,6 +451,7 @@ public class SeatsScreen extends JFrame implements UI {
             .addComponent(backgroundPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        //Make sure already booked seats appear diffeerent on screen and are unselectable
         for(int i = 0; i < arr.size(); i++){
             if(theatres.get(t).getMovieList().get(m).getShowTimes().get(s).getSeats().get(i).getVacant() == false){
                 arr.get(i).setEnabled(false);
@@ -546,16 +465,29 @@ public class SeatsScreen extends JFrame implements UI {
         setVisible(true);
     }                     
 
+
+    /**
+	 * Function that sends user back to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();
         ShowtimeScreen sc = new ShowtimeScreen(user, theatres, t, m);
     }                                          
 
+
+    /**
+	 * Function that sends user to the payment page once they have selected seats and have clicked continue
+	 * 
+	 * @param evt event used to trigger method
+	*/       
     private void continueButtonActionPerformed(ActionEvent evt) {         
         ArrayList<Integer> seats = new ArrayList<Integer>();                                      
         int selected = 0;
         int r = 0;
 
+        //Detemine how many seats were selected and which seats are selected
         for(int i = 0; i < arr.size(); i++){
             if(arr.get(i).isSelected()){
                 selected++;
@@ -565,6 +497,7 @@ public class SeatsScreen extends JFrame implements UI {
                 r++;
         }
 
+        //Make sure at least one seat was selected
         if(selected == 0){
             JOptionPane.showMessageDialog(this, "Please select at least 1 seat to continue!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
@@ -575,6 +508,7 @@ public class SeatsScreen extends JFrame implements UI {
         //     return;
         // }
 
+        //Check if user is registered or not and take them to the corresponding ticket page
         if(user == null){
             dispose();
             PaymentGuestScreen pg = new PaymentGuestScreen(user, theatres, t, m, s, seats);
@@ -583,65 +517,5 @@ public class SeatsScreen extends JFrame implements UI {
             dispose();
             PaymentRegisteredScreen prg = new PaymentRegisteredScreen(user, theatres, t, m, s, seats);
         }
-    }                                              
-
-    private void seat1ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat2ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat3ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat4ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat5ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat6ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat7ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat8ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat9ActionPerformed(ActionEvent evt) {                                      
-    }                                     
-
-    private void seat10ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat11ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat12ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat13ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat14ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat15ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat16ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat17ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat18ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat19ActionPerformed(ActionEvent evt) {                                       
-    }                                      
-
-    private void seat20ActionPerformed(ActionEvent evt) {                                       
-    }                                                    
+    }                                                                                                  
 }

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginScreen extends JFrame {
+public class LoginScreen extends JFrame implements UI{
     private JButton backButton;
     private JPanel backgroundPanel;
     private JLabel emailText;
@@ -18,10 +18,23 @@ public class LoginScreen extends JFrame {
     private JLabel passwordText;
     private JPasswordField passwordTextbox;
 
+
+    /**
+	 * LoginScreen Constructor
+	 * 
+	 * @param None
+	*/   
     public LoginScreen() {
         initComponents();
     }
 
+
+     /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/      
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -193,8 +206,13 @@ public class LoginScreen extends JFrame {
     }   
     
     
-
+    /**
+	 * Function that commences loggin in the user if the logion button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
     private void loginButtonActionPerformed(ActionEvent evt) {   
+        ///get user input and make sure input is valid
         String usernameField = emailTextbox.getText();
         String passwordField = String.valueOf(passwordTextbox.getPassword());
 
@@ -206,11 +224,13 @@ public class LoginScreen extends JFrame {
         LoginController lc = new LoginController();
         boolean userExists = lc.forwardUserCreds(usernameField, passwordField);
   
+        //check if the users credentials match the database
         if(!userExists){
             JOptionPane.showMessageDialog(this, "Incorrect username or password ","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
+        //send user to the dashboard screen
         User foundUser = lc.findUserFromSingleton(usernameField);
         lc.closeControl();
         dispose();
@@ -218,6 +238,12 @@ public class LoginScreen extends JFrame {
         ds.performStrategy();
     }                                           
 
+
+    /**
+	 * Function that send user to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/   
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();
         HomeScreen.main(null);

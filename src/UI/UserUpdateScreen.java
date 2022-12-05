@@ -26,11 +26,23 @@ public class UserUpdateScreen extends JFrame implements UI{
     private User user;
               
 
+    /**
+	 * TheatreScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/ 
     public UserUpdateScreen(User user) {
         this.user = user;
         initComponents();
     }
-                     
+        
+    
+     /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/    
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -250,13 +262,26 @@ public class UserUpdateScreen extends JFrame implements UI{
         setVisible(true);
     }                     
 
+
+    /**
+	 * Function that sends user to the previous page if the back button is pressed
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void backButton8ActionPerformed(ActionEvent evt) {
         dispose();
         DashboardScreen ds = new DashboardScreen(user);
         ds.performStrategy();                                            
     }                                           
 
-    private void updateButtonActionPerformed(ActionEvent evt) {                                             
+
+    /**
+	 * Function that updates user information after the update button is pressed
+	 * 
+	 * @param evt event used to trigger method
+	*/      
+    private void updateButtonActionPerformed(ActionEvent evt) {      
+        //get user input and make sure input is valid                                       
         String cardNum = cardNumberInput.getText();
         String nameOnCard = nameInput.getText();
         String exp = expInput.getText();
@@ -282,12 +307,15 @@ public class UserUpdateScreen extends JFrame implements UI{
             return;       
         }
 
+        //Create new payment object with user input and update user object
         PaymentInformation pi = new PaymentInformation(cardNum, exp, cvv, nameOnCard);
         this.user.setPaymentInformation(pi);
 
+        //Update user in database
         LoginController lc = new LoginController();
         lc.updateUser(user);
         lc.closeControl();
+        //Display Success message
         JOptionPane.showMessageDialog(this, "Successfully updated your payment details!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                            
 }

@@ -34,10 +34,23 @@ public class RegisterScreen extends JFrame implements UI{
     private JButton regButton;
     private JPanel paymentLine;   
 
+
+     /**
+	 * RegisterScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/     
     public RegisterScreen() {
         initComponents();
     }
-                        
+            
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/        
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -354,12 +367,25 @@ public class RegisterScreen extends JFrame implements UI{
         setVisible(true);
     }                      
 
+
+    /**
+	 * Function that sends user to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void backButtonActionPerformed(ActionEvent evt) {  
         dispose();
         HomeScreen.main(null);
     }                                           
 
-    private void regButtonActionPerformed(ActionEvent evt) {                                          
+
+    /**
+	 * Function that creates a new user if the register button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
+    private void regButtonActionPerformed(ActionEvent evt) {  
+        //Get user input and make sure input is valid                                        
         String fName = firstNameInput1.getText();
         String lName = lastNameInput.getText();
         String address = addressInput.getText();
@@ -369,6 +395,7 @@ public class RegisterScreen extends JFrame implements UI{
             return;
         }
 
+        //Get user input and make sure input is valid
         String cardNum = cardNumberInput.getText();
         String nameOnCard = nameInput.getText();
         String exp = expInput.getText();
@@ -394,7 +421,7 @@ public class RegisterScreen extends JFrame implements UI{
             return;       
         }
 
-
+        //Get user input and make sure input is valid
         String email = emailInput.getText();
         String pass =  String.valueOf(passwordInput.getPassword());
 
@@ -407,6 +434,7 @@ public class RegisterScreen extends JFrame implements UI{
         LoginController lc = new LoginController();
         User tmp = lc.findUserFromSingleton(email);
 
+        //make sure new user is a unique user
         if(tmp != null){
             JOptionPane.showMessageDialog(this, "An account with this email already exists!","Error!", JOptionPane.PLAIN_MESSAGE);
             return;      
@@ -415,11 +443,12 @@ public class RegisterScreen extends JFrame implements UI{
         String fullName = fName + " " + lName;
         PaymentInformation p = new PaymentInformation(cardNum, exp, cvv, nameOnCard);
 
+        //Create new user object and add to database
         User u = new User(fullName, address, p, email, pass, "R");
-
         lc.addUser(u);
-
         lc.closeControl();
+
+        //display success message and send user back to home screen
         JOptionPane.showMessageDialog(this, "Successfully registered! You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);
         dispose();
         HomeScreen.main(null);

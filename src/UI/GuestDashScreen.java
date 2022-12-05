@@ -20,10 +20,22 @@ public class GuestDashScreen extends JFrame implements Strategy {
     private JButton registerButton;
     private User user;
     
+
+    /**
+	 * GuestDashScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+	*/         
     public GuestDashScreen(User user) {
         this.user = user;
     }
-                        
+        
+    
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/      
     @Override
     public void initComponents() {
         try {
@@ -192,16 +204,34 @@ public class GuestDashScreen extends JFrame implements Strategy {
         setVisible(true);
     }                      
 
+
+    /**
+	 * Function to send user register page if the register button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/        
     private void registerButtonActionPerformed(ActionEvent evt) {                                               
         dispose();
         RegisterScreen rs = new RegisterScreen();
     }                                              
 
+
+    /**
+	 * Function to send user to previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void backButtonActionPerformed(ActionEvent evt) {                                           
         dispose();
         HomeScreen.main(null); 
     }                                          
 
+
+    /**
+	 * Function to send user to the theatre selection page if the continue button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/      
     private void continueButtonActionPerformed(ActionEvent evt) {                                               
         TheatreController tc = new TheatreController();
         ArrayList<Theatre> theatres = tc.getTheatres();

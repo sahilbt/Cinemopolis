@@ -20,13 +20,25 @@ public class TheatreScreen extends JFrame implements UI{
     private User user;
     private ArrayList<Theatre> theatres;
 
-
+    /**
+	 * TheatreScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+	*/    
     public TheatreScreen(ArrayList<Theatre> theatres, User user) {
         this.theatres = theatres;
         this.user = user;
         initComponents();
     }
-           
+       
+
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/      
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -148,6 +160,12 @@ public class TheatreScreen extends JFrame implements UI{
         setVisible(true);
     }                     
 
+
+    /**
+	 * Function that sends user to the movie selection page once a theatre is selected 
+	 * 
+	 * @param evt event used to trigger method
+	*/ 
     private void theatreButtonActionPerformed(ActionEvent evt) {                                              
         MovieController mc = new MovieController();
         mc.getMovies(theatres.get(0));
@@ -156,11 +174,15 @@ public class TheatreScreen extends JFrame implements UI{
         MovieScreen ms = new MovieScreen(user, theatres, 0);
     }                                             
 
+    /**
+	 * Function that sends user to the previous page if the back button is pressed
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void backButtonActionPerformed(ActionEvent evt) { 
         dispose();     
         DashboardScreen ds = new DashboardScreen(this.user);
         ds.performStrategy();
-
     }                                                      
 }
 

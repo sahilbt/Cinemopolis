@@ -24,6 +24,14 @@ public class SearchResultScreen extends JFrame implements UI{
     private int m;
 
 
+    /**
+	 * SearchResultScreen Constructor
+	 * 
+	 * @param user User object using the Screen
+     * @param theatres list of theatres
+     * @param t index of theatre 
+     * @param m index of movie
+	*/     
     public SearchResultScreen(User user, ArrayList<Theatre> theatres, int t, int m){
         this.user = user;
         this.theatres = theatres;
@@ -32,6 +40,12 @@ public class SearchResultScreen extends JFrame implements UI{
         initComponents();
     }
            
+    /**
+	 * Function that initializes all components and displays them to the user
+	 * 
+	 * @param None
+	*/    
+    @Override
     public void initComponents() {
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -153,6 +167,11 @@ public class SearchResultScreen extends JFrame implements UI{
         setVisible(true);
     }                     
 
+    /**
+	 * Function that sends user to the showtime selection page if the searched movie is selected
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void movieButtonActionPerformed(ActionEvent evt) { 
         ShowtimeController sc = new ShowtimeController();
         sc.getShowtimes(theatres.get(t).getMovieList().get(m));
@@ -161,6 +180,12 @@ public class SearchResultScreen extends JFrame implements UI{
         ShowtimeScreen ss = new ShowtimeScreen(user, theatres, t, m);
     }                                             
 
+
+    /**
+	 * Function that sends user back to the previous page if the back button is clicked
+	 * 
+	 * @param evt event used to trigger method
+	*/     
     private void backButtonActionPerformed(ActionEvent evt) { 
         dispose();     
         MovieScreen ms = new MovieScreen(user, theatres, t);
