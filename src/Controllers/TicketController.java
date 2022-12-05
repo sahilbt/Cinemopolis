@@ -54,6 +54,10 @@ public class TicketController implements Controller{
         return true;
     }
 
+    public void  removeTicket(Ticket t){
+        db.removeTicketFromDB(t);
+    }
+
     public int getRecentTicket(){
        return db.getRecentTicket();
     }

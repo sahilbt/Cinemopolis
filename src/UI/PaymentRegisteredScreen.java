@@ -257,13 +257,15 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         Ticket t = new Ticket(-1, user.getUsername(), movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
         tc.addTicketToDB(t);
         t.setID(tc.getRecentTicket());
-        
+
         PaymentService ps = new PaymentService();
         if (!ps.makeEmail(t)){
+            tc.removeTicket(t);
             JOptionPane.showMessageDialog(this, "Please enter a valid email!","Error!", JOptionPane.PLAIN_MESSAGE);
             return; 
         }
         
+    
 
         SeatController s = new SeatController();
         s.updateSeatinDB(seats);

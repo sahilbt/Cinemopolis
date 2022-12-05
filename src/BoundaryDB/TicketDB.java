@@ -94,4 +94,17 @@ public class TicketDB extends Database {
         }
         return tmp;
     }
+
+    public void removeTicketFromDB(Ticket ticket){
+        try{
+            String query = "DELETE FROM tickets where ID = ?";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+            stmt.setInt(1, ticket.getID());
+            stmt.executeUpdate();
+            stmt.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+    }
 }
