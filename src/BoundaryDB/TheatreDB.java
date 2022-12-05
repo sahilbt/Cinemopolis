@@ -8,13 +8,24 @@ import Entitity.*;
 
 public class TheatreDB extends Database {
 
+    /**
+     * Constructor for the TheatreDB class
+     * 
+     * @param None
+     */
     public TheatreDB(){
         initializeConnection();
     }
 
+    /**
+     * Gets all of the theatres from the database
+     * 
+     * @param None
+     */
     public ArrayList<Theatre> getTheatresFromDB() {
         ArrayList<Theatre> theatres = new ArrayList<Theatre>();
         try {
+            //Query for the selecting theatres
             String query = "SELECT * FROM theatres";
             Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
