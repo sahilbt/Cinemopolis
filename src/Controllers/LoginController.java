@@ -30,4 +30,8 @@ public class LoginController implements Controller{
         db.updateUser(u);
     }
 
+    public void removeUser(String email){
+        db.removeUser(email);
+    }
+
 }

@@ -124,8 +124,13 @@ public class MovieScreen extends JFrame implements UI {
 
         int i =0;
         while(i < theatres.get(0).getMovieList().size()){
-            model.addRow(new Object[] {theatres.get(0).getMovieList().get(i).getMovieName()});
-            i++;
+            if(theatres.get(0).getMovieList().get(i) != null){
+                model.addRow(new Object[] {theatres.get(0).getMovieList().get(i).getMovieName()});
+                i++;
+            }
+            else{
+                i++;
+            }
         }
 
         movieTable.setModel(model);

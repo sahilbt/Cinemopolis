@@ -17,14 +17,38 @@ public class MovieDB extends Database{
     public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
         ArrayList<Movie> DBMovies = new ArrayList<Movie>();
         try {
-            String query = "SELECT * FROM movies WHERE TheatreID = " + Integer.toString(theatre.getID());
+            String query = "SELECT * FROM movies WHERE ID = (SELECT MAX(ID) FROM movies)";
             Statement stmt = dbConnect.createStatement();
             ResultSet set = stmt.executeQuery(query);
+            set.next();
+            int maxID = set.getInt("ID");
+
+
+            query = "SELECT * FROM movies WHERE TheatreID = " + Integer.toString(theatre.getID());
+            stmt = dbConnect.createStatement();
+            set = stmt.executeQuery(query);
+            set.next();
+
+            for(int i = 0; i < maxID; i++){
+                int movieID = set.getInt("ID");
+                if(movieID - 1 == i){
+                    int theatreID = set.getInt("TheatreID");
+                    String name = set.getString("Name");
+                    DBMovies.add(new Movie(name,theatreID,movieID));
+                    set.next();
+                }
+                else{
+                    DBMovies.add(null);
+                }
+            }
+
+
+
             while (set.next()) {
                 int movieID = set.getInt("ID");
                 int theatreID = set.getInt("TheatreID");
                 String name = set.getString("Name");
-                DBMovies.add(new Movie(name,theatreID,movieID));
+                DBMovies.set(movieID - 1, new Movie(name,theatreID,movieID));
             }
             stmt.close();
             set.close();
@@ -32,9 +56,7 @@ public class MovieDB extends Database{
             e.printStackTrace();
         }
         theatre.setMovieList(DBMovies);
-        return
-        
-        DBMovies;
+        return DBMovies;
     }
 
 

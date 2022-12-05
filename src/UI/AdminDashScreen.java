@@ -203,8 +203,9 @@ public class AdminDashScreen extends JFrame implements Strategy{
         setVisible(true);
     }                     
 
-    private void userButtonActionPerformed(ActionEvent evt) {                                           
-
+    private void userButtonActionPerformed(ActionEvent evt) {   
+        dispose();
+        AdminUserScreen aus = new AdminUserScreen(user);                                     
     }                                          
 
     private void movieButtonActionPerformed(ActionEvent evt) {                                            
