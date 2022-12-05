@@ -12,6 +12,9 @@ public class DashboardScreen {
         else if(user.getUserType().compareTo("R") == 0){
             s = new RegisteredDashScreen(user);
         }
+        else if(user.getUserType().compareTo("A") == 0){
+            s = new AdminDashScreen(user);
+        }
     }
 
     public void setStrategy(Strategy s){
