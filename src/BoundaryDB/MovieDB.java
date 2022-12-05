@@ -184,12 +184,6 @@ public class MovieDB extends Database{
         return found;
     }
 
-
-
-
-
-
-
     public boolean checkMovieSearch(int TheatreID,String MovieName,Theatre theatre){
         ArrayList<Movie> MovieList = theatre.getMovieList();
         for(Movie val : MovieList){
