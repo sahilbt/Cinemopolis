@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class RegisterScreen extends JFrame implements UI{
+public class AdminCreateUserScreen extends JFrame implements UI{
     private JTextField addressInput;
     private JLabel addressLabel;
     private JButton backButton;
@@ -31,10 +31,12 @@ public class RegisterScreen extends JFrame implements UI{
     private JLabel nameLabel;
     private JPasswordField passwordInput;
     private JLabel passwordLabel;
-    private JButton regButton;
-    private JPanel paymentLine;   
+    private JButton createButton;
+    private JPanel paymentLine;  
+    private User user; 
 
-    public RegisterScreen() {
+    public AdminCreateUserScreen(User user) {
+        this.user = user;
         initComponents();
     }
                         
@@ -66,7 +68,7 @@ public class RegisterScreen extends JFrame implements UI{
         firstNameLabel = new JLabel();
         passwordInput = new JPasswordField();
         passwordLabel = new JLabel();
-        regButton = new JButton();
+        createButton = new JButton();
         lastNameInput = new JTextField();
         firstNameInput1 = new JTextField();
         addressInput = new JTextField();
@@ -89,7 +91,7 @@ public class RegisterScreen extends JFrame implements UI{
 
         headerText.setFont(new Font("Nirmala UI", 1, 48)); // NOI18N
         headerText.setForeground(Color.white);
-        headerText.setText("Join Us!");
+        headerText.setText("New User");
         headerText.setToolTipText("");
 
         paymentLine.setMaximumSize(new Dimension(0, 2));
@@ -172,12 +174,12 @@ public class RegisterScreen extends JFrame implements UI{
         passwordLabel.setForeground(Color.white);
         passwordLabel.setText("Password");
 
-        regButton.setBackground(new Color(221, 5, 37));
-        regButton.setFont(new Font("Dubai", 1, 20)); // NOI18N
-        regButton.setForeground(Color.white);
-        regButton.setText("Register");
-        regButton.setBorderPainted(false);
-        regButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        createButton.setBackground(new Color(221, 5, 37));
+        createButton.setFont(new Font("Dubai", 1, 20)); // NOI18N
+        createButton.setForeground(Color.white);
+        createButton.setText("Create");
+        createButton.setBorderPainted(false);
+        createButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
         lastNameInput.setBackground(new Color(77, 77, 77));
         lastNameInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
@@ -260,7 +262,7 @@ public class RegisterScreen extends JFrame implements UI{
                                 .addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE))
                             .addGroup(backgroundPanelLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
-                                .addComponent(regButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(createButton, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)))
                         .addGap(70, 70, 70))
                     .addGroup(GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                         .addComponent(paymentLine, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -289,7 +291,7 @@ public class RegisterScreen extends JFrame implements UI{
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(passwordInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)))
                         .addGap(44, 44, 44)
-                        .addComponent(regButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(createButton, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -343,7 +345,7 @@ public class RegisterScreen extends JFrame implements UI{
             }
         });
 
-        regButton.addActionListener(new ActionListener() {
+        createButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 regButtonActionPerformed(evt);
             }
@@ -356,7 +358,7 @@ public class RegisterScreen extends JFrame implements UI{
 
     private void backButtonActionPerformed(ActionEvent evt) {  
         dispose();
-        HomeScreen.main(null);
+        AdminUserScreen aus = new AdminUserScreen(user);
     }                                           
 
     private void regButtonActionPerformed(ActionEvent evt) {                                          
@@ -420,8 +422,6 @@ public class RegisterScreen extends JFrame implements UI{
         lc.forwardRegistrationValidation(u);
 
         lc.closeControl();
-        JOptionPane.showMessageDialog(this, "Successfully registered! You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);
-        dispose();
-        HomeScreen.main(null);
+        JOptionPane.showMessageDialog(this, "New user successfully added!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                                  
 } 

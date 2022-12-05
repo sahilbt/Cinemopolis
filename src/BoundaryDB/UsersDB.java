@@ -60,6 +60,7 @@ public class UsersDB extends Database {
     return false;
     }
 
+
     public User findUser(String username){
         for(User u: users.getRegisteredUsers()){
             if (u.getUsername().equals(username)){
@@ -113,6 +114,15 @@ public class UsersDB extends Database {
     }
 
 
-
-
+    public void removeUser(String email){
+        try {
+            String query = "DELETE FROM users WHERE Email = ?";
+            PreparedStatement stmt = dbConnect.prepareStatement(query);
+            stmt.setString(1, email);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+        users.removeUser(email);
+    }
 }

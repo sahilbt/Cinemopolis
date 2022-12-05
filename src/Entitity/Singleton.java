@@ -47,10 +47,13 @@ public class Singleton{
         return UsersAdded;
     }
 
-    public void updateUser(){
-
-        
+    public void removeUser(String email){
+        for(int i = 0; i < registeredUsers.size(); i++){
+            if(registeredUsers.get(i).getUsername().equals(email)){
+                registeredUsers.remove(i);
+                break;
+            }
+        }
     }
-
     
 }

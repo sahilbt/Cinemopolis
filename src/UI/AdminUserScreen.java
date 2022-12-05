@@ -2,6 +2,7 @@ package UI;
 
 import javax.swing.*;
 
+import Controllers.LoginController;
 import Entitity.User;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ public class AdminUserScreen extends JFrame {
     private JButton addButton;
     private JButton backButton;
     private JPanel backgroundPanel;
-    private JTextField couponInput;
+    private JTextField emailInput;
     private JLabel headText;
     private JLabel infoText;
     private JLabel infoText1;
@@ -39,7 +40,6 @@ public class AdminUserScreen extends JFrame {
             ex.printStackTrace();
         } 
 
-
         backgroundPanel = new JPanel();
         headText = new JLabel();
         line = new JPanel();
@@ -47,7 +47,7 @@ public class AdminUserScreen extends JFrame {
         removeButton = new JButton();
         infoText = new JLabel();
         backButton = new JButton();
-        couponInput = new JTextField();
+        emailInput = new JTextField();
         movieText = new JLabel();
         infoText1 = new JLabel();
 
@@ -104,11 +104,11 @@ public class AdminUserScreen extends JFrame {
         backButton.setText("Back");
         backButton.setBorderPainted(false);
 
-        couponInput.setBackground(new Color(77, 77, 77));
-        couponInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
-        couponInput.setForeground(Color.white);
-        couponInput.setBorder(BorderFactory.createEtchedBorder());
-        couponInput.setSelectionColor(new Color(77, 77, 77));
+        emailInput.setBackground(new Color(77, 77, 77));
+        emailInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        emailInput.setForeground(Color.white);
+        emailInput.setBorder(BorderFactory.createEtchedBorder());
+        emailInput.setSelectionColor(new Color(77, 77, 77));
 
         movieText.setBackground(Color.black);
         movieText.setFont(new Font("Dubai", 0, 18)); // NOI18N
@@ -137,7 +137,7 @@ public class AdminUserScreen extends JFrame {
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)
                             .addGroup(backgroundPanelLayout.createSequentialGroup()
                                 .addGap(67, 67, 67)
                                 .addComponent(movieText))
@@ -180,7 +180,7 @@ public class AdminUserScreen extends JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(movieText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -220,14 +220,35 @@ public class AdminUserScreen extends JFrame {
         setVisible(true);
     }                       
 
-    private void addButtonActionPerformed(ActionEvent evt) {                                          
+    private void addButtonActionPerformed(ActionEvent evt) {   
+        dispose();
+        AdminCreateUserScreen acus = new AdminCreateUserScreen(user);                                       
     }                                         
 
-    private void removeButtonActionPerformed(ActionEvent evt) {                                             
+    private void removeButtonActionPerformed(ActionEvent evt) {   
+        String email = emailInput.getText();
+        
+        if(email.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter an email to remove a user!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        LoginController lc = new LoginController();
+
+        User tmp = lc.findUserFromSingleton(email);
+
+        if(tmp == null){
+            JOptionPane.showMessageDialog(this, "A user with this email does not exist!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return; 
+        }
+
+        lc.removeUser(email);
+        JOptionPane.showMessageDialog(this, "User successfully removed!","Success!", JOptionPane.PLAIN_MESSAGE);
     }                                            
 
     private void backButtonActionPerformed(ActionEvent evt) {      
         dispose();
-        DashboardScreen ds = new DashboardScreen(user);                                           
+        DashboardScreen ds = new DashboardScreen(user);
+        ds.performStrategy();                                           
     }                                                      
 }
