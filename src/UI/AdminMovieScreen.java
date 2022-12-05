@@ -2,6 +2,7 @@ package UI;
 
 import javax.swing.*;
 
+import Controllers.MovieController;
 import Entitity.User;
 
 import java.awt.*;
@@ -12,7 +13,7 @@ public class AdminMovieScreen extends JFrame {
     private JButton addButton;
     private JButton backButton;
     private JPanel backgroundPanel;
-    private JTextField couponInput;
+    private JTextField movieInput;
     private JLabel headText;
     private JLabel infoText;
     private JPanel line;
@@ -44,7 +45,7 @@ public class AdminMovieScreen extends JFrame {
         removeButton = new JButton();
         infoText = new JLabel();
         backButton = new JButton();
-        couponInput = new JTextField();
+        movieInput = new JTextField();
         movieText = new JLabel();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -98,11 +99,11 @@ public class AdminMovieScreen extends JFrame {
         backButton.setText("Back");
         backButton.setBorderPainted(false);
 
-        couponInput.setBackground(new Color(77, 77, 77));
-        couponInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
-        couponInput.setForeground(Color.white);
-        couponInput.setBorder(BorderFactory.createEtchedBorder());
-        couponInput.setSelectionColor(new Color(77, 77, 77));
+        movieInput.setBackground(new Color(77, 77, 77));
+        movieInput.setFont(new Font("Dubai", 0, 18)); // NOI18N
+        movieInput.setForeground(Color.white);
+        movieInput.setBorder(BorderFactory.createEtchedBorder());
+        movieInput.setSelectionColor(new Color(77, 77, 77));
 
         movieText.setBackground(Color.black);
         movieText.setFont(new Font("Dubai", 0, 18)); // NOI18N
@@ -137,7 +138,7 @@ public class AdminMovieScreen extends JFrame {
                                 .addComponent(movieText))))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(270, 270, 270)
-                        .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(movieInput, GroupLayout.PREFERRED_SIZE, 211, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
@@ -157,7 +158,7 @@ public class AdminMovieScreen extends JFrame {
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(movieText, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(couponInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                .addComponent(movieInput, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addGroup(backgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                     .addComponent(removeButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
@@ -202,14 +203,44 @@ public class AdminMovieScreen extends JFrame {
         setVisible(true);
     }                    
 
-    private void addButtonActionPerformed(ActionEvent evt) {                                          
+    private void addButtonActionPerformed(ActionEvent evt) {  
+        String name = movieInput.getText();
+
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a movie name","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
+        MovieController mc = new MovieController();
+        mc.postMovie(name);
+
+        mc.closeControl();
+
+        JOptionPane.showMessageDialog(this, "Movie had been added to the database","Error!", JOptionPane.PLAIN_MESSAGE);
+                                      
     }                                         
 
-    private void removeButtonActionPerformed(ActionEvent evt) {                                             
+    private void removeButtonActionPerformed(ActionEvent evt) {   
+        String name = movieInput.getText();
+
+        if(name.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please enter a movie name","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+
+        MovieController mc = new MovieController();
+        mc.delMovie(name);
+
+        mc.closeControl();
+
+        JOptionPane.showMessageDialog(this, "Movie had been removed to the database","Error!", JOptionPane.PLAIN_MESSAGE);
+        
+        
     }                                            
 
     private void backButtonActionPerformed(ActionEvent evt) { 
         dispose();
-        DashboardScreen ds = new DashboardScreen(user);                                          
+        DashboardScreen ds = new DashboardScreen(user);      
+        ds.performStrategy();                                    
     }                                          
 }

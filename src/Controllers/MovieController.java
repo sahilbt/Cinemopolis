@@ -20,4 +20,12 @@ public class MovieController implements Controller{
     public ArrayList<Movie> getMoviePageInformation(Theatre theatre ){
         return db.getMoviesFromTheatre(theatre);
     }
+
+    public void postMovie (String addedMovie){
+        db.addMovie(addedMovie);
+    }
+
+    public void delMovie(String deletedMovie){
+        db.deleteMovie(deletedMovie);
+    }
 }
