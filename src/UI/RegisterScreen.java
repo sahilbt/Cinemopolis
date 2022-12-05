@@ -449,7 +449,7 @@ public class RegisterScreen extends JFrame implements UI{
         lc.closeControl();
 
         //display success message and send user back to home screen
-        JOptionPane.showMessageDialog(this, "Successfully registered! You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Successfully registered! You will be charged $20 annually starting today. You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);
         dispose();
         HomeScreen.main(null);
     }                                                  
