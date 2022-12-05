@@ -159,6 +159,37 @@ public class MovieDB extends Database{
         return null;
     }
 
+
+    public boolean movieInDB(String movieName){
+
+        boolean found = false;
+
+        try {
+            String query = "SELECT Name from movies";
+            Statement stmt = dbConnect.createStatement();
+            ResultSet set = stmt.executeQuery(query);
+            
+            while(set.next()){
+                if(set.getString(1).equals(movieName))
+                    found = true;
+            }
+
+            stmt.close();
+            set.close();
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return found;
+    }
+
+
+
+
+
+
+
     public boolean checkMovieSearch(int TheatreID,String MovieName,Theatre theatre){
         ArrayList<Movie> MovieList = theatre.getMovieList();
         for(Movie val : MovieList){

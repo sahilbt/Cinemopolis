@@ -28,4 +28,8 @@ public class MovieController implements Controller{
     public void delMovie(String deletedMovie){
         db.deleteMovie(deletedMovie);
     }
+
+    public boolean checkMovieInDB(String movie){
+        return db.movieInDB(movie);
+    }
 }

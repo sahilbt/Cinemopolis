@@ -210,12 +210,18 @@ public class AdminMovieScreen extends JFrame {
             JOptionPane.showMessageDialog(this, "Please enter a movie name","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+
+        
         
         MovieController mc = new MovieController();
-        mc.postMovie(name);
 
+        if(!mc.checkMovieInDB(name)){
+            mc.postMovie(name);
+        }else{
+            JOptionPane.showMessageDialog(this, "This movie already exists in our database!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return; 
+        }
         mc.closeControl();
-
         JOptionPane.showMessageDialog(this, "Movie had been added to the database","Error!", JOptionPane.PLAIN_MESSAGE);
                                       
     }                                         
@@ -227,14 +233,20 @@ public class AdminMovieScreen extends JFrame {
             JOptionPane.showMessageDialog(this, "Please enter a movie name","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
-
+        
         MovieController mc = new MovieController();
-        mc.delMovie(name);
+
+        if(mc.checkMovieInDB(name)){
+            mc.delMovie(name);
+        }else{
+            JOptionPane.showMessageDialog(this, "This movie doesn't exist in our database!","Error!", JOptionPane.PLAIN_MESSAGE);
+            return; 
+        }
+        
 
         mc.closeControl();
 
         JOptionPane.showMessageDialog(this, "Movie had been removed to the database","Error!", JOptionPane.PLAIN_MESSAGE);
-        
         
     }                                            
 
