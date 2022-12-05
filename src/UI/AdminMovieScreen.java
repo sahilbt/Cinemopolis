@@ -222,7 +222,7 @@ public class AdminMovieScreen extends JFrame {
             return; 
         }
         mc.closeControl();
-        JOptionPane.showMessageDialog(this, "Movie had been added to the database","Error!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Movie has been added to the database","Success!", JOptionPane.PLAIN_MESSAGE);
                                       
     }                                         
 
@@ -246,7 +246,7 @@ public class AdminMovieScreen extends JFrame {
 
         mc.closeControl();
 
-        JOptionPane.showMessageDialog(this, "Movie had been removed to the database","Error!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Movie has been removed from the database","Success!", JOptionPane.PLAIN_MESSAGE);
         
     }                                            
 

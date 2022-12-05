@@ -252,18 +252,18 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         Format formatted = new SimpleDateFormat("MM/dd/yyyy");
         String dateString = formatted.format(date);
 
-        
+        TicketController tc = new TicketController();
+    
         Ticket t = new Ticket(-1, user.getUsername(), movieS, showTimesS, dateString, seats, price, registerdOrNot, theatreS);
-
+        tc.addTicketToDB(t);
+        t.setID(tc.getRecentTicket());
+        
         PaymentService ps = new PaymentService();
         if (!ps.makeEmail(t)){
             JOptionPane.showMessageDialog(this, "Please enter a valid email!","Error!", JOptionPane.PLAIN_MESSAGE);
             return; 
         }
-        TicketController tc = new TicketController();
-        tc.addTicketToDB(t);
-
-        t.setID(tc.getRecentTicket());
+        
 
         SeatController s = new SeatController();
         s.updateSeatinDB(seats);
