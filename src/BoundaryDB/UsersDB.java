@@ -15,13 +15,13 @@ public class UsersDB extends Database {
         if(users.getUsersAdded())
             return;
         else{
-            users.setRegisteredUsers(getAllRegisteredUsers());
+            users.setRegisteredUsers(getAllRegisteredUsersFromDB());
             users.wasAdded();
         }
     }
 
 
-    public ArrayList<User> getAllRegisteredUsers(){
+    public ArrayList<User> getAllRegisteredUsersFromDB(){
         ArrayList<User> DBUser = new ArrayList<>();
         try {
             String query = "SELECT * FROM users";
@@ -97,7 +97,7 @@ public class UsersDB extends Database {
     }
 
     
-    public void updateUser(User u){
+    public void updateUserInDB(User u){
         try {
             String query = "UPDATE users SET CardNum = ?, ExpDate = ?, CVV = ?, CardName = ? WHERE Email = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
@@ -114,7 +114,7 @@ public class UsersDB extends Database {
     }
 
 
-    public void removeUser(String email){
+    public void removeUserFromDB(String email){
         try {
             String query = "DELETE FROM users WHERE Email = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);

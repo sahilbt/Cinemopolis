@@ -14,7 +14,7 @@ public class TheatreController implements Controller{
         close(db);
     }
 
-    public ArrayList<Theatre> getTheatreInfo(){
-        return db.getAllTheatres();
+    public ArrayList<Theatre> getTheatres(){
+        return db.getTheatresFromDB();
     }
 }

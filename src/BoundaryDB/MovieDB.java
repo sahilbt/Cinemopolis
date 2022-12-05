@@ -14,7 +14,7 @@ public class MovieDB extends Database{
     }
 
 
-    public ArrayList<Movie> getMoviesFromTheatre(Theatre theatre) {
+    public ArrayList<Movie> getMoviesFromDB(Theatre theatre) {
         ArrayList<Movie> DBMovies = new ArrayList<Movie>();
         try {
             String query = "SELECT * FROM movies WHERE ID = (SELECT MAX(ID) FROM movies)";
@@ -60,7 +60,7 @@ public class MovieDB extends Database{
     }
 
 
-    public void addMovie(String movieName) {
+    public void addMovieIntoDB(String movieName) {
         try {
             String query = "INSERT INTO movies (TheatreID, Name) VALUES (?,?)";
             PreparedStatement stmt = dbConnect.prepareStatement(query);
@@ -123,7 +123,7 @@ public class MovieDB extends Database{
         } 
     }
 
-    public void deleteMovie(String movie){
+    public void deleteMovieFromDB(String movie){
 
         try {
             String query = "SELECT ID FROM movies WHERE Name =" +  "\"" + movie + "\"";
@@ -171,7 +171,8 @@ public class MovieDB extends Database{
 
     }
 
-    public String getMovieNameFromTheatre(int MovieID,int TheatreID,Theatre theatre){
+    //delete maybe
+    public String getMovieNameFromDB(int MovieID,int TheatreID,Theatre theatre){
         ArrayList<Movie> MovieList = theatre.getMovieList();
         for(Movie val : MovieList){
             if(MovieID == val.getID()){
@@ -182,7 +183,7 @@ public class MovieDB extends Database{
     }
 
 
-    public boolean movieInDB(String movieName){
+    public boolean findMovieInDB(String movieName){
 
         boolean found = false;
 
@@ -205,7 +206,8 @@ public class MovieDB extends Database{
 
         return found;
     }
-
+    
+    //maybe delete
     public boolean checkMovieSearch(int TheatreID,String MovieName,Theatre theatre){
         ArrayList<Movie> MovieList = theatre.getMovieList();
         for(Movie val : MovieList){

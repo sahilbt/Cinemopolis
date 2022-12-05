@@ -417,7 +417,7 @@ public class RegisterScreen extends JFrame implements UI{
 
         User u = new User(fullName, address, p, email, pass, "R");
 
-        lc.forwardRegistrationValidation(u);
+        lc.addUser(u);
 
         lc.closeControl();
         JOptionPane.showMessageDialog(this, "Successfully registered! You will now be redirected to the homescreen!","Success!", JOptionPane.PLAIN_MESSAGE);

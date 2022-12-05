@@ -210,7 +210,7 @@ public class RegisteredDashScreen extends JFrame implements Strategy{
 
     private void continueButtonActionPerformed(ActionEvent evt) {     
         TheatreController tc = new TheatreController();
-        ArrayList<Theatre> theatres = tc.getTheatreInfo();
+        ArrayList<Theatre> theatres = tc.getTheatres();
         tc.closeControl();
         dispose();
         TheatreScreen ts = new TheatreScreen(theatres, this.user);

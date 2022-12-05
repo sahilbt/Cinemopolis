@@ -17,19 +17,19 @@ public class MovieController implements Controller{
     public void closeControl(){
         close(db);
     }
-    public ArrayList<Movie> getMoviePageInformation(Theatre theatre ){
-        return db.getMoviesFromTheatre(theatre);
+    public ArrayList<Movie> getMovies(Theatre theatre ){
+        return db.getMoviesFromDB(theatre);
     }
 
-    public void postMovie (String addedMovie){
-        db.addMovie(addedMovie);
+    public void addMovie(String addedMovie){
+        db.addMovieIntoDB(addedMovie);
     }
 
-    public void delMovie(String deletedMovie){
-        db.deleteMovie(deletedMovie);
+    public void deleteMovie(String deletedMovie){
+        db.deleteMovieFromDB(deletedMovie);
     }
 
-    public boolean checkMovieInDB(String movie){
-        return db.movieInDB(movie);
+    public boolean findMovie(String movie){
+        return db.findMovieInDB(movie);
     }
 }

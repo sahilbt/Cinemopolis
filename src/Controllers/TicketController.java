@@ -21,11 +21,11 @@ public class TicketController implements Controller{
     }
     
     public boolean exists(String id){
-        return db.exists(Integer.parseInt(id));
+        return db.ticketExistsInDB(Integer.parseInt(id));
     }
 
     public Ticket getTicket(String id){
-        Ticket tmp = db.getTicket(Integer.parseInt(id));
+        Ticket tmp = db.getTicketFromDB(Integer.parseInt(id));
         this.tick = tmp;
         return tmp;
     }
@@ -54,11 +54,11 @@ public class TicketController implements Controller{
         return true;
     }
 
-    public void  removeTicket(Ticket t){
+    public void removeTicket(Ticket t){
         db.removeTicketFromDB(t);
     }
 
     public int getRecentTicket(){
-       return db.getRecentTicket();
+       return db.getRecentTicketFromDB();
     }
 }

@@ -8,7 +8,7 @@ public class TicketDB extends Database {
         initializeConnection();
     }
     
-    public boolean exists(int id){
+    public boolean ticketExistsInDB(int id){
         try {
             String query = "SELECT * FROM tickets";
             Statement stmt = dbConnect.createStatement();
@@ -55,7 +55,7 @@ public class TicketDB extends Database {
         }
     }
 
-    public Ticket getTicket(int id){
+    public Ticket getTicketFromDB(int id){
         Ticket t = new Ticket();
         try {
             String query = "SELECT * FROM tickets WHERE ID = " + Integer.toString(id);
@@ -80,7 +80,7 @@ public class TicketDB extends Database {
         return t;
     }
 
-    public int getRecentTicket(){
+    public int getRecentTicketFromDB(){
         int tmp = 0;
         try {
             String query = "SELECT ID FROM tickets WHERE ID = (SELECT MAX(ID) FROM tickets)";

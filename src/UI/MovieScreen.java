@@ -271,7 +271,7 @@ public class MovieScreen extends JFrame implements UI {
         for(int i = 0; i < theatres.get(t).getMovieList().size(); i++){
             if (theatres.get(t).getMovieList().get(i).getMovieName().equals(movieNameFromTable)){
                 movieID = theatres.get(t).getMovieList().get(i).getID();
-                sc.getShowtimePageInformation(theatres.get(t).getMovieList().get(i));
+                sc.getShowtimes(theatres.get(t).getMovieList().get(i));
                 break;
             } 
         }

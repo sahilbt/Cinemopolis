@@ -12,7 +12,7 @@ public class TheatreDB extends Database {
         initializeConnection();
     }
 
-    public ArrayList<Theatre> getAllTheatres() {
+    public ArrayList<Theatre> getTheatresFromDB() {
         ArrayList<Theatre> theatres = new ArrayList<Theatre>();
         try {
             String query = "SELECT * FROM theatres";

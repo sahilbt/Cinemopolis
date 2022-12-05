@@ -15,23 +15,23 @@ public class CouponController implements Controller{
         close(db);
     }
     public void addCoupon(Ticket ticket){
-        db.addCoupon(ticket);
+        db.addCouponIntoDB(ticket);
     }
 
-    public boolean sendCouponCreds(String id){
-        return db.validateCoupon(Integer.parseInt(id));
+    public boolean validateCoupon(String id){
+        return db.validateCouponFromDB(Integer.parseInt(id));
     }
 
-    public Coupon getCouponFromBoundaryDB(String id){
+    public Coupon getCoupon(String id){
         return db.getCouponFromDB(Integer.parseInt(id));
     }
 
-    public void performDeletionOfCoupon(Coupon coup){
-        db.removeCouponFromDB(coup);
+    public void deleteCoupon(Coupon coupon){
+        db.removeCouponFromDB(coupon);
     }
 
-    public void updateCouponValueInDB(Coupon coup){
-        db.updateCouponIntoDB(coup);
+    public void updateCoupon(Coupon coupon){
+        db.updateCouponIntoDB(coupon);
     }
 
     public Coupon getRecentCoupon(){

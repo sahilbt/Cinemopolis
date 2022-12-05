@@ -419,7 +419,7 @@ public class AdminCreateUserScreen extends JFrame implements UI{
 
         User u = new User(fullName, address, p, email, pass, "R");
 
-        lc.forwardRegistrationValidation(u);
+        lc.addUser(u);
 
         lc.closeControl();
         JOptionPane.showMessageDialog(this, "New user successfully added!","Success!", JOptionPane.PLAIN_MESSAGE);

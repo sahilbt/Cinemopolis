@@ -268,7 +268,7 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
     
 
         SeatController s = new SeatController();
-        s.updateSeatinDB(seats);
+        s.updateSeats(seats);
 
         tc.closeControl();
         s.closeControl();
@@ -287,14 +287,14 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         }
 
         CouponController cc = new CouponController();
-        boolean validCoupon = cc.sendCouponCreds(id);
+        boolean validCoupon = cc.validateCoupon(id);
        
         if(!(validCoupon)){
             JOptionPane.showMessageDialog(this, "This coupon is invalid !","Error!", JOptionPane.PLAIN_MESSAGE);
             return;
         }
 
-        Coupon coupon = cc.getCouponFromBoundaryDB(id);
+        Coupon coupon = cc.getCoupon(id);
 
         if(coupon.getValue() > price){
             coupon.setValue(coupon.getValue()-price);
@@ -308,10 +308,10 @@ public class PaymentRegisteredScreen extends JFrame implements UI{
         cardNumberLabel1.setText("Total: $" + Integer.toString(price));
 
         if(coupon.getValue() == 0){
-            cc.performDeletionOfCoupon(coupon);
+            cc.deleteCoupon(coupon);
         }
         else{
-            cc.updateCouponValueInDB(coupon);
+            cc.updateCoupon(coupon);
         }
 
         JOptionPane.showMessageDialog(this, "The coupon application process was successful!","Success!", JOptionPane.PLAIN_MESSAGE);

@@ -12,7 +12,7 @@ public class SeatsDB extends Database{
         initializeConnection();
     }
 
-    public ArrayList<Seat> getSeatsFromShowtime(Showtime s) {
+    public ArrayList<Seat> getSeatsFromDB(Showtime s) {
         ArrayList<Seat> DBUser = new ArrayList<Seat>();
         try {
             String query = "SELECT * FROM seats WHERE ShowtimeID = " + Integer.toString(s.getID());
@@ -34,7 +34,7 @@ public class SeatsDB extends Database{
         return DBUser;
     }
 
-    public void bookSeat(ArrayList<Integer> seats){
+    public void updateSeatsinDB(ArrayList<Integer> seats){
         try {
             String query = "UPDATE seats SET Vacancy = ? WHERE ID = ?";
             PreparedStatement stmt = dbConnect.prepareStatement(query);

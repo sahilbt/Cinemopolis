@@ -9,27 +9,7 @@ public class CouponDB extends Database {
         initializeConnection();
     }
 
-    
-    public boolean validateCoupon(int id){
-        try {
-            //Maybe change this so you look for the ID and if nothing is returned, then return false
-            String query = "SELECT * FROM coupons";
-            Statement stmt = dbConnect.createStatement();
-            ResultSet set = stmt.executeQuery(query);
-            while (set.next()) {
-                if(set.getInt("ID") == id){
-                    return true;
-                }
-            }
-            stmt.close();
-            set.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public void addCoupon(Ticket ticket){
+    public void addCouponIntoDB(Ticket ticket){
         int value = getCouponValue(ticket.getPrice(), ticket.getRegistered());
 
         try {
@@ -132,5 +112,24 @@ public class CouponDB extends Database {
             e.printStackTrace();
         }
         return c;
+    }
+
+    public boolean validateCouponFromDB(int id){
+        try {
+            //Maybe change this so you look for the ID and if nothing is returned, then return false
+            String query = "SELECT * FROM coupons";
+            Statement stmt = dbConnect.createStatement();
+            ResultSet set = stmt.executeQuery(query);
+            while (set.next()) {
+                if(set.getInt("ID") == id){
+                    return true;
+                }
+            }
+            stmt.close();
+            set.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

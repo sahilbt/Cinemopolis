@@ -214,7 +214,7 @@ public class ShowtimeScreen extends JFrame implements UI{
         }
 
         SeatController sco = new SeatController();
-        sco.getSeatPageInformation(theatres.get(t).getMovieList().get(m).getShowTimes().get(row));
+        sco.getSeats(theatres.get(t).getMovieList().get(m).getShowTimes().get(row));
 
         sco.closeControl();
         dispose();

@@ -215,8 +215,8 @@ public class AdminMovieScreen extends JFrame {
         
         MovieController mc = new MovieController();
 
-        if(!mc.checkMovieInDB(name)){
-            mc.postMovie(name);
+        if(!mc.findMovie(name)){
+            mc.addMovie(name);
         }else{
             JOptionPane.showMessageDialog(this, "This movie already exists in our database!","Error!", JOptionPane.PLAIN_MESSAGE);
             return; 
@@ -236,8 +236,8 @@ public class AdminMovieScreen extends JFrame {
         
         MovieController mc = new MovieController();
 
-        if(mc.checkMovieInDB(name)){
-            mc.delMovie(name);
+        if(mc.findMovie(name)){
+            mc.deleteMovie(name);
         }else{
             JOptionPane.showMessageDialog(this, "This movie doesn't exist in our database!","Error!", JOptionPane.PLAIN_MESSAGE);
             return; 

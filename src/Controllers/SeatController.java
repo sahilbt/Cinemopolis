@@ -18,12 +18,12 @@ public class SeatController implements Controller{
         close(db);
     }
 
-    public ArrayList<Seat> getSeatPageInformation(Showtime s){
-        return db.getSeatsFromShowtime(s);
+    public ArrayList<Seat> getSeats(Showtime s){
+        return db.getSeatsFromDB(s);
     }
 
-    public void updateSeatinDB(ArrayList<Integer> seats){
-        db.bookSeat(seats);
+    public void updateSeats(ArrayList<Integer> seats){
+        db.updateSeatsinDB(seats);
     }
     
 }

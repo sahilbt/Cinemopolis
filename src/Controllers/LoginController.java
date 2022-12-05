@@ -22,16 +22,16 @@ public class LoginController implements Controller{
         return db.findUser(user);
     }
 
-    public void forwardRegistrationValidation(User u){
+    public void addUser(User u){
         db.addRegister(u);
     }
 
-    public void forwardUpdate(User u){
-        db.updateUser(u);
+    public void updateUser(User u){
+        db.updateUserInDB(u);
     }
 
     public void removeUser(String email){
-        db.removeUser(email);
+        db.removeUserFromDB(email);
     }
 
 }

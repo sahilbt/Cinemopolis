@@ -18,8 +18,8 @@ public class ShowtimeController implements Controller{
         close(db);
     }
     
-    public ArrayList<Showtime> getShowtimePageInformation(Movie movie){
-        return db.getShowtimesFromMovie(movie);
+    public ArrayList<Showtime> getShowtimes(Movie movie){
+        return db.getShowtimesFromDB(movie);
     }
 
 }

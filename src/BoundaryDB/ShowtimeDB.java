@@ -13,7 +13,7 @@ public class ShowtimeDB extends Database{
 
     
 
-    public ArrayList<Showtime> getShowtimesFromMovie(Movie movie) {
+    public ArrayList<Showtime> getShowtimesFromDB(Movie movie) {
         ArrayList<Showtime> dbMovies = new ArrayList<Showtime>();
         try {
             String query = "SELECT * FROM showtimes WHERE MovieID = " + Integer.toString(movie.getID());
