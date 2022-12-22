@@ -503,10 +503,10 @@ public class SeatsScreen extends JFrame implements UI {
             return;
         }
 
-        // if(r >= 2 && user != null){
-        //     JOptionPane.showMessageDialog(this, "Registered users may only book 10% of the theatre","Error!", JOptionPane.PLAIN_MESSAGE);
-        //     return;
-        // }
+        if((r > 2 && user != null) || (user != null && selected > 2)){
+            JOptionPane.showMessageDialog(this, "Registered users may only book 10% of the theatre","Error!", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
 
         //Check if user is registered or not and take them to the corresponding ticket page
         if(user == null){

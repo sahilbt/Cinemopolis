@@ -6,9 +6,11 @@ Cinemopolis is Java desktop application that allows users to browse theaters, mo
 
 ## Technologies
 
-This application was built entirely in Java using Object Oriented Principles in Java. The GUI of this application was built using Java Swing & Java FX. This program also utilizes the singleton and stratgey design patterns to manage the registered users, and to determine the appropriate screens to show depending on the user. For the database, MySQL was used to store information about the users, movies, tickets, showtimes, and seats. 
+This application was built entirely in Java using Object Oriented Principles in Java. The GUI of this application was built using Java Swing & Java FX. This program also utilizes the singleton and strategy design patterns to manage the registered users, and to determine the appropriate screens to show depending on the user. For the database, MySQL was used to store information about the users, movies, tickets, showtimes, and seats. 
 
 ## How to Run the Program
+
+Before attempting to run the program, ensure that MySQL is running with the provided `cinemopolis.sql` file set as the source.
 
 ### Option 1
 
@@ -16,7 +18,10 @@ This application was built entirely in Java using Object Oriented Principles in 
 ```
 git clone
 ```
-2. Click the .jar file
+2. Run the provided `Cinemopolis.jar` file:
+```
+java -jar Cinemopolis.jar
+```
 
 ### Option 2
 
