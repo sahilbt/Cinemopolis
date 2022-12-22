@@ -30,11 +30,22 @@ java -jar Cinemopolis.jar
 git clone
 ```
 
+2. Change into the `src` directory:
+```
+cd src
+```
+
 2. Compile the program:
 ```
 javac -cp ".;./lib/*" UI/HomeScreen.java
 ```
-3. Run the main GUI file to launch the program:
+
+3. Compile the program:
+```
+javac -cp ".;./lib/*" UI/HomeScreen.java
+```
+
+4. Run the main GUI file to launch the program:
 ```
 java -cp ".;./lib/*" UI/HomeScreen
 ```
