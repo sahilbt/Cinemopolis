@@ -33,3 +33,6 @@ javac -cp ".;./lib/*" UI/HomeScreen.java
 ```
 java -cp ".;./lib/*" UI/HomeScreen
 ```
+
+## Check it out here!
+
