@@ -40,12 +40,7 @@ cd src
 javac -cp ".;./lib/*" UI/HomeScreen.java
 ```
 
-3. Compile the program:
-```
-javac -cp ".;./lib/*" UI/HomeScreen.java
-```
-
-4. Run the main GUI file to launch the program:
+3. Run the main GUI file to launch the program:
 ```
 java -cp ".;./lib/*" UI/HomeScreen
 ```
